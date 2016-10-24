@@ -2,7 +2,10 @@
 
 ## To do
 
+- [ ] Add favicon
+
 ### Index
+- [ ] Add faded image 
 - [ ] Add event on scroll
 - [ ] Add scroll indicator
 
