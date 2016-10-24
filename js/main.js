@@ -1,3 +1,5 @@
+/* global $*/
+
 $('#scroll-1').click(function () {
     $('body').animate({scrollTop: $('#carousel-section').offset().top + 'px'}, 1000);
 });
@@ -12,6 +14,8 @@ $('#scroll-3').click(function () {
 
 $(document).ready(function(){
     $('.slider').slider({full_width: true});
+    $('.carousel.carousel-slider').carousel({full_width: true});
+    $('#fullpage').fullpage();
     // $('body').animate({scrollTop: $('#main-section').offset().top + 'px'}, 1000);
     $(function () {
         $(".typed-text").typed({
@@ -20,7 +24,8 @@ $(document).ready(function(){
             loop: true
         });
     });
-    $('.carousel.carousel-slider').carousel({full_width: true});
+    
 });
+
 //add on resize
 //// recalculate div size
