@@ -12,6 +12,14 @@ $('#scroll-3').click(function () {
 
 // add on load
 $('body').animate({scrollTop: $('#main-section').offset().top + 'px'}, 1000);
+$(function () {
+    $(".typed-text").typed({
+        strings: ["your text.", "your snippets.", "your code."],
+        typeSpeed: 100,
+        loop: true
+    });
+});
+$('.carousel.carousel-slider').carousel({full_width: true});
 
 //add on resize
 //// recalculate div size

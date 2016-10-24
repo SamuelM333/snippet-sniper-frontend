@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+    <!-- le css -->
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/typed.css">
     <link rel="stylesheet" href="css/index.css">
@@ -83,19 +84,35 @@
             <div id="split-2" class="col s12 m6 half-height">
                 <div class="col s6">
                     <ul>
-                        <li><p>Python</p></li>
-                        <li><p>Java</p></li>
-                        <li><p>C#</p></li>
-                        <li><p>C++</p></li>
+                        <li>
+                            <div class="circleBase language-icons">
+                                <img src="http://svgporn.com/logos/python.svg" alt="Python">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circleBase language-icons">
+                                <img src="http://svgporn.com/logos/java.svg" alt="Java">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circleBase language-icons">
+                                <img src="http://svgporn.com/logos/dotnet.svg" alt="C#">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="circleBase language-icons">
+                                <img src="http://svgporn.com/logos/c++.svg" alt="C++">
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="col s6">
-                    <ul>
-                        <li><p>HTML</p></li>
-                        <li><p>CSS</p></li>
-                        <li><p>JavaScript</p></li>
-                        <li><p>PHP</p></li>
-                    </ul>
+                    <!--<ul>-->
+                        <!--<li><img class="language-icons" src="http://svgporn.com/logos/html-5.svg" alt="HTML"></li>-->
+                        <!--<li><img class="language-icons" src="http://svgporn.com/logos/css-3.svg" alt="CSS"></li>-->
+                        <!--<li><img class="language-icons" src="http://svgporn.com/logos/javascript.svg" alt="JavaScript"></li>-->
+                        <!--<li><img class="language-icons" src="http://svgporn.com/logos/php.svg" alt="PHP"></li>-->
+                    <!--</ul>-->
                 </div>
             </div>
 
@@ -109,17 +126,5 @@
 <script src="js/vendor/typed.min.js"></script>
 <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
 <script src="js/main.js"></script>
-<script>
-    $(function () {
-        $(".typed-text").typed({
-            strings: ["your text.", "your snippets.", "your code."],
-            typeSpeed: 100,
-            loop: true
-        });
-    });
-    $('.carousel.carousel-slider').carousel({full_width: true});
-
-    $('body').animate({scrollTop: $('#lower_content').offset().top + 'px'}, 1000);
-</script>
 </body>
 </html>
