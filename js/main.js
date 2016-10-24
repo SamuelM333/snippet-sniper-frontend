@@ -1,11 +1,11 @@
 /* global $*/
 
-$(document).ready(function(){
-    $('.slider').slider({full_width: true});
-    $('.carousel.carousel-slider').carousel({full_width: true});
+$(document).ready(function () {
+    $('.slider').slider({ full_width: true });
+    $('.carousel.carousel-slider').carousel({ full_width: true });
     $(".button-collapse").sideNav();
     $('#fullpage').fullpage({
-        anchors: ['firstPage', 'secondPage', 'thirdPage'],
+        anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
         navigation: true,
         navigationPosition: 'left',
         showActiveTooltip: true,
@@ -21,6 +21,15 @@ $(document).ready(function(){
             loop: true
         });
     });
+
+    var options = [
+        {
+            selector: '.nav-section', offset: 500, callback: function (el) {
+                Materialize.fadeInImage($(el));
+            }
+        }
+    ];
+    Materialize.scrollFire(options);
 
 });
 
