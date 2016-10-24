@@ -19,7 +19,7 @@
 <body>
 <div id="fullpage">
     <div class="section">
-        <section id="main-section" class="active valign-wrapper">
+        <section id="main-section" class="active valign-wrapper" data-anchor="firstPage">
             <div class="container valign">
                 <div class="row">
                     <div class="col s12">
@@ -36,32 +36,38 @@
             </div>
         </section>
     </div>
-    <div class="section">
-        <section id="carousel-section">
-            <div class="carousel carousel-slider center" data-indicators="true" style="height: 100vh !important;">
-                <div class="carousel-fixed-item center">
-                    <a id="scroll-2" class="btn waves-effect white grey-text darken-text-2">button</a>
-                </div>
-                <div class="carousel-item red white-text" href="#one!">
-                    <h2>First Panel</h2>
-                    <p class="white-text">This is your first panel</p>
-                </div>
-                <div class="carousel-item amber white-text" href="#two!">
-                    <h2>Second Panel</h2>
-                    <p class="white-text">This is your second panel</p>
-                </div>
-                <div class="carousel-item green white-text" href="#three!">
-                    <h2>Third Panel</h2>
-                    <p class="white-text">This is your third panel</p>
-                </div>
-                <div class="carousel-item blue white-text" href="#four!">
-                    <h2>Fourth Panel</h2>
-                    <p class="white-text">This is your fourth panel</p>
-                </div>
-            </div>
-        </section>
+    <div class="section" data-anchor="secondPage">
+        <div class="slide" data-anchor="slide1"> <p class="center-align white-text">Slide 1</p> </div>
+        <div class="slide" data-anchor="slide2"> <p class="center-align white-text">Slide 2</p> </div>
+        <div class="slide" data-anchor="slide3"> <p class="center-align white-text">Slide 3</p> </div>
+        <div class="slide" data-anchor="slide4"> <p class="center-align white-text">Slide 4</p> </div>
+        <!--<section id="carousel-section">-->
+            <!--<div class="carousel carousel-slider center" data-indicators="true" style="height: 100vh !important;">-->
+                <!--&lt;!&ndash;<div class="carousel-fixed-item center">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="login.html" class="waves-effect waves-light btn">Login</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="signup.html" class="waves-effect waves-light btn">Sign up</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<div class="carousel-item white-text" href="#one!">-->
+                    <!--<h2>First Panel</h2>-->
+                    <!--<div><img src="https://placehold.it/580x250"></div>-->
+
+                <!--</div>-->
+                <!--<div class="carousel-item white-text" href="#two!">-->
+                    <!--<h2>Second Panel</h2>-->
+                    <!--<p class="white-text">This is your second panel</p>-->
+                <!--</div>-->
+                <!--<div class="carousel-item white-text" href="#three!">-->
+                    <!--<h2>Third Panel</h2>-->
+                    <!--<p class="white-text">This is your third panel</p>-->
+                <!--</div>-->
+                <!--<div class="carousel-item white-text" href="#four!">-->
+                    <!--<h2>Fourth Panel</h2>-->
+                    <!--<p class="white-text">This is your fourth panel</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</section>-->
     </div>
-    <div class="section">
+    <div class="section" data-anchor="thirdPage">
         <section id="splitted-section">
             <div class="full-height valign-wrapper">
 
@@ -71,28 +77,28 @@
                         <div class="slider">
                             <ul class="slides">
                                 <li>
-                                    <img src="https://placehold.it/580x250"> <!-- random image -->
+                                    <img src="https://placehold.it/580x250">
                                     <div class="caption center-align">
                                         <h3>This is our big Tagline!</h3>
                                         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
                                     </div>
                                 </li>
                                 <li>
-                                    <img src="https://placehold.it/580x250"> <!-- random image -->
+                                    <img src="https://placehold.it/580x250">
                                     <div class="caption left-align">
                                         <h3>Left Aligned Caption</h3>
                                         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
                                     </div>
                                 </li>
                                 <li>
-                                    <img src="https://placehold.it/580x250"> <!-- random image -->
+                                    <img src="https://placehold.it/580x250">
                                     <div class="caption right-align">
                                         <h3>Right Aligned Caption</h3>
                                         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
                                     </div>
                                 </li>
                                 <li>
-                                    <img src="https://placehold.it/580x250"> <!-- random image -->
+                                    <img src="https://placehold.it/580x250">
                                     <div class="caption center-align">
                                         <h3>This is our big Tagline!</h3>
                                         <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
@@ -104,7 +110,7 @@
 
                     <!-- le language icons  -->
                     <div id="split-2" class="col s12 m6">
-                        <div id="kek-row" class="row">
+                        <div class="row">
                             <h3 class="white-text center-align">Supported languages</h3>
                             <div class="cards-list-wrapper">
                                 <div class="col s6 valign">
