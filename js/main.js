@@ -1,6 +1,9 @@
-/* global $*/
+/* global $ */
+
+
 
 $(document).ready(function () {
+
     $('.slider').slider({ full_width: true });
     $('.carousel.carousel-slider').carousel({ full_width: true });
     $(".button-collapse").sideNav();
@@ -12,7 +15,13 @@ $(document).ready(function () {
         slidesNavigation: true,
         slidesNavPosition: 'bottom',
         controlArrows: false,
-
+        onLeave: function(index, nextIndex, direction){
+            if(index == 1){
+                $('#floating-nav').fadeIn("fast");
+            } else if (nextIndex == 1) {
+                 $('#floating-nav').fadeOut("fast");
+            }
+        }
     });
     $(function () {
         $(".typed-text").typed({
@@ -21,15 +30,6 @@ $(document).ready(function () {
             loop: true
         });
     });
-
-    var options = [
-        {
-            selector: '.nav-section', offset: 500, callback: function (el) {
-                Materialize.fadeInImage($(el));
-            }
-        }
-    ];
-    Materialize.scrollFire(options);
 
 });
 

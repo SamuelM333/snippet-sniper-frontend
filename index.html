@@ -11,7 +11,7 @@
 
     <!-- le css -->
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.8/jquery.fullPage.min.css"/>
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/typed.css">
@@ -19,26 +19,34 @@
 </head>
 
 <body>
+<div id="floating-nav" class="right-align">
+    <a href="login.html" class="waves-effect waves-light btn">Login</a>
+    <a href="signup.html" class="waves-effect waves-light btn">Sign up</a>
+</div>
 <div id="fullpage">
-    <div class="section">
+    <div id="first-section" class="section">
         <section id="main-section" class="active valign-wrapper" data-anchor="firstPage">
             <div class="container valign">
-                <div class="row">
-                    <div class="col s12">
-                        <h1 class="center-align white-text">Snippet Sniper</h1>
-                        <h5 class="center-align white-text">Display <span class="typed-text"></span></h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="center-btn">
-                        <a href="login.html" class="waves-effect waves-light btn">Login</a>
-                        <a href="signup.html" class="waves-effect waves-light btn">Sign up</a>
+                <div id="title-container">
+                    <div id="contents">
+                        <div class="row">
+                            <div class="col s12">
+                                <h1 class="center-align white-text">Snippet Sniper</h1>
+                                <h5 class="center-align white-text">Display <span class="typed-text"></span></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="center-btn">
+                                <a href="login.html" class="waves-effect waves-light btn">Login</a>
+                                <a href="signup.html" class="waves-effect waves-light btn">Sign up</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    <div class="section nav-section" data-anchor="secondPage">
+    <div id="second-section" class="section" data-anchor="secondPage">
         <!--<div class="slide" data-anchor="slide1"> <p class="center-align white-text">Slide 1</p> </div>
     <div class="slide" data-anchor="slide2"> <p class="center-align white-text">Slide 2</p> </div>
     <div class="slide" data-anchor="slide3"> <p class="center-align white-text">Slide 3</p> </div>
@@ -163,17 +171,16 @@
                 </div>
             </div>
         </div>
-        <footer class="page-footer">
+        <footer class="page-footer grey darken-4">
             <div class="footer-copyright">
                 <div class="container">
-                    © 2016 Snippet Sniper
+                    © 2016 Snippet Sniper by Samuel Murillo
                     <!--<a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
                 </div>
             </div>
         </footer>
     </div>
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -184,5 +191,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 <script src="js/main.js"></script>
 </body>
-
 </html>
