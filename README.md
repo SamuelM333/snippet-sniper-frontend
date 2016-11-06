@@ -16,23 +16,23 @@
 ## To do
 
 - [ ] Landing page
-    - [ ] Slider
-        - [x] ~~Slides content~~
-        - [ ] Fix slides height
-    - [x] ~~Floating nav~~
-    - [ ] Add social media icons on the footer
+  - [ ] Slider
+  	- [x] ~~Slides content~~
+    - [ ] Fix slides height
+  - [x] ~~Floating nav~~
+  - [ ] Add social media icons on the footer
 - [x] Snippet view page
-    - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
-    - [ ] Parse markdown
-    - [x] ~~Syntax highlighting color~~
-    - [x] ~~Title and owner display~~
-    - [ ] Markdown display
-    - [x] ~~Wrap snippet on lighter gray~~
+  - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
+  - [ ] Parse markdown
+  - [x] ~~Syntax highlighting color~~
+  - [x] ~~Title and owner display~~
+  - [ ] Markdown display
+  - [x] ~~Wrap snippet on lighter gray~~
 - [ ] Snippet creation page 
-    - [x] ~~Title~~
-    - [x] ~~Ace editor~~
-    - [ ] Try CodeMirror
-    - [ ] Add snippet fragments and language selector 
+  - [x] ~~Title~~
+  - [x] ~~Ace editor~~
+  - [ ] Try CodeMirror
+  - [ ] Add snippet fragments and language selector 
 - [x] ~~Login and register~~
 - [ ] Use gravatar
 - [ ] Create GitBook for frontend and API
@@ -44,7 +44,7 @@
   - homepage
     - floating nav
     - slider
-      - slides
+    	- slides
   - snippets
     - editor
     - viewer
