@@ -17,7 +17,12 @@
       "styles": [
         "styles.sass"
       ],
-      "scripts": [],
+      "scripts": [
+				"../node_modules/jquery/dist/jquery.min.js",
+				"../node_modules/materialize-css/dist/js/materialize.min.js",
+				"../node_modules/fullpage.js/dist/jquery.fullpage.min.js",
+				"assets/js/typed.min.js"
+			],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
