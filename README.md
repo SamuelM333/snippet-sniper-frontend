@@ -21,7 +21,8 @@
     - [ ] Fix slides height
   - [x] ~~Floating nav~~
   - [ ] Add social media icons on the footer
-- [x] Snippet view page
+  - [ ] Add content on horizontal slider
+- [ ] Snippet view page
   - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
   - [ ] Parse markdown
   - [x] ~~Syntax highlighting color~~
@@ -37,6 +38,8 @@
 - [ ] Use gravatar
 - [ ] Create GitBook for frontend and API
 - [ ] OAuth
+- [ ] Add favicon 
+- [ ] Create logo 
 
 ## Components 
 
@@ -48,10 +51,9 @@
   - snippets
     - editor
     - viewer
-  - auth
-    - login
-    - sign up
-  - snippets
   - profile
+  	- login
+		- sign up
+		- view profile
   - shared 
     - nav
