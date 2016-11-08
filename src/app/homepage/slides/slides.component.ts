@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { MnFullpageOptions } from 'ng2-fullpage';
+import { MnFullpageOptions, MnFullpageService  } from 'ng2-fullpage';
 declare var $: any;
 
 @Component({
@@ -27,8 +27,7 @@ export class SlidesComponent implements OnInit {
 		}
 	});
 
-	constructor() {
-	}
+	constructor(private fullpageService: MnFullpageService) {	}
 
 	ngOnInit() {
 		console.log("home");
