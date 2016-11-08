@@ -31,6 +31,7 @@ export class SlidesComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log("home");
 
 		$(".typed-text").typed({
 			strings: ["text", "snippets", "code", "images"],
