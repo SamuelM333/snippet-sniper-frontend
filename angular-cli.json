@@ -18,6 +18,7 @@
         "styles.sass",
 				"assets/css/typed.css",
 				"assets/css/custom.css",
+				"assets/css/font-awesome.min.css",
 				"../node_modules/fullpage.js/dist/jquery.fullpage.min.css"
 
 			],
