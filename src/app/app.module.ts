@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
-import {MnFullpageDirective, MnFullpageService } from "ng2-fullpage";
 import {HomepageComponent} from './homepage/homepage.component';
 import {FloatingNavComponent} from './homepage/floating-nav.component';
 import {SlidesComponent} from './homepage/slides/slides.component';
@@ -15,7 +14,6 @@ import {ROUTING} from "./app.routing";
 @NgModule({
 	declarations: [
 		AppComponent,
-		MnFullpageDirective,
 		HomepageComponent,
 		FloatingNavComponent,
 		SlidesComponent,
@@ -29,9 +27,7 @@ import {ROUTING} from "./app.routing";
 		HttpModule,
 		ROUTING
 	],
-	providers: [
-		MnFullpageService
-	],
+	providers: [ ],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

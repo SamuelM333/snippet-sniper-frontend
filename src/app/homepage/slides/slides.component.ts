@@ -1,36 +1,34 @@
-import {Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { MnFullpageOptions, MnFullpageService  } from 'ng2-fullpage';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 declare var $: any;
 
 @Component({
 	selector: 'app-slides',
 	templateUrl: './slides.component.html',
-	encapsulation: ViewEncapsulation.None,
 	styleUrls: ['./slides.component.sass']
 })
-export class SlidesComponent implements OnInit {
+export class SlidesComponent implements OnInit, OnDestroy {
 
-	@Input() public options:MnFullpageOptions = new MnFullpageOptions({
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
-		navigation: true,
-		navigationPosition: 'left',
-		showActiveTooltip: true,
-		slidesNavigation: true,
-		slidesNavPosition: 'bottom',
-		controlArrows: false,
-		onLeave: function (index, nextIndex, direction) {
-			if (index == 1) {
-				$('#floating-nav').fadeIn("fast");
-			} else if (nextIndex == 1) {
-				$('#floating-nav').fadeOut("fast");
-			}
-		}
-	});
-
-	constructor(private fullpageService: MnFullpageService) {	}
+	constructor() {
+	}
 
 	ngOnInit() {
-		console.log("home");
+
+		$('#fullpage').fullpage({
+			anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
+			navigation: true,
+			navigationPosition: 'left',
+			showActiveTooltip: true,
+			slidesNavigation: true,
+			slidesNavPosition: 'bottom',
+			controlArrows: false,
+			onLeave: function (index, nextIndex, direction) {
+				if (index == 1) {
+					$('#floating-nav').fadeIn("fast");
+				} else if (nextIndex == 1) {
+					$('#floating-nav').fadeOut("fast");
+				}
+			}
+		});
 
 		$(".typed-text").typed({
 			strings: ["text", "snippets", "code", "images"],
@@ -41,5 +39,11 @@ export class SlidesComponent implements OnInit {
 		$('.slider').slider({full_width: true});
 		$('.carousel.carousel-slider').carousel({full_width: true});
 		$(".button-collapse").sideNav();
+
+
+	}
+
+	ngOnDestroy() {
+		$.fn.fullpage.destroy('all');
 	}
 }

@@ -17,11 +17,14 @@
       "styles": [
         "styles.sass",
 				"assets/css/typed.css",
-				"assets/css/custom.css"
-      ],
+				"assets/css/custom.css",
+				"../node_modules/fullpage.js/dist/jquery.fullpage.min.css"
+
+			],
       "scripts": [
 				"../node_modules/jquery/dist/jquery.min.js",
 				"../node_modules/materialize-css/dist/js/materialize.min.js",
+				"../node_modules/fullpage.js/dist/jquery.fullpage.js",
 				"assets/js/typed.min.js"
 			],
       "environments": {
