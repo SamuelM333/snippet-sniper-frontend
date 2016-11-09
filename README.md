@@ -20,7 +20,7 @@
   	- [x] ~~Slides content~~
     - [ ] Fix slides height
   - [x] ~~Floating nav~~
-  - [ ] Add social media icons on the footer
+  - [x] ~~Add social media icons on the footer~~
   - [ ] Add content on horizontal slider
 - [ ] Snippet view page
   - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
