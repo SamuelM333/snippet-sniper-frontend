@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {ROUTING} from "./app.routing";
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
@@ -9,7 +10,7 @@ import {SlidesComponent} from './homepage/slides/slides.component';
 import {FormComponent} from './profile/form.component';
 import {SignUpComponent} from './profile/sign-up/sign-up.component';
 import {LoginComponent} from './profile/login/login.component';
-import {ROUTING} from "./app.routing";
+import { NavComponent } from './shared/nav/nav.component';
 
 @NgModule({
 	declarations: [
@@ -19,7 +20,8 @@ import {ROUTING} from "./app.routing";
 		SlidesComponent,
 		FormComponent,
 		SignUpComponent,
-		LoginComponent
+		LoginComponent,
+		NavComponent
 	],
 	imports: [
 		BrowserModule,
