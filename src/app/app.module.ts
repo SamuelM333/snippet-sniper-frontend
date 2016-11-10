@@ -11,6 +11,7 @@ import {FormComponent} from './profile/form.component';
 import {SignUpComponent} from './profile/sign-up/sign-up.component';
 import {LoginComponent} from './profile/login/login.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import { NavComponent } from './shared/nav/nav.component';
 		FormComponent,
 		SignUpComponent,
 		LoginComponent,
-		NavComponent
+		NavComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,
