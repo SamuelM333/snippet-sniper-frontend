@@ -34,12 +34,15 @@
   - [x] ~~Ace editor~~
   - [ ] Try CodeMirror
   - [ ] Add snippet fragments and language selector 
-- [x] ~~Login and register~~
+- [ ] Login 
+- [ ] Register
+	- [ ] Try sign up wizard (Like Cloud9 or Slack)
 - [ ] Use gravatar
 - [ ] Create GitBook for frontend and API
 - [ ] OAuth
 - [ ] Add favicon 
 - [ ] Create logo 
+- [ ] Add loader to the page
 
 ## Components 
 
