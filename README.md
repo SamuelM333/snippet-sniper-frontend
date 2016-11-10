@@ -23,7 +23,7 @@
   - [x] ~~Add social media icons on the footer~~
   - [ ] Horizontal slider
   	- [ ] Add content
-  	- [ ] Full height
+  	- [x] ~~Full height~~
   	- [x] ~~Autoplay interval~~
   	- [x] ~~Cancel autoplay with onclick~~
 - [ ] Snippet view page
