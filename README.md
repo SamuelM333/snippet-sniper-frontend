@@ -21,7 +21,11 @@
     - [ ] Fix slides height
   - [x] ~~Floating nav~~
   - [x] ~~Add social media icons on the footer~~
-  - [ ] Add content on horizontal slider
+  - [ ] Horizontal slider
+  	- [ ] Add content
+  	- [ ] Full height
+  	- [x] ~~Autoplay interval~~
+  	- [x] ~~Cancel autoplay with onclick~~
 - [ ] Snippet view page
   - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
   - [ ] Parse markdown
@@ -43,6 +47,7 @@
 - [ ] Add favicon 
 - [ ] Create logo 
 - [ ] Add loader to the page
+- [ ] Sort sass
 
 ## Components 
 
