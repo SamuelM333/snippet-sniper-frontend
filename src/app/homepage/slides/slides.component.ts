@@ -36,10 +36,17 @@ export class SlidesComponent implements OnInit, OnDestroy {
 			loop: true
 		});
 
-		$('.slider').slider({full_width: true});
 		$('.carousel.carousel-slider').carousel({full_width: true});
-		$(".button-collapse").sideNav();
+		var interval = window.setInterval(function () {
+			$('.carousel').carousel('next')
+		}, 3000);
 
+		$('#carousel-section').click( function () {
+			clearInterval(interval);
+		});
+
+		$('.slider').slider({full_width: true});
+		$(".button-collapse").sideNav();
 
 	}
 
