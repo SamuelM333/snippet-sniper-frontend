@@ -27,6 +27,7 @@
 				"../node_modules/jquery/dist/jquery.min.js",
 				"../node_modules/materialize-css/dist/js/materialize.min.js",
 				"../node_modules/fullpage.js/dist/jquery.fullpage.js",
+				"../node_modules/ace-builds/src-min-noconflict/ace.js",
 				"assets/js/typed.min.js",
 				"assets/js/prism.js"
 			],

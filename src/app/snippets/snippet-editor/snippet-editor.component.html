@@ -1,3 +1,45 @@
-<p>
-  snippet-editor works!
-</p>
+<app-nav></app-nav>
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<div class="section-title">
+				<h4 class="white-text" id="title-big">New snippet</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<form onsubmit="$('#editor-text').val(editor.getValue())">
+			<textarea name="editor-text" id="editor-text" hidden></textarea>
+			<div class="input-field col s12">
+				<input type="text" name="snippet-title" id="snippet-title" class="white-text"/>
+				<label for="snippet-title">Snippet title: </label>
+			</div>
+			<div id="editor-container" class="container">
+				<div class="row">
+					<div class="col s9">
+						<div id="editor">function foo(items) {{ '{' }}
+							var x = "All this is syntax highlighted";
+							return x;
+							{{ '}' }}
+						</div>
+					</div>
+
+					<div class="col offset-l10 s2">
+						<span class="white-text">Fragments</span>
+						<div class="container">
+							<h6 class="white-text">Javascript</h6>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col offset-l10 s2">
+						<button type="submit" class="btn waves-effect waves-dark cyan darken-3"
+										id="btnSubmitForm">Submit
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<app-footer></app-footer>
