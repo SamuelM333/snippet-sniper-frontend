@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+	selector: 'app-homepage',
+	template: `
+		<app-floating-nav></app-floating-nav>
+		<app-slides></app-slides>
+	`
 })
-export class HomepageComponent {
 
-}
+export class HomepageComponent { }

@@ -10,10 +10,10 @@ import {SlidesComponent} from './homepage/slides/slides.component';
 import {FormComponent} from './profile/form.component';
 import {SignUpComponent} from './profile/sign-up/sign-up.component';
 import {LoginComponent} from './profile/login/login.component';
-import { NavComponent } from './shared/nav/nav.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor.component';
-import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
+import {NavComponent} from './shared/nav/nav.component';
+import {FooterComponent} from './shared/footer/footer.component';
+import {SnippetEditorComponent} from './snippets/snippet-editor/snippet-editor.component';
+import {SnippetViewerComponent} from './snippets/snippet-viewer/snippet-viewer.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +35,7 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
 		HttpModule,
 		ROUTING
 	],
-	providers: [ ],
+	providers: [],
 	bootstrap: [AppComponent]
 })
 export class AppModule {
