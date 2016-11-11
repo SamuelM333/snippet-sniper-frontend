@@ -34,8 +34,8 @@
   - [ ] Markdown display
   - [x] ~~Wrap snippet on lighter gray~~
 - [ ] Snippet creation page 
-  - [x] ~~Title~~
-  - [x] ~~Ace editor~~
+  - [ ] Title
+  - [ ] Ace editor
   - [ ] Try CodeMirror
   - [ ] Add snippet fragments and language selector 
 - [ ] Login 
@@ -44,7 +44,7 @@
 - [ ] Use gravatar
 - [ ] Create GitBook for frontend and API
 - [ ] OAuth
-- [ ] Add favicon 
+- [ ] Add favicon
 - [ ] Create logo 
 - [ ] Add loader to the page
 - [ ] Sort sass
