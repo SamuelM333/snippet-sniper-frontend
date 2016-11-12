@@ -19,8 +19,8 @@
 				"assets/css/typed.css",
 				"assets/css/font-awesome.min.css",
 				"assets/css/prism.css",
-				"assets/css/custom.css",
-				"../node_modules/fullpage.js/dist/jquery.fullpage.min.css"
+				"../node_modules/fullpage.js/dist/jquery.fullpage.min.css",
+				"assets/css/custom.css"
 
 			],
       "scripts": [
