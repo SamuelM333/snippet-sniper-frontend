@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-nav',
@@ -10,6 +11,7 @@ export class NavComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+	  $(".button-collapse").sideNav();
   }
 
 }
