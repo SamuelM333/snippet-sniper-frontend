@@ -122,8 +122,7 @@
 			<div class="row">
 				<div class="col offset-s2 s8">
 					<div class="section-content">
-						<form action="/login" method="post" class="card card-form">
-							<input type="hidden" name="next" value="{{ next }}"/>
+						<form class="card card-form">
 							<div class="card-content">
 								<div class="input-field col s12">
 									<input type="text" name="name" id="name"/>
@@ -134,13 +133,10 @@
 									<label for="email">Email:</label>
 								</div>
 								<div class="input-field col s12">
-									<textarea id="textarea1" class="materialize-textarea"></textarea>
-									<label for="textarea1">Comment:</label>
+									<textarea id="comment-textarea" class="materialize-textarea"></textarea>
+									<label for="comment-textarea">Comment:</label>
 								</div>
-
-								<button type="submit" class="btn waves-effect waves-dark cyan darken-3"
-												id="btnSubmitForm">Submit
-								</button>
+								<button type="submit" class="btn waves-effect waves-dark right">Submit</button>
 							</div>
 						</form>
 					</div>
