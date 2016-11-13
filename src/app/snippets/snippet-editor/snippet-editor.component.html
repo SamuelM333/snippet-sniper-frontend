@@ -3,32 +3,32 @@
 	<div class="row">
 		<div class="col s12">
 			<div class="section-title">
-				<h4 class="white-text" id="title-big">New snippet</h4>
+				<h4 id="title-big" class="white-text">New snippet</h4>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="input-field col s9">
-			<input type="text" name="snippet-title" id="snippet-title" class="white-text"/>
+			<input [(ngModel)]="title" type="text" id="snippet-title" class="white-text" name="snippet-title"/>
 			<label for="snippet-title">Snippet title:</label>
 		</div>
 		<div class="input-field col s3">
-			<select materialize="material_select" class="icons" (ngModelChange)="changeEditorLanguage($event)"
-							[(ngModel)]="selectedValue">
-				<option *ngFor="let l of languages" [ngValue]="l" [attr.data-icon]="l.icon">{{l.name}}</option>
+			<select materialize="material_select" [(ngModel)]="selectedValue" (ngModelChange)="changeEditorLanguage($event)"
+							class="icons">
+				<option *ngFor="let l of languages" [value]="l.name" [attr.data-icon]="l.icon">{{l.text}}</option>
 			</select>
 			<label>Select a language</label>
 		</div>
 		<div id="editor-container" class="container">
 			<div class="row">
 				<div class="col s9">
-					<ace-editor [text]="text" id="editor" #editor></ace-editor>
+					<ace-editor #editor [text]="text" id="editor"></ace-editor>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col offset-l10 s2">
-					<button (click)="getText(text)" class="btn waves-effect waves-dark cyan darken-3"
-									id="btnSubmitForm">Submit
+					<button (click)="getSnippetDetails()" id="btnSubmitForm" class="btn waves-effect waves-dark cyan darken-3">
+						Submit
 					</button>
 				</div>
 			</div>
