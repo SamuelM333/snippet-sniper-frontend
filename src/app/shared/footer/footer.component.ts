@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router'
 
 @Component({
@@ -6,23 +6,15 @@ import {Router} from '@angular/router'
 	templateUrl: './footer.component.html',
 	styleUrls: ['./footer.component.sass']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
 
-	constructor(private router: Router) {
-	}
-
-	ngOnInit() {
-		this.relativePos();
-	}
+	constructor(private router: Router) { }
 
 	relativePos() {
-
-		if (this.router.url === '/snippet/view') {
+		if (this.router.url === '/snippet/view')
 			return true;
-		} else {
+		else
 			return false;
-		}
-
 	}
 
 }
