@@ -4,12 +4,11 @@ import {ROUTING} from "./app.routing";
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
-import { AceEditorComponent } from 'ng2-ace-editor';
+import {AceEditorComponent} from 'ng2-ace-editor';
 import {MaterializeDirective} from "angular2-materialize";
 import {HomepageComponent} from './homepage/homepage.component';
 import {FloatingNavComponent} from './homepage/floating-nav.component';
 import {SlidesComponent} from './homepage/slides/slides.component';
-import {FormComponent} from './profile/form.component';
 import {SignUpComponent} from './profile/sign-up/sign-up.component';
 import {LoginComponent} from './profile/login/login.component';
 import {NavComponent} from './shared/nav/nav.component';
@@ -23,7 +22,6 @@ import {SnippetViewerComponent} from './snippets/snippet-viewer/snippet-viewer.c
 		HomepageComponent,
 		FloatingNavComponent,
 		SlidesComponent,
-		FormComponent,
 		SignUpComponent,
 		LoginComponent,
 		NavComponent,
