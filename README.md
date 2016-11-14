@@ -31,37 +31,21 @@
   - [ ] Parse markdown
   - [x] ~~Syntax highlighting color~~
   - [x] ~~Title and owner display~~
-  - [ ] Markdown display
+  - [x] ~~Markdown display~~
   - [x] ~~Wrap snippet on lighter gray~~
 - [ ] Snippet creation page 
-  - [ ] Title
-  - [ ] Ace editor
-  - [ ] Try CodeMirror
-  - [ ] Add snippet fragments and language selector 
+  - [x] ~~Title~~
+  - [x] ~~Ace editor~~
+  - [ ] Add snippet fragments
+	- [x] ~~Add language selector~~ 
 - [ ] Login 
 - [ ] Register
 	- [ ] Try sign up wizard (Like Cloud9 or Slack)
+- [ ] Consume REST API
 - [ ] Use gravatar
 - [ ] Create GitBook for frontend and API
 - [ ] OAuth
-- [ ] Add favicon
+- [x] ~~Add favicon~~
 - [ ] Create logo 
 - [ ] Add loader to the page
 - [ ] Sort sass
-
-## Components 
-
-- app
-  - homepage
-    - floating nav
-    - slider
-    	- slides
-  - snippets
-    - editor
-    - viewer
-  - profile
-  	- login
-		- sign up
-		- view profile
-  - shared 
-    - nav
