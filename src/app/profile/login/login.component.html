@@ -9,14 +9,14 @@
 	</div>
 	<div class="row">
 		<div class="col offset-s2 s8 full-form-on-small">
-			<form class="col s12 card">
+			<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="col s12 card">
 				<div class="card-content">
 					<div class="input-field col s12">
-						<input type="email" name="email" id="email"/>
-						<label for="email">Email: </label>
+						<input ngModel id="email" type="email" name="email" class="validate" required/>
+						<label for="email" data-error="Invalid email" data-success="">Email: </label>
 					</div>
 					<div class="input-field col s12">
-						<input name="password" id="password" type="password">
+						<input ngModel id="password" type="password" name="password" required>
 						<label for="password">Password:</label>
 					</div>
 					<div class="row">
