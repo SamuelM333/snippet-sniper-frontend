@@ -5,7 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './floating-nav.component.html',
   styleUrls: ['./floating-nav.component.sass']
 })
-export class FloatingNavComponent {
-
-  constructor() { }
-}
+export class FloatingNavComponent { }

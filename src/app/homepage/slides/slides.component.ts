@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 declare var $: any;
 
 @Component({
@@ -7,12 +7,8 @@ declare var $: any;
 	styleUrls: ['./slides.component.sass']
 })
 export class SlidesComponent implements OnInit, OnDestroy {
-
-	constructor() {
-	}
-
+	
 	ngOnInit() {
-
 		$('#fullpage').fullpage({
 			anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
 			navigation: true,
@@ -29,28 +25,26 @@ export class SlidesComponent implements OnInit, OnDestroy {
 				}
 			}
 		});
-
+		
 		$(".typed-text").typed({
 			strings: ["text", "snippets", "code", "images"],
 			typeSpeed: 100,
 			loop: true
 		});
-
-		$('.carousel.carousel-slider').carousel({full_width: true});
+		
+		$('.carousel.carousel-slider').carousel({ full_width: true });
 		var interval = window.setInterval(function () {
 			$('.carousel').carousel('next')
 		}, 3000);
-
-		$('#carousel-section').click( function () {
+		
+		$('#carousel-section').click(function () {
 			clearInterval(interval);
 		});
-
-		$('.slider').slider({full_width: true});
+		
+		$('.slider').slider({ full_width: true });
 		$(".button-collapse").sideNav();
-
+		
 	}
-
-	ngOnDestroy() {
-		$.fn.fullpage.destroy('all');
-	}
+	
+	ngOnDestroy() { $.fn.fullpage.destroy('all'); }
 }
