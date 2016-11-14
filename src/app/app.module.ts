@@ -15,9 +15,14 @@ import { NavComponent } from './shared/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor.component';
 import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
-import { EqualValidatorDirective } from './shared/equal-validator.directive'
 
 @NgModule({
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpModule,
+		ROUTING
+	],
 	declarations: [
 		AppComponent,
 		MaterializeDirective,
@@ -29,15 +34,8 @@ import { EqualValidatorDirective } from './shared/equal-validator.directive'
 		SlidesComponent,
 		SignUpComponent,
 		LoginComponent,
-		EqualValidatorDirective,
 		SnippetEditorComponent,
 		SnippetViewerComponent
-	],
-	imports: [
-		BrowserModule,
-		FormsModule,
-		HttpModule,
-		ROUTING
 	],
 	providers: [],
 	bootstrap: [AppComponent]
