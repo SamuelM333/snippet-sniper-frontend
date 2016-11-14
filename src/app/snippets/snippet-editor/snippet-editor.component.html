@@ -1,37 +1,42 @@
 <app-nav></app-nav>
-<div class="container">
-	<div class="row">
-		<div class="col s12">
-			<div class="section-title">
-				<h4 id="title-big" class="white-text center">New snippet</h4>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="input-field col s9">
+<div>
+	<div class="row section-title">
+		<div class="input-field col s12 m12 l7">
 			<input [(ngModel)]="title" type="text" id="snippet-title" class="white-text" name="snippet-title"/>
 			<label for="snippet-title">Snippet title:</label>
 		</div>
-		<div class="input-field col s3">
-			<select materialize="material_select" [(ngModel)]="selectedValue" (ngModelChange)="changeEditorLanguage($event)"
+		<div class="input-field col s8 m8 l3">
+			<select materialize="material_select" [(ngModel)]="selectedValue"
+							(ngModelChange)="changeEditorLanguage($event)"
 							class="icons">
 				<option *ngFor="let l of languages" [value]="l.name" [attr.data-icon]="l.icon">{{l.text}}</option>
 			</select>
 			<label>Select a language</label>
 		</div>
-		<div id="editor-container" class="container">
-			<div class="row">
-				<div class="col s9">
-					<ace-editor #editor [text]="text" id="editor"></ace-editor>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col offset-l10 s2">
-					<button (click)="getSnippetDetails()" id="btnSubmitForm" class="btn waves-effect waves-dark cyan darken-3">
-						Submit
-					</button>
-				</div>
-			</div>
+		<div class="input-field col s4 m4 l1">
+			<button (click)="getSnippetDetails()" id="btnSubmitForm" class="btn waves-effect waves-dark cyan darken-3">
+				Submit
+			</button>
+		</div>
+		<div class="input-field col s4 m4 l1">
+			<button class="btn waves-effect waves-dark cyan darken-3">
+				Add
+			</button>
+		</div>
+	</div>
+	<hr>
+	<div class="row section-title">
+		<div class="col s12">
+			<div class="chip"><img src="assets/svg/python.svg" alt="Contact Person">Foo</div>
+			<div class="chip"><img src="assets/svg/js.svg" alt="Contact Person">Bar</div>
+		</div>
+	</div>
+</div>
+
+<div id="editor-container" class="container">
+	<div class="row">
+		<div class="col s12">
+			<ace-editor #editor [text]="text" id="editor"></ace-editor>
 		</div>
 	</div>
 </div>

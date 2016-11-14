@@ -5,3 +5,7 @@
 .select-wrapper input.select-dropdown, .caret {
 	color: white !important;
 }
+
+.ace-monokai .ace_gutter {
+	background: #111 !important;
+}
