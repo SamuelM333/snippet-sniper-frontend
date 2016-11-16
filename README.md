@@ -42,6 +42,8 @@
 - [ ] Register
 	- [ ] Try sign up wizard (Like Cloud9 or Slack)
 - [ ] Consume REST API
+- [ ] Fix licence
+- [ ] Add Google's Web Starter Kit files
 - [ ] Use gravatar
 - [ ] Create GitBook
 - [ ] OAuth
