@@ -1,12 +1,12 @@
-# Snippet sniper frontend
+# Snippet Sniper frontend
 
 ## Technologies
 
 ### Frontend
 
 - Angular 2
-- Sass
 - Materialize
+- Sass
 
 ### Backend
 
