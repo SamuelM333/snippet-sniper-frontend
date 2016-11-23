@@ -40,9 +40,19 @@
 		<i class="large material-icons">mode_edit</i>
 	</a>
 	<ul>
-		<li><a class="btn-floating green"><i class="material-icons">add</i></a></li>
-		<li><a (click)="openModal()" class="btn-floating blue modal-trigger"><i class="material-icons">playlist_add_check</i></a></li>
-		<li><a (click)="getSnippetDetails()" class="btn-floating red"><i class="material-icons">send</i></a></li>
+		<li>
+			<a class="tooltipped btn-floating green" data-position="left" data-delay="50" data-tooltip="Add fragment">
+					<i class="material-icons">add</i></a>
+		</li>
+		<li>
+			<a (click)="openModal()" class="tooltipped btn-floating blue modal-trigger"
+					 data-position="left" data-delay="50" data-tooltip="Snippet list">
+				<i class="material-icons">playlist_add_check</i></a></li>
+		<li>
+			<a (click)="getSnippetDetails()" class="tooltipped btn-floating red"
+				 data-position="left" data-delay="50" data-tooltip="Submit">
+				<i class="material-icons">send</i></a>
+		</li>
 	</ul>
 </div>
 
