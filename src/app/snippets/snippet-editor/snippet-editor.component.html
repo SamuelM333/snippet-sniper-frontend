@@ -1,11 +1,10 @@
 <app-nav></app-nav>
-<div>
-	<div class="row section-title">
-		<div class="input-field col s12 m12 l7">
+	<div id="snippet-container" class="row section-title">
+		<div class="input-field col s12 m6 l6">
 			<input [(ngModel)]="title" type="text" id="snippet-title" class="white-text" name="snippet-title"/>
 			<label for="snippet-title">Snippet title:</label>
 		</div>
-		<div class="input-field col s8 m8 l3">
+		<div class="input-field col s12 m6 l6">
 			<select materialize="material_select" [(ngModel)]="selectedValue"
 							(ngModelChange)="changeEditorLanguage($event)"
 							class="icons">
@@ -13,25 +12,8 @@
 			</select>
 			<label>Select a language</label>
 		</div>
-		<div class="input-field col s4 m4 l1">
-			<button (click)="getSnippetDetails()" id="btnSubmitForm" class="btn waves-effect waves-dark cyan darken-3">
-				Submit
-			</button>
-		</div>
-		<div class="input-field col s4 m4 l1">
-			<button class="btn waves-effect waves-dark cyan darken-3">
-				Add
-			</button>
-		</div>
+
 	</div>
-	<hr>
-	<div class="row section-title">
-		<div class="col s12">
-			<div class="chip"><img src="assets/svg/python.svg" alt="Contact Person">Foo</div>
-			<div class="chip"><img src="assets/svg/js.svg" alt="Contact Person">Bar</div>
-		</div>
-	</div>
-</div>
 
 <div id="editor-container" class="container">
 	<div class="row">
@@ -40,4 +22,28 @@
 		</div>
 	</div>
 </div>
+
+<div id="modal1" class="modal modal-fixed-footer" materialize="modal"
+		 [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+	<div class="modal-content">
+		<h4>Modal Header</h4>
+		<p>A bunch of text</p>
+	</div>
+	<div class="modal-footer">
+		<a (click)="closeModal()"
+			 class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+	</div>
+</div>
+
+<div class="fixed-action-btn">
+	<a class="btn-floating btn-large">
+		<i class="large material-icons">mode_edit</i>
+	</a>
+	<ul>
+		<li><a class="btn-floating green"><i class="material-icons">add</i></a></li>
+		<li><a (click)="openModal()" class="btn-floating blue modal-trigger"><i class="material-icons">playlist_add_check</i></a></li>
+		<li><a (click)="getSnippetDetails()" class="btn-floating red"><i class="material-icons">send</i></a></li>
+	</ul>
+</div>
+
 <app-footer></app-footer>

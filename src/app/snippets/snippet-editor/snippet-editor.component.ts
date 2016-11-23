@@ -1,5 +1,8 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import {Component, ViewChild, AfterViewInit, EventEmitter} from '@angular/core';
+import {MaterializeAction} from 'angular2-materialize';
+
 declare var ace: any;
+declare var $: any;
 
 @Component({
 	selector: 'app-snippet-editor',
@@ -10,6 +13,7 @@ declare var ace: any;
 export class SnippetEditorComponent implements AfterViewInit {
 
 	@ViewChild('editor') editor;
+	modalActions = new EventEmitter<string|MaterializeAction>();
 
 	title: string = '';
 	// windowWidth = window.innerWidth;
@@ -25,12 +29,24 @@ export class SnippetEditorComponent implements AfterViewInit {
 
 	selectedValue = this.languages[0].name;
 
+
 	ngAfterViewInit() {
+
+		let topHeight: number = 0;
+		let footerHeight: number = $('#footer').outerHeight();
+		let documentHeight: number = $(document).outerHeight();
+
 		ace.config.set('basePath', 'assets/ace');
 		this.editor.setTheme("monokai");
 		this.editor.setMode('javascript');
 		this.editor.getEditor().setShowPrintMargin(false);
 		this.editor.getEditor().setAutoScrollEditorIntoView(true);
+
+		setTimeout(() => {
+			topHeight = $('#nav').outerHeight() + $('#snippet-container').outerHeight();
+			$('#editor').height(documentHeight - topHeight - footerHeight + 1);
+		}, 1000);
+
 	}
 
 	getSnippetDetails() {
@@ -40,5 +56,9 @@ export class SnippetEditorComponent implements AfterViewInit {
 	}
 
 	changeEditorLanguage(language) { this.editor.setMode(language); }
+
+	openModal() { this.modalActions.emit({action: "modal", params: ['open']}); }
+
+	closeModal() { this.modalActions.emit({action: "modal", params: ['close']}); }
 
 }
