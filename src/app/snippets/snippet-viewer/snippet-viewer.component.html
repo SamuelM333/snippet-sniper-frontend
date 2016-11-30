@@ -8,28 +8,26 @@
 		</div>
 	</div>
 	<div class="row snippet">
-		<h3 class="snippet-title white-text"> Test
+		<h3 class="snippet-title white-text"> {{ snippet?.title }}
 			<small>
-				<a href="#" class="snippet-owner white-text">Author: Samuel Murillo</a>
-				<div class="created">Created on: 11/11/16</div>
+				<br><a href="#" class="snippet-owner white-text">
+				Author: {{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}</a>
+				<div class="created">Created on: {{ snippet?.created | date }}</div>
 			</small>
 		</h3>
-		<div class="markdown white-text">
-			<h1>Markdown test</h1>
+
+		<div *ngFor="let fragment of snippet?.body">
+			<div *ngIf="fragment.language == 'markdown'" [innerHtml]="fragment.body|MarkdownToHtml"
+					 class="markdown white-text e2e-inner-html-bound">
+			</div>
+
+			<pre *ngIf="fragment.language != 'markdown'" class="line-numbers">
+				<code class="language-{{ fragment.language }}">
+{{ fragment.body }}
+				</code>
+			</pre>
 		</div>
-		<pre class="line-numbers">
-			<code class="language-python">
-def foo:
-    print('Hello World')
-			</code>
-		</pre>
-		<pre class="line-numbers">
-			<code class="language-ruby">
- def my_new_method
-    p "So Impressive!"
- end
-			</code>
-		</pre>
+
 	</div>
 	<div class="progress">
 		<div class="determinate" style="width: 100%"></div>
@@ -37,7 +35,7 @@ def foo:
 	<div class="row snippet">
 		<h3 class="snippet-title white-text"> Test
 			<small>
-				<a href="#" class="snippet-owner white-text">Author: Samuel Murillo</a>
+				<br><a href="#" class="snippet-owner white-text">Author: Samuel Murillo</a>
 				<div class="created">Created on: 11/11/16</div>
 			</small>
 		</h3>
@@ -60,3 +58,4 @@ def foo:
 	</div>
 </div>
 <app-footer></app-footer>
+

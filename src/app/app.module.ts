@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ROUTING } from "./app.routing";
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { ROUTING } from "./app.routing";
 import { AppComponent } from './app.component';
 import { AceEditorComponent } from 'ng2-ace-editor';
 import { MaterializeDirective } from "angular2-materialize";
@@ -15,6 +15,8 @@ import { NavComponent } from './shared/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor.component';
 import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
+import { ApiService } from './api.service';
+import { MarkdownToHtmlPipe } from 'markdown-to-html-pipe';
 
 @NgModule({
 	imports: [
@@ -35,9 +37,10 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
 		SignUpComponent,
 		LoginComponent,
 		SnippetEditorComponent,
-		SnippetViewerComponent
+		SnippetViewerComponent,
+		MarkdownToHtmlPipe,
 	],
-	providers: [],
+	providers: [ApiService],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

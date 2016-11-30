@@ -1,18 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-declare var Prism: any;
+import { Component, OnInit, AfterViewChecked  } from '@angular/core';
+
+import { ApiService } from "../../api.service";
+import { Snippet, serializeSnippet } from "../snippet";
+
+declare const Prism: any;
 
 @Component({
 	selector: 'app-snippet-viewer',
 	templateUrl: './snippet-viewer.component.html',
-	styleUrls: ['./snippet-viewer.component.sass']
+	styleUrls: ['./snippet-viewer.component.sass'],
 })
-
-export class SnippetViewerComponent implements OnInit {
+export class SnippetViewerComponent implements OnInit, AfterViewChecked {
 	
-	constructor() { }
+	snippet: Snippet;
+	
+	constructor(private apiService: ApiService) { }
 	
 	ngOnInit() {
-		Prism.highlightAll();
+		this.apiService.getSnippetByID("583e375c93afa04780acbe65").subscribe(
+			data => this.snippet = serializeSnippet(data)
+		);
+		
 	}
 	
+	ngAfterViewChecked() {
+		Prism.highlightAll();
+	}
 }
