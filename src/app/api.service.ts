@@ -10,7 +10,7 @@ export class ApiService {
 	apiUrl = "http://snippetsniperphp-samuelm333.rhcloud.com";
 	
 	constructor(private http: Http) { }
-	
+
 	getSnippets() {
 		return this.http.get(this.apiUrl + '/snippet?embedded={"owner":1}').map(
 			(response: Response) => response.json()

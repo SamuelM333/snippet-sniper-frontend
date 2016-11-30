@@ -12,10 +12,10 @@ declare const Materialize: any;
 	styleUrls: ['./snippet-editor.component.sass']
 })
 export class SnippetEditorComponent implements AfterViewInit {
-	
+
 	@ViewChild('editor') editor;
 	modalActions = new EventEmitter<string|MaterializeAction>();
-	
+
 	title: string = '';
 	text: string = `function foo(items) {
 	var x = "All this is syntax highlighted";
@@ -77,8 +77,8 @@ export class SnippetEditorComponent implements AfterViewInit {
 	submitSnippet() { console.log(this.fragments); }
 	
 	changeEditorLanguage(language) { this.editor.setMode(language); }
-	
+
 	openModal() { this.modalActions.emit({ action: "modal", params: ['open'] }); }
-	
+
 	closeModal() { this.modalActions.emit({ action: "modal", params: ['close'] }); }
 }
