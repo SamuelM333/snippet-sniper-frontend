@@ -7,14 +7,14 @@ import { Router } from '@angular/router'
 	styleUrls: ['./footer.component.sass']
 })
 export class FooterComponent {
-	
+
 	constructor(private router: Router) { }
-	
+
 	relativePos() {
-		if (this.router.url === '/snippet/view')
+		if (this.router.url === '/snippet/view' || this.router.url === '/sign-up')
 			return true;
 		else
 			return false;
 	}
-	
+
 }
