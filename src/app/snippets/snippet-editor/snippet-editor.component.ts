@@ -20,6 +20,8 @@ export class SnippetEditorComponent implements AfterViewInit {
 	var x = "All this is syntax highlighted";
   	return x;\n}`;
 	
+	listOne: Array<string> = ['Coffee', 'Orange Juice', 'Red Wine', 'Unhealty drink!', 'Water'];
+	
 	languages = [
 		{ text: "Javascript", name: "javascript", icon: "assets/svg/js.svg" },
 		{ text: "Python", name: "python", icon: "assets/svg/python.svg" },

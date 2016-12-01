@@ -1,19 +1,19 @@
 <app-nav></app-nav>
-	<div id="snippet-container" class="row section-title">
-		<div class="input-field col s12 m6 l6">
-			<input [(ngModel)]="title" type="text" id="snippet-title" class="white-text" name="snippet-title"/>
-			<label for="snippet-title">Snippet title:</label>
-		</div>
-		<div class="input-field col s12 m6 l6">
-			<select materialize="material_select" [(ngModel)]="selectedValue"
-							(ngModelChange)="changeEditorLanguage($event)"
-							class="icons">
-				<option *ngFor="let l of languages" [value]="l.name" [attr.data-icon]="l.icon">{{l.text}}</option>
-			</select>
-			<label>Select a language</label>
-		</div>
 
+<div id="snippet-container" class="row section-title">
+	<div class="input-field col s12 m6 l6">
+		<input [(ngModel)]="title" type="text" id="snippet-title" class="white-text" name="snippet-title"/>
+		<label for="snippet-title">Snippet title:</label>
 	</div>
+	<div class="input-field col s12 m6 l6">
+		<select materialize="material_select" [(ngModel)]="selectedValue"
+						(ngModelChange)="changeEditorLanguage($event)"
+						class="icons">
+			<option *ngFor="let l of languages" [value]="l.name" [attr.data-icon]="l.icon">{{l.text}}</option>
+		</select>
+		<label>Select a language</label>
+	</div>
+</div>
 
 <div (window:resize)="onResize()" id="editor-container" class="container">
 	<div class="row">
@@ -23,15 +23,38 @@
 	</div>
 </div>
 
-<div id="modal1" class="modal modal-fixed-footer" materialize="modal"
+<div id="fragments-modal" class="modal modal-fixed-footer" materialize="modal"
 		 [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
 	<div class="modal-content">
-		<h4>Modal Header</h4>
-		<p>A bunch of text</p>
+		<div id="sortable">
+			<h4>Added snippet fragments</h4>
+			<div class="row">
+				<div class="col s3">
+					<div class="panel panel-success">
+						<div class="panel-heading">Favorite drinks</div>
+						<div class="panel-body">
+							<ul dnd-sortable-container [sortableData]="listOne" class="list-group">
+								<li *ngFor="let item of listOne; let i = index"
+										dnd-sortable [sortableIndex]="i" class="list-group-item">{{item}}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col s6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							My prefences:<br><br>
+							<span *ngFor="let item of listOne; let i = index">{{i + 1}}) {{item}}<br></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="modal-footer">
 		<a (click)="closeModal()"
-			 class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+			 class="modal-action modal-close waves-effect waves-green btn">Agree</a>
 	</div>
 </div>
 
@@ -41,12 +64,13 @@
 	</a>
 	<ul>
 		<li>
-			<a class="tooltipped btn-floating green" data-position="left" data-delay="50" data-tooltip="Add fragment">
-					<i class="material-icons">add</i></a>
+			<a class="tooltipped btn-floating green" data-position="left"
+				 data-delay="50" data-tooltip="Add fragment">
+				<i class="material-icons">add</i></a>
 		</li>
 		<li>
 			<a (click)="openModal()" class="tooltipped btn-floating blue modal-trigger"
-					 data-position="left" data-delay="50" data-tooltip="Snippet list">
+				 data-position="left" data-delay="50" data-tooltip="Snippet list">
 				<i class="material-icons">playlist_add_check</i></a></li>
 		<li>
 			<a (click)="getSnippetDetails()" class="tooltipped btn-floating red"
