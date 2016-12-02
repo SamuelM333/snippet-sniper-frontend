@@ -1,0 +1,11 @@
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+	background: #26a69a !important;
+}
+
+.select-wrapper input.select-dropdown, .caret {
+	color: white !important;
+}
+
+.ace-monokai .ace_gutter {
+	background: #111 !important;
+}
