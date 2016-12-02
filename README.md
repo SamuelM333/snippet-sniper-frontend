@@ -10,8 +10,8 @@
 
 ### Backend
 
-- Eve/DRF
-- MongoDB/Postgres
+- Eve
+- MongoDB
 
 ## To do
 
@@ -26,18 +26,20 @@
     - [x] ~~Full height~~
     - [x] ~~Autoplay interval~~
     - [x] ~~Cancel autoplay with onclick~~
-- [ ] Snippet view page
+- [x] ~~Snippet view page~~
   - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
   - [x] ~~Syntax highlighting color~~
   - [x] ~~Title and owner display~~
-  - [ ] Parse markdown
+  - [x] ~~Parse markdown~~
   - [x] ~~Markdown display~~
   - [x] ~~Wrap snippet on lighter gray~~
 - [ ] Snippet creation page
   - [x] ~~Title~~
   - [x] ~~Ace editor~~
-  - [ ] Add snippet fragments
+  - [x] ~~Add snippet fragments~~
   - [x] ~~Add language selector~~
+  - [x] ~~Reorder fragments~~
+  - [ ] Fix mobile bugs
 - [ ] Login 
 - [ ] Register
 	- [ ] Try sign up wizard (Like Cloud9 or Slack)
