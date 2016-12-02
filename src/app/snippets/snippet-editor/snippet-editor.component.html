@@ -6,7 +6,7 @@
 		<label for="snippet-title">Snippet title:</label>
 	</div>
 	<div class="input-field col s12 m6 l6">
-		<select materialize="material_select" [(ngModel)]="selectedValue"
+		<select materialize="material_select" [(ngModel)]="selectedLanguage"
 						(ngModelChange)="changeEditorLanguage($event)"
 						class="icons">
 			<option *ngFor="let l of languages" [value]="l.name" [attr.data-icon]="l.icon">{{l.text}}</option>
@@ -29,23 +29,17 @@
 		<div id="sortable">
 			<h4>Added snippet fragments</h4>
 			<div class="row">
-				<div class="col s3">
+				<div class="col s12">
 					<div class="panel panel-success">
-						<div class="panel-heading">Favorite drinks</div>
 						<div class="panel-body">
-							<ul dnd-sortable-container [sortableData]="listOne" class="list-group">
-								<li *ngFor="let item of listOne; let i = index"
-										dnd-sortable [sortableIndex]="i" class="list-group-item">{{item}}
+							<ul *ngIf="fragments.length > 0" dnd-sortable-container [sortableData]="fragments">
+								<li *ngFor="let item of fragments; let i = index">
+									<span>{{item.language}}</span>
+									<span (click)="openFragment(i)" class="right" style="cursor: pointer;"><i class="material-icons">mode_edit</i></span>
+									<span dnd-sortable [sortableIndex]="i" class="right" style="cursor: move;"><i class="material-icons">swap_vert</i></span>
 								</li>
 							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							My prefences:<br><br>
-							<span *ngFor="let item of listOne; let i = index">{{i + 1}}) {{item}}<br></span>
+							<span *ngIf="fragments.length === 0">No fragments!</span>
 						</div>
 					</div>
 				</div>
@@ -64,7 +58,7 @@
 	</a>
 	<ul>
 		<li>
-			<a class="tooltipped btn-floating green" data-position="left"
+			<a (click)="addFragment()" class="tooltipped btn-floating green" data-position="left"
 				 data-delay="50" data-tooltip="Add fragment">
 				<i class="material-icons">add</i></a>
 		</li>
@@ -73,7 +67,7 @@
 				 data-position="left" data-delay="50" data-tooltip="Snippet list">
 				<i class="material-icons">playlist_add_check</i></a></li>
 		<li>
-			<a (click)="getSnippetDetails()" class="tooltipped btn-floating red"
+			<a (click)="submitSnippet()" class="tooltipped btn-floating red"
 				 data-position="left" data-delay="50" data-tooltip="Submit">
 				<i class="material-icons">send</i></a>
 		</li>

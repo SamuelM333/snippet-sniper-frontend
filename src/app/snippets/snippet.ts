@@ -1,6 +1,11 @@
-class Fragment {
+export class Fragment {
 	language: string;
 	code: string;
+	
+	constructor(_language: string, _code: string) {
+		this.language = _language;
+		this.code = _code;
+	}
 }
 
 export class Snippet {
@@ -8,9 +13,9 @@ export class Snippet {
 	public owner: any;
 	public title: string;
 	public created: string;
-	public body: any[];
+	public body: Fragment[];
 
-	constructor(_id: string, _owner: any, _title: string, _created: string, _body: any[]){
+	constructor(_id: string, _owner: any, _title: string, _created: string, _body: Fragment[]){
 		this.id = _id;
 		this.owner = _owner;
 		this.title = _title;
@@ -21,7 +26,6 @@ export class Snippet {
 }
 
 export function serializeSnippet(data): Snippet {
-	
 	return new Snippet(
 		data._id,
 		data.owner,
