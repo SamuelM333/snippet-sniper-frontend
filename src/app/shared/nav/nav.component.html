@@ -1,30 +1,37 @@
 <nav id="nav" class="grey darken-3">
 	<div class="nav-wrapper">
 		<a [routerLink]="['/']" class="brand-logo">Snippet Sniper</a>
-		<a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		<a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul class="right hide-on-med-and-down">
 			<li routerLinkActive="active">
-				<a [routerLink]="['/login']">
-				<i class="tiny material-icons left">person</i>Login</a>
+				<a [routerLink]="['/login']"><i class="tiny material-icons left">person</i>Login</a>
 			</li>
 			<li routerLinkActive="active">
-				<a [routerLink]="['/sign-up']">
-				<i class="tiny material-icons left">add</i>Sign up</a>
+				<a [routerLink]="['/sign-up']"><i class="tiny material-icons left">add</i>Sign up</a>
 			</li>
 			<li routerLinkActive="active">
-				<a [routerLink]="['/snippet/view']">
-				<i class="tiny material-icons left">visibility</i>View snippet</a>
+				<a [routerLink]="['/snippet/view']"><i class="tiny material-icons left">visibility</i>View snippet</a>
 			</li>
 			<li routerLinkActive="active">
 				<a [routerLink]="['/snippet/editor']">
-				<i class="tiny material-icons left">playlist_add</i>Create snippet</a>
+					<i class="tiny material-icons left">playlist_add</i>Create snippet</a>
 			</li>
 		</ul>
-		<ul class="side-nav" id="mobile-demo">
-			<li routerLinkActive="active"><a [routerLink]="['/login']">
-				<i class="tiny material-icons">person</i>Login</a></li>
-			<li routerLinkActive="active"><a [routerLink]="['/sign-up']">
-				<i class="tiny material-icons">add</i>Sign up</a></li>
+		<ul id="slide-out" class="side-nav">
+			<li>
+				<div class="userView">
+					<div class="background">
+						<img src="http://materializecss.com/images/office.jpg">
+					</div>
+					<img class="circle" src="http://materializecss.com/images/yuna.jpg">
+					<span class="white-text name">John Doe</span>
+					<span class="white-text email">jdandturk@gmail.com</span>
+				</div>
+			</li>
+			<li routerLinkActive="active">
+				<a [routerLink]="['/login']"><i class="tiny material-icons">person</i>Login</a></li>
+			<li routerLinkActive="active">
+				<a [routerLink]="['/sign-up']"><i class="tiny material-icons">add</i>Sign up</a></li>
 			<li routerLinkActive="active">
 				<a [routerLink]="['/snippet/view']"><i class="material-icons">visibility</i>View snippet</a></li>
 			<li routerLinkActive="active">

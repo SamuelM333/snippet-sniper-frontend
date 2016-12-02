@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked  } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 
 import { ApiService } from "../../api.service";
 import { Snippet, serializeSnippet } from "../snippet";
@@ -20,10 +20,9 @@ export class SnippetViewerComponent implements OnInit, AfterViewChecked {
 		this.apiService.getSnippetByID("583e375c93afa04780acbe65").subscribe(
 			data => this.snippet = serializeSnippet(data)
 		);
-		
 	}
 	
-	ngAfterViewChecked() {
-		Prism.highlightAll();
-	}
+	// Called a lot, fix
+	ngAfterViewChecked() { Prism.highlightAll(); }
+	
 }
