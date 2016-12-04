@@ -25,6 +25,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SlidesComponent } from './homepage/slides/slides.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { LoginComponent } from './profile/login/login.component';
+import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor.component';
 import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
 
@@ -49,6 +50,7 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
 		SlidesComponent,
 		SignUpComponent,
 		LoginComponent,
+		UserProfileComponent,
 		SnippetEditorComponent,
 		SnippetViewerComponent,
 	],
