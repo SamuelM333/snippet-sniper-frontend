@@ -1,26 +1,49 @@
-import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from "@angular/router";
+
+import { ApiService } from "../../api.service";
 
 @Component({
 	selector: 'app-sign-up',
 	templateUrl: './sign-up.component.html',
 	styleUrls: ['./sign-up.component.sass']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 	@ViewChild('passwordRepeatLabel') passwordRepeatLabel;
 	@ViewChild('email') email;
 	@ViewChild('emailLabel') emailLabel;
-	gender: string = '';
+	// gender: string = '';
 	password: string = '';
 	password_rpt: string = '';
 	valid: boolean = true;
 	
-	constructor() { }
-	
-	ngOnInit() { }
+	constructor(private router: Router, private apiService: ApiService) { }
 	
 	onSubmit(form: NgForm) {
-		console.log(form.value);
+		
+		this.apiService.insertUser(form.value.name, form.value.last_name, form.value.email,
+			form.value.password).subscribe(
+			data => {
+				if (data._status === 'OK') {
+					let authUser = {
+						"id": null,
+						"name": form.value.name,
+						"last_name": form.value.last_name,
+						"email": form.value.email,
+						"password": form.value.password,
+						"admin": 0,
+					}
+					console.log(authUser);
+					localStorage.setItem("authUser", JSON.stringify(authUser));
+					this.router.navigateByUrl("/profile");
+				}
+				
+				else
+					console.log("Error on sign up");
+			}
+		);
+		
 	}
 	
 	onKey(event: any) {

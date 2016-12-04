@@ -34,18 +34,18 @@
 									 id="password-rpt" type="password" name="password-rpt" required>
 						<label #passwordRepeatLabel for="password-rpt">Password (again):</label>
 					</div>
-					<div class="row">
-						<span>
-							<input [(ngModel)]="gender" [value]="'male'" class="with-gap" name="gender" type="radio" id="test2"
-										 required/>
-							<label for="test2">Male</label>
-						</span>
-						<span>
-							<input [(ngModel)]="gender" [value]="'female'" class="with-gap" name="gender" type="radio" id="test3"
-										 required/>
-							<label for="test3">Female</label>
-						</span>
-					</div>
+					<!--<div class="row">-->
+						<!--<span>-->
+							<!--<input [(ngModel)]="gender" [value]="'male'" class="with-gap" name="gender" type="radio" id="test2"-->
+										 <!--required/>-->
+							<!--<label for="test2">Male</label>-->
+						<!--</span>-->
+						<!--<span>-->
+							<!--<input [(ngModel)]="gender" [value]="'female'" class="with-gap" name="gender" type="radio" id="test3"-->
+										 <!--required/>-->
+							<!--<label for="test3">Female</label>-->
+						<!--</span>-->
+					<!--</div>-->
 					<div class="row">
 						<span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
 						<button [disabled]="!form.valid || !valid" type="submit"
