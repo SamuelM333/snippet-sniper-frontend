@@ -16,6 +16,7 @@
 ## To do
 
 - [ ] Landing page
+	- [ ] Do something if user is already logged
   - [ ] Slider
   	- [x] ~~Slides content~~
     - [ ] Fix slides height
@@ -40,10 +41,19 @@
   - [x] ~~Add language selector~~
   - [x] ~~Reorder fragments~~
   - [ ] Fix mobile bugs
+  - [ ] Submit snippet
+  - [ ] Add public and private snippets
 - [ ] Login 
+	- [x] ~~Use Local Storage~~
+	- [ ] Redirect to profile if already logged
+	- [ ] Encrypt password
 - [ ] Register
 	- [ ] Try sign up wizard (Like Cloud9 or Slack)
-- [ ] Consume REST API
+	- [ ] Redirect to profile if already logged
+	- [ ] Encrypt password
+- [ ] Profile
+	- [ ] Redirect to loggin if not logged
+	- [ ] Add content
 - [ ] Fix licence
 - [ ] Add Google's Web Starter Kit files
 - [ ] Use gravatar
