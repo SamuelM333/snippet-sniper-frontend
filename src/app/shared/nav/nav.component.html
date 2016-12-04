@@ -3,10 +3,19 @@
 		<a [routerLink]="['/']" class="brand-logo">Snippet Sniper</a>
 		<a data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul class="right hide-on-med-and-down">
-			<li routerLinkActive="active">
+
+			<li *ngIf="authUser">
+				<a materialize="dropdown" class="dropdown-button" data-activates="userdropdown">{{ authUser.name }}<i class="material-icons right">arrow_drop_down</i></a>
+			</li>
+			<ul id="userdropdown" class="dropdown-content">
+				<li><a [routerLink]="['/profile']">Profile</a></li>
+				<li><a (click)="logout()">Logout</a></li>
+			</ul>
+
+			<li *ngIf="!authUser" routerLinkActive="active">
 				<a [routerLink]="['/login']"><i class="tiny material-icons left">person</i>Login</a>
 			</li>
-			<li routerLinkActive="active">
+			<li *ngIf="!authUser" routerLinkActive="active">
 				<a [routerLink]="['/sign-up']"><i class="tiny material-icons left">add</i>Sign up</a>
 			</li>
 			<li routerLinkActive="active">
