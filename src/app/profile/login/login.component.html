@@ -20,7 +20,9 @@
 						<label for="password">Password:</label>
 					</div>
 					<div class="row">
-						<button type="submit" class="center-btn btn waves-effect waves-dark right">Sign in</button>
+						<button [disabled]="!form.valid" type="submit"
+										class="center-btn btn waves-effect waves-dark right">Sign in
+						</button>
 					</div>
 				</div>
 			</form>

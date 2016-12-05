@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 
@@ -9,7 +9,7 @@ import { ApiService } from "../../api.service";
 	templateUrl: './sign-up.component.html',
 	styleUrls: ['./sign-up.component.sass']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
 	@ViewChild('passwordRepeatLabel') passwordRepeatLabel;
 	@ViewChild('email') email;
 	@ViewChild('emailLabel') emailLabel;
@@ -20,10 +20,13 @@ export class SignUpComponent {
 	
 	constructor(private router: Router, private apiService: ApiService) { }
 	
+	ngOnInit() { if (localStorage.getItem("authUser")) this.router.navigateByUrl("/profile"); }
+	
 	onSubmit(form: NgForm) {
-		
+		const bcrypt = require('bcryptjs');
+		let hashed_password = bcrypt.hashSync(form.value.password, 10)
 		this.apiService.insertUser(form.value.name, form.value.last_name, form.value.email,
-			form.value.password).subscribe(
+			hashed_password).subscribe(
 			data => {
 				if (data._status === 'OK') {
 					let authUser = {
@@ -31,7 +34,7 @@ export class SignUpComponent {
 						"name": form.value.name,
 						"last_name": form.value.last_name,
 						"email": form.value.email,
-						"password": form.value.password,
+						"password": hashed_password,
 						"admin": 0,
 					}
 					console.log(authUser);
