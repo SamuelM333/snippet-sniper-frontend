@@ -31,7 +31,6 @@ export class SnippetEditorComponent implements AfterViewInit {
 	
 	selectedLanguage = this.languages[0].name;
 	
-	
 	ngAfterViewInit() {
 		ace.config.set('basePath', 'assets/ace');
 		this.editor.setTheme("monokai");
@@ -52,7 +51,7 @@ export class SnippetEditorComponent implements AfterViewInit {
 	
 	addFragment() {
 		let editorText: string = this.editor.getEditor().getValue();
-		let toastMessage: string = "Fragment added!"
+		let toastMessage: string = "Fragment added!";
 		
 		if (editorText !== "") {
 			this.fragments.push(
@@ -66,14 +65,11 @@ export class SnippetEditorComponent implements AfterViewInit {
 	}
 	
 	openFragment(index: number) {
-		console.log(index);
-		console.log(this.fragments[index]);
 		
 		this.selectedLanguage = this.languages[this.languages.findIndex(
 			x => x.name === this.fragments[index].language)].name;
 		
 		this.changeEditorLanguage(this.selectedLanguage);
-		
 		this.editor.getEditor().setValue(this.fragments[index].code);
 		this.closeModal();
 	}
