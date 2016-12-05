@@ -43,16 +43,16 @@
   - [ ] Fix mobile bugs
   - [ ] Submit snippet
   - [ ] Add public and private snippets
-- [ ] Login 
+- [x] ~~Login~~ 
 	- [x] ~~Use Local Storage~~
-	- [ ] Redirect to profile if already logged
-	- [ ] Encrypt password
+	- [x] ~~Redirect to profile if already logged~~
+	- [x] ~~Encrypt password~~
 - [ ] Register
 	- [ ] Try sign up wizard (Like Cloud9 or Slack)
-	- [ ] Redirect to profile if already logged
-	- [ ] Encrypt password
+	- [x] ~~Redirect to profile if already logged~~ 
+	- [x] ~~Encrypt password~~
 - [ ] Profile
-	- [ ] Redirect to loggin if not logged
+	- [ ] Redirect to login if not logged
 	- [ ] Add content
 - [ ] Fix licence
 - [ ] Add Google's Web Starter Kit files
