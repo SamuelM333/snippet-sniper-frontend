@@ -24,7 +24,7 @@
 </div>
 
 <div id="fragments-modal" class="modal modal-fixed-footer" materialize="modal"
-		 [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+		 [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
 	<div class="modal-content">
 		<div id="sortable">
 			<h4>Added snippet fragments</h4>
@@ -48,7 +48,7 @@
 	</div>
 	<div class="modal-footer">
 		<a (click)="closeModal()"
-			 class="modal-action modal-close waves-effect waves-green btn">Agree</a>
+			 class="modal-action modal-close waves-effect waves-green btn">Close</a>
 	</div>
 </div>
 
