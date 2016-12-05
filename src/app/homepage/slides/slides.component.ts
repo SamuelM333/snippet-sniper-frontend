@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { ApiService } from '../../api.service';
+
 declare var $: any;
+declare var Materialize: any;
 
 @Component({
 	selector: 'app-slides',
@@ -7,6 +12,8 @@ declare var $: any;
 	styleUrls: ['./slides.component.sass']
 })
 export class SlidesComponent implements OnInit, OnDestroy {
+	
+	constructor(private apiService: ApiService) { }
 	
 	ngOnInit() {
 		$('#fullpage').fullpage({
@@ -47,4 +54,15 @@ export class SlidesComponent implements OnInit, OnDestroy {
 	}
 	
 	ngOnDestroy() { $.fn.fullpage.destroy('all'); }
+	
+	onSubmit(form: NgForm) {
+		this.apiService.sendMail(
+			form.value.name,
+			form.value.email,
+			form.value.message
+		).subscribe(
+			data => {
+				if (data._status === 'OK') Materialize.toast("Email sent!", 4000);
+			});
+	}
 }

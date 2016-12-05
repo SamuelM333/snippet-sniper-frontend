@@ -122,19 +122,20 @@
 			<div class="row">
 				<div class="col offset-s2 s8 full-form-on-small">
 					<div class="section-content">
-						<form class="col s12 card">
+						<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="col s12 card">
 							<div class="card-content">
 								<div class="input-field col s12">
-									<input type="email" name="name" id="name"/>
+									<input ngModel type="text" name="name" id="name"/>
 									<label for="name">Name: </label>
 								</div>
 								<div class="input-field col s12">
-									<input type="email" name="email" id="email"/>
+									<input ngModel type="email" name="email" id="email"/>
 									<label for="email">Email: </label>
 								</div>
 								<div class="input-field col s12">
-									<textarea id="comment-textarea" class="materialize-textarea"></textarea>
-									<label for="comment-textarea">Comment:</label>
+									<textarea ngModel id="message" name="message"
+														class="materialize-textarea"></textarea>
+									<label for="message">Comment:</label>
 								</div>
 								<div class="row">
 									<button type="submit" class="center-btn btn waves-effect waves-dark right">Submit</button>
