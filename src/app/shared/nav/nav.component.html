@@ -5,7 +5,8 @@
 		<ul class="right hide-on-med-and-down">
 
 			<li *ngIf="authUser">
-				<a materialize="dropdown" class="dropdown-button" data-activates="userdropdown">{{ authUser.name }}<i class="material-icons right">arrow_drop_down</i></a>
+				<a materialize="dropdown" class="dropdown-button" data-activates="userdropdown">
+					{{ authUser.name }}<i class="material-icons right">arrow_drop_down</i></a>
 			</li>
 			<ul id="userdropdown" class="dropdown-content">
 				<li><a [routerLink]="['/profile']">Profile</a></li>
@@ -37,10 +38,14 @@
 					<span class="white-text email">jdandturk@gmail.com</span>
 				</div>
 			</li>
-			<li routerLinkActive="active">
+			<li *ngIf="authUser">
+				<a materialize="dropdown" class="dropdown-button" data-activates="userdropdown">
+					{{ authUser.name }}<i class="material-icons right">arrow_drop_down</i></a>
+			</li>
+			<li *ngIf="!authUser" routerLinkActive="active">
 				<a [routerLink]="['/login']"><i class="tiny material-icons">person</i>Login</a></li>
 			<li routerLinkActive="active">
-				<a [routerLink]="['/sign-up']"><i class="tiny material-icons">add</i>Sign up</a></li>
+				<a *ngIf="!authUser" [routerLink]="['/sign-up']"><i class="tiny material-icons">add</i>Sign up</a></li>
 			<li routerLinkActive="active">
 				<a [routerLink]="['/snippet/view']"><i class="material-icons">visibility</i>View snippet</a></li>
 			<li routerLinkActive="active">
