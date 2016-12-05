@@ -19,7 +19,7 @@ import { ApiService } from './api.service';
 // Components
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { FloatingNavComponent } from './homepage/floating-nav.component';
+import { FloatingNavComponent } from './homepage/floating-nav/floating-nav.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SlidesComponent } from './homepage/slides/slides.component';
