@@ -28,6 +28,7 @@
 				"../node_modules/materialize-css/dist/js/materialize.min.js",
 				"../node_modules/fullpage.js/dist/jquery.fullpage.js",
 				"../node_modules/ace-builds/src-min-noconflict/ace.js",
+				"../node_modules/bcryptjs/dist/bcrypt.min.js",
 				"assets/js/typed.min.js",
 				"assets/js/prism.js"
 			],
