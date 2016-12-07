@@ -45,6 +45,7 @@
   - [ ] Fix mobile bugs
   - [ ] Submit snippet
   - [ ] Add public and private snippets
+  - [ ] Add keyboard shortcuts
 - [x] ~~Login~~ 
 	- [x] ~~Use Local Storage~~
   - [x] ~~Redirect to profile if already logged~~
