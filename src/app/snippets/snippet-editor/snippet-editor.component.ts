@@ -1,5 +1,6 @@
-import { Component, ViewChild, AfterViewInit, EventEmitter } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
 import { MaterializeAction } from 'angular2-materialize';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Fragment } from "../snippet";
 
 declare const ace: any;
@@ -11,7 +12,7 @@ declare const Materialize: any;
 	templateUrl: './snippet-editor.component.html',
 	styleUrls: ['./snippet-editor.component.sass']
 })
-export class SnippetEditorComponent implements AfterViewInit {
+export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
 
 	@ViewChild('editor') editor;
 	modalActions = new EventEmitter<string|MaterializeAction>();
@@ -24,12 +25,20 @@ export class SnippetEditorComponent implements AfterViewInit {
 	fragments: Array<Fragment> = [];
 	
 	languages = [
-		{ text: "Javascript", name: "javascript", icon: "assets/svg/js.svg" },
-		{ text: "Python", name: "python", icon: "assets/svg/python.svg" },
-		{ text: "C++", name: "c_cpp", icon: "assets/svg/c++.svg" }
+		{ language: "Javascript", editorLanguage: "javascript", icon: "assets/svg/js.svg" },
+		{ language: "Python", editorLanguage: "python", icon: "assets/svg/python.svg" },
+		{ language: "C++", editorLanguage: "c_cpp", icon: "assets/svg/c++.svg" }
 	];
 	
-	selectedLanguage = this.languages[0].name;
+	selectedLanguage = this.languages[0];
+	
+	constructor(private dragulaService: DragulaService) {
+		dragulaService.setOptions('fragments-list', {
+			moves: function (el, container, handle) {
+				return handle.className === 'material-icons fragment-icons';
+			}
+		});
+	}
 	
 	ngAfterViewInit() {
 		ace.config.set('basePath', 'assets/ace');
@@ -39,7 +48,10 @@ export class SnippetEditorComponent implements AfterViewInit {
 		this.editor.getEditor().setAutoScrollEditorIntoView(true);
 		
 		setTimeout(this.onResize, 100);
+		$('.tooltipped').tooltip({delay: 50});
 	}
+	
+	ngOnDestroy() { this.dragulaService.destroy('fragments-list'); }
 	
 	onResize() {
 		let topHeight: number = $('#nav').outerHeight() + $('#snippet-container').outerHeight();
@@ -52,10 +64,12 @@ export class SnippetEditorComponent implements AfterViewInit {
 	addFragment() {
 		let editorText: string = this.editor.getEditor().getValue();
 		let toastMessage: string = "Fragment added!";
-		
+				
 		if (editorText !== "") {
 			this.fragments.push(
-				new Fragment(this.selectedLanguage, editorText)
+				new Fragment(this.selectedLanguage.language,
+					this.selectedLanguage.editorLanguage,
+					editorText)
 			);
 			this.editor.getEditor().setValue("");
 		} else
@@ -65,18 +79,21 @@ export class SnippetEditorComponent implements AfterViewInit {
 	}
 	
 	openFragment(index: number) {
-		
 		this.selectedLanguage = this.languages[this.languages.findIndex(
-			x => x.name === this.fragments[index].language)].name;
+			x => x.editorLanguage === this.fragments[index].editorLanguage)];
 		
-		this.changeEditorLanguage(this.selectedLanguage);
+		this.changeEditorLanguage(this.selectedLanguage.editorLanguage);
 		this.editor.getEditor().setValue(this.fragments[index].code);
 		this.closeModal();
 	}
 	
 	submitSnippet() { console.log(this.fragments); }
 	
-	changeEditorLanguage(language) { this.editor.setMode(language); }
+	changeEditorLanguage(language) {
+		this.selectedLanguage = this.languages[this.languages.findIndex(
+			x => x.editorLanguage === language)];
+		this.editor.setMode(language);
+	}
 
 	openModal() { this.modalActions.emit({ action: "modal", params: ['open'] }); }
 

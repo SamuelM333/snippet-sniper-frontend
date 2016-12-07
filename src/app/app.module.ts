@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { AceEditorComponent } from 'ng2-ace-editor';
 import { MaterializeDirective } from "angular2-materialize";
 import { MarkdownToHtmlPipe } from 'markdown-to-html-pipe';
-import { DndModule, DragDropService } from 'ng2-dnd';
+import { DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 
 // Routes
 import { ROUTING } from "./app.routing";
@@ -35,7 +35,7 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
 		BrowserModule,
 		FormsModule,
 		HttpModule,
-		DndModule.forRoot(),
+		DragulaModule,
 		ROUTING
 	],
 	declarations: [
@@ -53,8 +53,9 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
 		UserProfileComponent,
 		SnippetEditorComponent,
 		SnippetViewerComponent,
+		
 	],
-	providers: [ApiService, DragDropService],
+	providers: [ApiService, DragulaService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,10 +6,11 @@
 		<label for="snippet-title">Snippet title:</label>
 	</div>
 	<div class="input-field col s12 m6 l6">
-		<select materialize="material_select" [(ngModel)]="selectedLanguage"
-						(ngModelChange)="changeEditorLanguage($event)"
-						class="icons">
-			<option *ngFor="let l of languages" [value]="l.name" [attr.data-icon]="l.icon">{{l.text}}</option>
+		<select (change)="changeEditorLanguage($event.target.value)" materialize="material_select" class="icons">
+			<option *ngFor="let l of languages"
+							[value]="l.editorLanguage"
+							[attr.data-icon]="l.icon">{{l.language}}
+			</option>
 		</select>
 		<label>Select a language</label>
 	</div>
@@ -30,18 +31,24 @@
 			<h4>Added snippet fragments</h4>
 			<div class="row">
 				<div class="col s12">
-					<div class="panel panel-success">
-						<div class="panel-body">
-							<ul *ngIf="fragments.length > 0" dnd-sortable-container [sortableData]="fragments">
-								<li *ngFor="let item of fragments; let i = index">
-									<span>{{item.language}}</span>
-									<span (click)="openFragment(i)" class="right" style="cursor: pointer;"><i class="material-icons">mode_edit</i></span>
-									<span dnd-sortable [sortableIndex]="i" class="right" style="cursor: move;"><i class="material-icons">swap_vert</i></span>
-								</li>
-							</ul>
-							<span *ngIf="fragments.length === 0">No fragments!</span>
-						</div>
-					</div>
+					<span *ngIf="fragments.length === 0">No fragments!</span>
+					<ul *ngIf="fragments.length > 0" [dragula]='"fragments-list"' [dragulaModel]='fragments'>
+						<li class="fragments" *ngFor="let item of fragments; let i = index;">
+							<div>
+									<h5 class="left-align">{{item.language}}</h5>
+									<span class="right-align fragment-options">
+										<a class="btn-floating btn waves-effect waves-light green draggable"><i
+											class="material-icons fragment-icons">swap_vert</i></a>
+										<a (click)="openFragment(i)" class="btn-floating btn waves-effect waves-light orange lighten-1"><i
+											class="material-icons fragment-icons">mode_edit</i></a>
+										<a (click)="fragments.splice(i, 1)" class="btn-floating btn waves-effect waves-light red"><i
+											class="material-icons fragment-icons">clear</i></a>
+									</span>
+								<span class="truncate fragment-code">{{item.code}}</span>
+							</div>
+							<div class="divider"></div>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

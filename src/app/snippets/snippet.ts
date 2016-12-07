@@ -1,9 +1,11 @@
 export class Fragment {
 	language: string;
+	editorLanguage: string;
 	code: string;
 	
-	constructor(_language: string, _code: string) {
+	constructor(_language: string, _editorLanguage: string, _code: string) {
 		this.language = _language;
+		this.editorLanguage = _editorLanguage;
 		this.code = _code;
 	}
 }
