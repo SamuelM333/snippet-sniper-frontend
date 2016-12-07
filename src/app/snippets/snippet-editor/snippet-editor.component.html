@@ -6,7 +6,7 @@
 		<label for="snippet-title">Snippet title:</label>
 	</div>
 	<div class="input-field col s12 m6 l6">
-		<select (change)="changeEditorLanguage($event.target.value)" materialize="material_select" class="icons">
+		<select #fragment_select (change)="changeEditorLanguage($event.target.value)" materialize="material_select" class="icons">
 			<option *ngFor="let l of languages"
 							[value]="l.editorLanguage"
 							[attr.data-icon]="l.icon">{{l.language}}
@@ -35,8 +35,8 @@
 					<ul *ngIf="fragments.length > 0" [dragula]='"fragments-list"' [dragulaModel]='fragments'>
 						<li class="fragments" *ngFor="let item of fragments; let i = index;">
 							<div>
-									<h5 class="left-align">{{item.language}}</h5>
-									<span class="right-align fragment-options">
+								<h5 class="left-align">{{item.language}}</h5>
+								<span class="right-align fragment-options">
 										<a class="btn-floating btn waves-effect waves-light green draggable"><i
 											class="material-icons fragment-icons">swap_vert</i></a>
 										<a (click)="openFragment(i)" class="btn-floating btn waves-effect waves-light orange lighten-1"><i
