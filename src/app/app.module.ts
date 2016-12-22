@@ -6,12 +6,12 @@ import { HttpModule } from '@angular/http';
 
 // Plugins
 import { AceEditorComponent } from 'ng2-ace-editor';
-import { MaterializeDirective } from "angular2-materialize";
+import { MaterializeDirective } from 'angular2-materialize';
 import { MarkdownToHtmlPipe } from 'markdown-to-html-pipe';
-import { DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
+import { DragulaModule, DragulaService } from 'ng2-dragula/ng2-dragula';
 
 // Routes
-import { ROUTING } from "./app.routing";
+import { ROUTING } from './app.routing';
 
 // Services
 import { ApiService } from './api.service';
@@ -31,31 +31,32 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
 
 
 @NgModule({
-	imports: [
-		BrowserModule,
-		FormsModule,
-		HttpModule,
-		DragulaModule,
-		ROUTING
-	],
-	declarations: [
-		AppComponent,
-		MaterializeDirective,
-		AceEditorComponent,
-		MarkdownToHtmlPipe,
-		HomepageComponent,
-		FloatingNavComponent,
-		NavComponent,
-		FooterComponent,
-		SlidesComponent,
-		SignUpComponent,
-		LoginComponent,
-		UserProfileComponent,
-		SnippetEditorComponent,
-		SnippetViewerComponent,
-		
-	],
-	providers: [ApiService, DragulaService],
-	bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        DragulaModule,
+        ROUTING
+    ],
+    declarations: [
+        AppComponent,
+        MaterializeDirective,
+        AceEditorComponent,
+        MarkdownToHtmlPipe,
+        HomepageComponent,
+        FloatingNavComponent,
+        NavComponent,
+        FooterComponent,
+        SlidesComponent,
+        SignUpComponent,
+        LoginComponent,
+        UserProfileComponent,
+        SnippetEditorComponent,
+        SnippetViewerComponent,
+
+    ],
+    providers: [ApiService, DragulaService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
