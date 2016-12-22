@@ -12,9 +12,9 @@ declare var Materialize: any;
 	styleUrls: ['./slides.component.sass']
 })
 export class SlidesComponent implements OnInit, OnDestroy {
-	
+
 	constructor(private apiService: ApiService) { }
-	
+
 	ngOnInit() {
 		$('#fullpage').fullpage({
 			anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
@@ -32,37 +32,41 @@ export class SlidesComponent implements OnInit, OnDestroy {
 				}
 			}
 		});
-		
+
 		$(".typed-text").typed({
 			strings: ["text", "snippets", "code", "images"],
 			typeSpeed: 100,
 			loop: true
 		});
-		
+
 		$('.carousel.carousel-slider').carousel({ full_width: true });
 		var interval = window.setInterval(function () {
 			$('.carousel').carousel('next')
 		}, 3000);
-		
+
 		$('#carousel-section').click(function () {
 			clearInterval(interval);
 		});
-		
+
 		$('.slider').slider({ full_width: true });
 		$(".button-collapse").sideNav();
-		
+
 	}
-	
+
 	ngOnDestroy() { $.fn.fullpage.destroy('all'); }
-	
+
 	onSubmit(form: NgForm) {
+
 		this.apiService.sendMail(
 			form.value.name,
 			form.value.email,
 			form.value.message
 		).subscribe(
 			data => {
-				if (data._status === 'OK') Materialize.toast("Email sent!", 4000);
+				if (data._status === 'OK') {
+					Materialize.toast("Email sent!", 4000);
+					form.reset();
+				}
 			});
 	}
 }
