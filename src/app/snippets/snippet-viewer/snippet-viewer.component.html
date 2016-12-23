@@ -12,14 +12,14 @@
       <small>
         <br>
         Author:
-        <a [routerLink]="['/user/' + snippet?.idUser.idUser]" class="snippet-owner white-text">
-          {{ snippet?.idUser.first_name }} {{ snippet?.idUser.last_name }}
+        <a [routerLink]="['/user/' + snippet?.owner.idUser]" class="snippet-owner white-text">
+          {{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}
         </a>
         <div class="created">Created on: {{ snippet?.created | date }}</div>
       </small>
     </h3>
 
-    <div *ngFor="let fragment of snippet?.body">
+    <div *ngFor="let fragment of snippet?.fragments">
       <div *ngIf="fragment.language == 'markdown'" [innerHtml]="fragment.body|MarkdownToHtml"
            class="markdown white-text e2e-inner-html-bound">
       </div>

@@ -19,7 +19,7 @@ export class SnippetViewerComponent implements OnInit, AfterViewChecked {
     ngOnInit() {
         this.apiService.getSnippetByID("9").subscribe(
         	data => {
-        	    this.snippet = serializeSnippet(data);
+        	    this.snippet = data;
         	    console.log(this.snippet);
             }
         );
