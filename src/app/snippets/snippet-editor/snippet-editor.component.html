@@ -1,83 +1,88 @@
 <app-nav></app-nav>
 
 <div id="snippet-container" class="row section-title">
-	<div class="input-field col s12 m6 l6">
-		<input [(ngModel)]="title" type="text" id="snippet-title" class="white-text" name="snippet-title"/>
-		<label for="snippet-title">Snippet title:</label>
-	</div>
-	<div class="input-field col s12 m6 l6">
-		<select #fragment_select (change)="changeEditorLanguage($event.target.value)" materialize="material_select" class="icons">
-			<option *ngFor="let l of languages"
-							[value]="l.editorLanguage"
-							[attr.data-icon]="l.icon">{{l.language}}
-			</option>
-		</select>
-		<label>Select a language</label>
-	</div>
+  <form #form="ngForm" (ngSubmit)="submitSnippet(form)">
+    <div class="input-field col s12 m6 l6">
+      <input ngModel type="text" id="snippet-title" class="white-text" name="snippet_title"/>
+      <label for="snippet-title">Snippet title:</label>
+    </div>
+    <div class="input-field col s12 m6 l6">
+      <select #fragment_select ngModel (change)="changeEditorLanguage($event.target.value)"
+              materialize="material_select" name="language_select" class="icons">
+        <option *ngFor="let l of languages"
+                [value]="l.editorLanguage"
+                [attr.data-icon]="l.icon">{{l.language}}
+        </option>
+      </select>
+      <label>Select a language</label>
+    </div>
+
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+      <ul>
+        <li>
+          <a (click)="addFragment()" class="tooltipped btn-floating green" data-position="left"
+             data-delay="50" data-tooltip="Add fragment">
+            <i class="material-icons">add</i></a>
+        </li>
+        <li>
+          <a (click)="openModal()" class="tooltipped btn-floating blue modal-trigger"
+             data-position="left" data-delay="50" data-tooltip="Snippet list">
+            <i class="material-icons">playlist_add_check</i></a></li>
+        <li>
+          <button type="submit" class="tooltipped btn-floating red"
+             data-position="left" data-delay="50" data-tooltip="Submit">
+            <i class="material-icons">send</i></button>
+        </li>
+      </ul>
+    </div>
+
+  </form>
 </div>
 
 <div (window:resize)="onResize()" id="editor-container" class="container">
-	<div class="row">
-		<div class="col s12">
-			<ace-editor #editor [text]="text" id="editor"></ace-editor>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col s12">
+      <ace-editor #editor [text]="text" id="editor"></ace-editor>
+    </div>
+  </div>
 </div>
 
 <div id="fragments-modal" class="modal modal-fixed-footer" materialize="modal"
-		 [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
-	<div class="modal-content">
-		<div id="sortable">
-			<h4>Added snippet fragments</h4>
-			<div class="row">
-				<div class="col s12">
-					<span *ngIf="fragments.length === 0">No fragments!</span>
-					<ul *ngIf="fragments.length > 0" [dragula]='"fragments-list"' [dragulaModel]='fragments'>
-						<li class="fragments" *ngFor="let item of fragments; let i = index;">
-							<div>
-								<h5 class="left-align">{{item.language}}</h5>
-								<span class="right-align fragment-options">
+     [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <div id="sortable">
+      <h4>Added snippet fragments</h4>
+      <div class="row">
+        <div class="col s12">
+          <span *ngIf="fragments.length === 0">No fragments!</span>
+          <ul *ngIf="fragments.length > 0" [dragula]='"fragments-list"' [dragulaModel]='fragments'>
+            <li class="fragments" *ngFor="let item of fragments; let i = index;">
+              <div>
+                <h5 class="left-align">{{item.language}}</h5>
+                <span class="right-align fragment-options">
 										<a class="btn-floating btn waves-effect waves-light green draggable"><i
-											class="material-icons fragment-icons">swap_vert</i></a>
+                      class="material-icons fragment-icons">swap_vert</i></a>
 										<a (click)="openFragment(i)" class="btn-floating btn waves-effect waves-light orange lighten-1"><i
-											class="material-icons fragment-icons">mode_edit</i></a>
+                      class="material-icons fragment-icons">mode_edit</i></a>
 										<a (click)="fragments.splice(i, 1)" class="btn-floating btn waves-effect waves-light red"><i
-											class="material-icons fragment-icons">clear</i></a>
+                      class="material-icons fragment-icons">clear</i></a>
 									</span>
-								<span class="truncate fragment-code">{{item.code}}</span>
-							</div>
-							<div class="divider"></div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<a (click)="closeModal()"
-			 class="modal-action modal-close waves-effect waves-green btn">Close</a>
-	</div>
+                <span class="truncate fragment-code">{{item.body}}</span>
+              </div>
+              <div class="divider"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()"
+       class="modal-action modal-close waves-effect waves-green btn">Close</a>
+  </div>
 </div>
 
-<div class="fixed-action-btn">
-	<a class="btn-floating btn-large">
-		<i class="large material-icons">mode_edit</i>
-	</a>
-	<ul>
-		<li>
-			<a (click)="addFragment()" class="tooltipped btn-floating green" data-position="left"
-				 data-delay="50" data-tooltip="Add fragment">
-				<i class="material-icons">add</i></a>
-		</li>
-		<li>
-			<a (click)="openModal()" class="tooltipped btn-floating blue modal-trigger"
-				 data-position="left" data-delay="50" data-tooltip="Snippet list">
-				<i class="material-icons">playlist_add_check</i></a></li>
-		<li>
-			<a (click)="submitSnippet()" class="tooltipped btn-floating red"
-				 data-position="left" data-delay="50" data-tooltip="Submit">
-				<i class="material-icons">send</i></a>
-		</li>
-	</ul>
-</div>
 <app-footer></app-footer>

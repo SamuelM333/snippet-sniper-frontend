@@ -1,7 +1,11 @@
 import { Component, ViewChild, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MaterializeAction } from 'angular2-materialize';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { Fragment } from '../snippet';
+
+import { Snippet, Fragment } from '../snippet';
+import { ApiService } from '../../api.service';
+
 
 declare const ace: any;
 declare const $: any;
@@ -28,12 +32,13 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
     languages = [
         { language: 'Javascript', editorLanguage: 'javascript', icon: 'assets/svg/js.svg' },
         { language: 'Python', editorLanguage: 'python', icon: 'assets/svg/python.svg' },
-        { language: 'C++', editorLanguage: 'c_cpp', icon: 'assets/svg/c++.svg' }
+        { language: 'C++', editorLanguage: 'c_cpp', icon: 'assets/svg/c++.svg' },
+        { language: 'Markdown', editorLanguage: 'markdown', icon: 'assets/svg/markdown.svg' },
     ];
 
     selectedLanguage = this.languages[0];
 
-    constructor(private dragulaService: DragulaService) {
+    constructor(private apiService:ApiService, private dragulaService: DragulaService) {
         dragulaService.setOptions('fragments-list', {
             moves: function (el, container, handle) {
                 return handle.className === 'material-icons fragment-icons';
@@ -50,7 +55,9 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
 
         setTimeout(this.onResize, 100);
         $('.tooltipped').tooltip({ delay: 50 });
-        console.log(this.fragment_select);
+        this.onResize();
+
+        // console.log(this.fragment_select);
     }
 
     ngOnDestroy() { this.dragulaService.destroy('fragments-list'); }
@@ -85,13 +92,34 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
             x => x.editorLanguage === this.fragments[index].editorLanguage)];
 
         this.changeEditorLanguage(this.selectedLanguage.editorLanguage);
-        this.editor.getEditor().setValue(this.fragments[index].code);
+        this.editor.getEditor().setValue(this.fragments[index].body);
         this.fragment_select.nativeElement.value = this.selectedLanguage.language;
 
         this.closeModal();
     }
 
-    submitSnippet() { console.log(this.fragments); }
+    submitSnippet(form: NgForm) {
+        let authUser = JSON.parse(localStorage.getItem('authUser'));
+        let snippet = new Snippet(
+            null,
+            parseInt(authUser.id),
+            form.value.snippet_title,
+            new Date().toISOString().slice(0, 19).replace('T', ' '),
+            this.fragments
+        );
+
+
+        this.apiService.submitSnippet(snippet).subscribe(
+            data => {
+                if (data._status === 'OK') {
+                    console.log(data.idSnippet);
+                }
+                else
+                    console.log('Error');
+            }
+        );
+
+    }
 
     changeEditorLanguage(language) {
         this.selectedLanguage = this.languages[this.languages.findIndex(
