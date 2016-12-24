@@ -3,6 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
 
 import { Snippet } from './snippets/snippet';
+import { User } from './profile/user';
 
 @Injectable()
 export class ApiService {
@@ -26,18 +27,19 @@ export class ApiService {
         );
     }
 
-    submitSnippet(snippet: Snippet){
+    submitSnippet(snippet: Snippet, allowed_users: User[]) {
         let headers = new Headers({'Content-Type': 'application/json'});
 
-        let s = {
+        let post_data = {
             'user': snippet.idUser,
             'title': snippet.title,
             'created': new Date().toISOString().slice(0, 19).replace('T', ' '),
             'edited': new Date().toISOString().slice(0, 19).replace('T', ' '),
-            'fragments': snippet.body
+            'fragments': snippet.body,
+            'allowed_users': allowed_users
         };
 
-        return this.http.post(this.apiUrl + '/snippet', JSON.stringify(s), {headers: headers}).map(
+        return this.http.post(this.apiUrl + '/snippet', JSON.stringify(post_data), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }

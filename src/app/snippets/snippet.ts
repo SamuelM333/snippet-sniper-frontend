@@ -12,7 +12,7 @@ export class Fragment {
 
 export class Snippet {
     public id: string;
-    public idUser: number;
+    public idUser: string;
     public title: string;
     public created: string;
     public body: Fragment[];
