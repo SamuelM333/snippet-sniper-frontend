@@ -29,13 +29,15 @@
 - [ ] Footer
   - [ ] Fix position
   - [x] ~~Add social media icons on the footer~~
-- [x] ~~Snippet view page~~
+- [ ] Snippet view page
   - [x] ~~[Prism](prismjs.com) for syntax highlighting~~ 
   - [x] ~~Syntax highlighting color~~
   - [x] ~~Title and owner display~~
   - [x] ~~Parse markdown~~
   - [x] ~~Markdown display~~
   - [x] ~~Wrap snippet on lighter gray~~
+  - [ ] Add url parameter
+- [ ] Public snippets
 - [ ] Snippet creation page
   - [x] ~~Title~~
   - [x] ~~Ace editor~~
@@ -43,8 +45,9 @@
   - [x] ~~Add language selector~~
   - [x] ~~Reorder fragments~~
   - [ ] Fix mobile bugs
-  - [ ] Submit snippet
-  - [ ] Add public and private snippets
+  - [x] ~~Submit snippet~~
+  - [x] ~~Add public, closed and private snippets~~
+  - [ ] Add proper public, closed and private snippet selector
   - [ ] Add keyboard shortcuts
 - [x] ~~Login~~ 
 	- [x] ~~Use Local Storage~~
@@ -52,6 +55,7 @@
   - [x] ~~Encrypt password~~
 - [ ] Register
 	- [ ] Try sign up wizard (Like Cloud9 or Slack)
+	- [ ] Trim inputs
   - [x] ~~Redirect to profile if already logged~~ 
   - [x] ~~Encrypt password~~
 - [ ] Profile
