@@ -42,8 +42,8 @@ export class ApiService {
         );
     }
 
-    getUserByEmail(id: string) {
-        return this.http.get(this.apiUrl + '/idUser/' + id).map(
+    getUserByEmail(email: string) {
+        return this.http.get(this.apiUrl + '/user/' + email).map(
             (response: Response) => response.json()
         );
     }
@@ -59,7 +59,7 @@ export class ApiService {
             'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
 
-        return this.http.post(this.apiUrl + '/idUser', JSON.stringify(user), {headers: headers}).map(
+        return this.http.post(this.apiUrl + '/user', JSON.stringify(user), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }
