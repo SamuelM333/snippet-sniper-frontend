@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
     ngOnInit() {
         $('.button-collapse').sideNav();
 
-        if (this.authUser) this.authUser = JSON.parse(this.authUser);
+        if (this.authUser) { this.authUser = JSON.parse(this.authUser); }
     }
 
     logout() {

@@ -12,7 +12,7 @@ export class UserProfileComponent implements OnInit {
     authUser = localStorage.getItem('authUser');
 
     ngOnInit() {
-        if (this.authUser) this.authUser = JSON.parse(this.authUser);
+        if (this.authUser) { this.authUser = JSON.parse(this.authUser); }
     }
 
 }

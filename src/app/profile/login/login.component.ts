@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
     constructor(private router: Router, private apiService: ApiService) { }
 
-    ngOnInit() { if (localStorage.getItem('authUser')) this.router.navigateByUrl('/profile'); }
+    ngOnInit() { if (localStorage.getItem('authUser')) { this.router.navigateByUrl('/profile'); } }
 
     onSubmit(form: NgForm) {
         const bcrypt = require('bcryptjs');
@@ -32,10 +32,7 @@ export class LoginComponent implements OnInit {
                     // console.log(authUser);
                     localStorage.setItem('authUser', JSON.stringify(authUser));
                     this.router.navigateByUrl('/profile');
-                }
-
-                else
-                    console.log('Wrong credentials :(');
+                } else { console.log('Wrong credentials :('); }
             }
         );
 

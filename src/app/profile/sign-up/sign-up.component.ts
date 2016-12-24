@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
 
     constructor(private router: Router, private apiService: ApiService) { }
 
-    ngOnInit() { if (localStorage.getItem('authUser')) this.router.navigateByUrl('/profile'); }
+    ngOnInit() { if (localStorage.getItem('authUser')) { this.router.navigateByUrl('/profile'); } }
 
     onSubmit(form: NgForm) {
         const bcrypt = require('bcryptjs');
@@ -40,25 +40,20 @@ export class SignUpComponent implements OnInit {
                     console.log(authUser);
                     localStorage.setItem('authUser', JSON.stringify(authUser));
                     this.router.navigateByUrl('/profile');
-                }
-
-                else
-                    console.log('Error on sign up');
+                } else { console.log('Error on sign up'); }
             }
         );
 
     }
 
     onKey(event: any) {
+        this.valid = false;
         // console.log('pass: ' + this.password);
         // console.log('pass rpt: ' + this.password_rpt);
         // console.log(this.passwordRepeatLabel);
         // console.log(this.email);
         // console.log(this.emailLabel);
-        if (this.password === this.password_rpt && this.password !== '')
-            this.valid = true;
-        else
-            this.valid = false;
+        if (this.password === this.password_rpt && this.password !== '') { this.valid = true; }
 
     }
 

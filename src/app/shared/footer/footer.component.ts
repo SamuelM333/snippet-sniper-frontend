@@ -11,10 +11,9 @@ export class FooterComponent {
     constructor(private router: Router) {}
 
     relativePos() {
-        if (this.router.url === '/snippet/view' || this.router.url === '/sign-up')
+        if (this.router.url === '/snippet/view' || this.router.url === '/sign-up') {
             return true;
-        else
-            return false;
+        } else { return false; }
     }
 
 }
