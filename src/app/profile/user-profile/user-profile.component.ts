@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 declare const $: any;
 
@@ -7,7 +7,7 @@ declare const $: any;
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.sass']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, AfterViewInit {
 
     authUser = localStorage.getItem('authUser');
 
@@ -15,6 +15,16 @@ export class UserProfileComponent implements OnInit {
         if (this.authUser) { this.authUser = JSON.parse(this.authUser); }
 
         $('ul.tabs').tabs();
+
+    }
+
+    ngAfterViewInit() {
+        // $('ul.tabs').tabs('select_tab', 'tab1');
+    }
+
+    onResize() {
+        $('ul.tabs').tabs();
+        $('ul.tabs').tabs('select_tab', 'tab1');
 
     }
 

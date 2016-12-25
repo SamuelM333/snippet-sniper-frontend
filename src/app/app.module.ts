@@ -60,5 +60,4 @@ import { PublicSnippetsComponent } from './snippets/public-snippets/public-snipp
     providers: [ApiService, DragulaService],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
