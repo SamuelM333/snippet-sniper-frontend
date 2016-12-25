@@ -1,0 +1,41 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="section-title">
+        <h4 class="white-text center">Public snippets</h4>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let snippet of snippets; let last = last" class="row snippet">
+    <h3 class="snippet-title white-text">
+      <a class="white-text" [routerLink]="['/snippet/' + snippet.idSnippet]">{{ snippet.title }}</a>
+      <!--<small>-->
+      <!--<br>-->
+      <!--Author:-->
+      <!--<a [routerLink]="['/user/' + snippet?.owner.idUser]" class="snippet-owner white-text">-->
+      <!--{{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}-->
+      <!--</a>-->
+      <!--<div class="created">Created on: {{ snippet?.created | date }}</div>-->
+      <!--</small>-->
+    </h3>
+
+    <!--<div *ngFor="let fragment of snippet?.fragments">-->
+    <!--<div *ngIf="fragment.language == 'Markdown'" [innerHtml]="fragment.body|MarkdownToHtml"-->
+    <!--class="markdown white-text e2e-inner-html-bound">-->
+    <!--</div>-->
+
+    <!--<pre *ngIf="fragment.language != 'Markdown'" class="line-numbers">-->
+    <!--<code class="language-{{ fragment.language }}">-->
+    <!--{{ fragment.body }}-->
+    <!--</code>-->
+    <!--</pre>-->
+    <!--</div>-->
+
+    <div *ngIf="!last" class="progress">
+      <div class="determinate" style="width: 100%"></div>
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>
