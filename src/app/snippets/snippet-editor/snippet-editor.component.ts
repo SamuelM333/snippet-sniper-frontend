@@ -1,4 +1,5 @@
 import { Component, ViewChild, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { MaterializeAction } from 'angular2-materialize';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
@@ -42,7 +43,8 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
 
     selectedLanguage = this.languages[0];
 
-    constructor(private apiService: ApiService, private dragulaService: DragulaService) {
+    constructor(private router: Router, private apiService: ApiService,
+                private dragulaService: DragulaService) {
         dragulaService.setOptions('fragments-list', {
             moves: function (el, container, handle) {
                 return handle.className === 'material-icons fragment-icons';
@@ -101,7 +103,6 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
 
     submitSnippet(form: NgForm) {
         let authUser = JSON.parse(localStorage.getItem('authUser'));
-        console.log(authUser.id);
 
         authUser = new User(
             authUser.id,
@@ -127,14 +128,11 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
             this.allowed_users.push(authUser);
         }
 
-        console.log(authUser.id);
-        console.log(snippet);
-
         this.apiService.submitSnippet(snippet, this.allowed_users).subscribe(
             data => {
                 if (data._status === 'OK') {
                     // Redirect to snippet view
-                    console.log(data);
+                    this.router.navigateByUrl('/snippet/' + data.idSnippet);
                 } else { console.log('Error'); }
             }
         );
