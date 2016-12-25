@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// declare const bcrypt: any = require('bcryptjs');
+declare const $: any;
 
 @Component({
     selector: 'app-user-profile',
@@ -13,6 +13,9 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit() {
         if (this.authUser) { this.authUser = JSON.parse(this.authUser); }
+
+        $('ul.tabs').tabs();
+
     }
 
 }

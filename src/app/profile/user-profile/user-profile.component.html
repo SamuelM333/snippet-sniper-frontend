@@ -1,7 +1,49 @@
-<app-nav></app-nav>
-<div class="container">
-	<div class="row">
-		<p class="white-text">Welcome {{ authUser.name }} {{ authUser.last_name }}</p>
-	</div>
+<app-nav>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs tabs-fixed-width grey darken-3">
+        <!--My Snippets -->
+        <li class="tab col s3 hide-on-small-only"><a class="waves-effect waves-light active" href="#tab1">
+            My Snippets
+        </a></li>
+        <li class="tab col s3 hide-on-med-and-up"><a class="waves-effect waves-light active" href="#tab1">
+          <i class="material-icons">list</i>
+        </a></li>
+
+        <!--Snippets shared with me-->
+        <li class="tab col s3 hide-on-small-only"><a class="waves-effect waves-light" href="#tab2">
+          Snippets shared with me
+        </a></li>
+        <li class="tab col s3 hide-on-med-and-up"><a class="waves-effect waves-light" href="#tab2">
+          <i class="material-icons">share</i>
+        </a></li>
+
+        <!--My account-->
+        <li class="tab col s3 hide-on-small-only"><a class="waves-effect waves-light" href="#tab3">
+          My account
+        </a></li>
+        <li class="tab col s3 hide-on-med-and-up"><a class="waves-effect waves-light" href="#tab3">
+          <i class="material-icons">person</i>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</app-nav>
+
+<div id="tab1" class="col s12">
+  <div class="container">
+    <div class="row">
+      <p class="white-text">Welcome {{ authUser.name }} {{ authUser.last_name }}</p>
+    </div>
+  </div>
 </div>
+
+<div id="tab2" class="col s12">
+  Test 2
+</div>
+
+<div id="tab3" class="col s12">
+  Test 3
+</div>
+
 <app-footer></app-footer>
