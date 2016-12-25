@@ -16,14 +16,14 @@ export class ApiService {
     }
 
     getSnippets() {
-        return this.http.get(this.apiUrl + '/snippet?embedded={"idUser":1}').map(
-            (response: Response) => response.json()
+        return this.http.get(this.apiUrl + '/snippet').map(
+            (data: Response) => data.json()
         );
     }
 
     getSnippetByID(id: string) {
         return this.http.get(this.apiUrl + '/snippet/' + id).map(
-            (response: Response) => response.json()
+            (data: Response) => data.json()
         );
     }
 
