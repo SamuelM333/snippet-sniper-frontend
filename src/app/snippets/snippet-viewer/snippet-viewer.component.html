@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col s12">
       <div class="section-title">
-        <h4 class="white-text center">View snippets</h4>
+        <!--<h4 class="white-text center">View snippets</h4>-->
       </div>
     </div>
   </div>
@@ -20,44 +20,17 @@
     </h3>
 
     <div *ngFor="let fragment of snippet?.fragments">
-      <div *ngIf="fragment.language == 'markdown'" [innerHtml]="fragment.body|MarkdownToHtml"
+      <div *ngIf="fragment.language == 'Markdown'" [innerHtml]="fragment.body|MarkdownToHtml"
            class="markdown white-text e2e-inner-html-bound">
       </div>
 
-      <pre *ngIf="fragment.language != 'markdown'" class="line-numbers">
+      <pre *ngIf="fragment.language != 'Markdown'" class="line-numbers">
 				<code class="language-{{ fragment.language }}">
 {{ fragment.body }}
 				</code>
 			</pre>
     </div>
 
-  </div>
-  <div class="progress">
-    <div class="determinate" style="width: 100%"></div>
-  </div>
-  <div class="row snippet">
-    <h3 class="snippet-title white-text"> Test
-      <small>
-        <br>Author:<a href="#" class="snippet-owner white-text"> Samuel Murillo</a>
-        <div class="created">Created on: 11/11/16</div>
-      </small>
-    </h3>
-    <div class="markdown white-text">
-      <h1>Markdown test</h1>
-    </div>
-    <pre class="line-numbers">
-			<code class="language-python">
-def foo:
-    print('Hello World')
-			</code>
-		</pre>
-    <pre class="line-numbers">
-			<code class="language-ruby">
- def my_new_method
-    p "So Impressive!"
- end
-			</code>
-		</pre>
   </div>
 </div>
 <app-footer></app-footer>
