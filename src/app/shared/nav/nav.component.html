@@ -19,7 +19,7 @@
       </li>
 
       <li *ngIf="authUser">
-        <a materialize="dropdown" class="dropdown-button" data-activates="userdropdown">
+        <a materialize="dropdown" class="dropdown-button" data-beloworigin="true" data-activates="userdropdown">
           {{ authUser.name }}<i class="material-icons right">arrow_drop_down</i></a>
         <ul id="userdropdown" class="dropdown-content">
           <li><a [routerLink]="['/profile']">Profile</a></li>
