@@ -8,10 +8,17 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent {
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) { }
 
     relativePos() {
-        if (this.router.url === '/snippet/view' || this.router.url === '/sign-up') {
+
+        let links = [
+            '/snippet/:id',
+            '/snippets',
+            '/sign-up'
+        ];
+
+        if (this.router.url === '/snippets' || this.router.url === '/sign-up') {
             return true;
         } else { return false; }
     }
