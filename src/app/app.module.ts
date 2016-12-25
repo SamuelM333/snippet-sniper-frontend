@@ -28,6 +28,7 @@ import { LoginComponent } from './profile/login/login.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor.component';
 import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
+import { PublicSnippetsComponent } from './snippets/public-snippets/public-snippets.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer
         UserProfileComponent,
         SnippetEditorComponent,
         SnippetViewerComponent,
+        PublicSnippetsComponent,
 
     ],
     providers: [ApiService, DragulaService],
