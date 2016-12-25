@@ -20,6 +20,13 @@ export class NavComponent implements OnInit {
         if (this.authUser) { this.authUser = JSON.parse(this.authUser); }
     }
 
+    atProfile() {
+
+        if (this.router.url === '/profile') {
+            return true;
+        } else { return false; }
+    }
+
     logout() {
         localStorage.removeItem('authUser');
         this.router.navigateByUrl('/');
