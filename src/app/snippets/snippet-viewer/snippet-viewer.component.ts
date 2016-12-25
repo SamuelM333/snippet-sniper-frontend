@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ApiService } from '../../api.service';
 import { Snippet, serializeSnippet } from '../snippet';
@@ -12,16 +13,16 @@ declare const Prism: any;
 })
 export class SnippetViewerComponent implements OnInit, AfterViewChecked {
 
+    idSnippet: string;
     snippet: Snippet;
 
-    constructor(private apiService: ApiService) { }
+    constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) {
+        this.idSnippet = activatedRoute.snapshot.params['id'];
+    }
 
     ngOnInit() {
-        this.apiService.getSnippetByID("9").subscribe(
-        	data => {
-        	    this.snippet = data;
-        	    console.log(this.snippet);
-            }
+        this.apiService.getSnippetByID(this.idSnippet).subscribe(
+            data => this.snippet = data
         );
     }
 
