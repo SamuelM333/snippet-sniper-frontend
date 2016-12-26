@@ -1,7 +1,7 @@
 <app-nav>
   <div (window:resize)="onResize()" class="row">
     <div class="col s12">
-      <!--Desktop tabs-->
+      <!--Desktop tabs bar-->
       <ul class="tabs tabs-fixed-width grey darken-3 hide-on-small-only">
 
         <!--My Snippets -->
@@ -20,7 +20,7 @@
         </li>
 
       </ul>
-      <!--Mobile tabs-->
+      <!--Mobile tabs bar-->
       <ul class="tabs tabs-fixed-width grey darken-3 hide-on-med-and-up">
 
         <!--My Snippets -->
@@ -64,9 +64,59 @@
 <!--My account tab-->
 <div id="tab3" class="col s12">
   <div class="container">
+
+    <!--Profile picture-->
     <div class="row">
-      <p class="white-text">My account</p>
-      <p *ngIf="authUser.admin == 1" class="white-text">Admin</p>
+      <div class="col s12 center">
+        <div class="profile-img-container">
+          <img id="profile-picture" class="responsive-img" src="assets/img/generic_profile.png">
+          <a (click)="changeProfilePicture()"><i class="material-icons">camera_alt</i></a>
+        </div>
+      </div>
+
+      <!--<p class="white-text">My account</p>-->
+      <!--<p *ngIf="authUser.admin == 1" class="white-text">Admin</p>-->
+    </div>
+    <div class="row">
+      <form #form="ngForm" (ngSubmit)="onSubmitForm(form)" class="col s12 card">
+        <div class="card-content">
+          <div class="input-field col s12">
+            <input ngModel type="text" name="name" id="name"/>
+            <label for="name">Name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input ngModel type="text" name="last_name" id="last_name" required/>
+            <label for="last_name">Last name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input #email ngModel id="email" type="email" name="email" class="validate" required/>
+            <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
+          </div>
+          <div class="input-field col s12">
+            <input (keyup)="onKey($event)" id="old-password" name="password"
+                   type="password" required>
+            <label for="password">Old Password:</label>
+          </div>
+          <div class="input-field col s12">
+            <input [(ngModel)]="password" (keyup)="onKey($event)" id="password" name="password"
+                   type="password" required>
+            <label for="password">New Password:</label>
+          </div>
+          <div class="input-field col s12">
+            <input [(ngModel)]="password_rpt" (keyup)="onKey($event)" [class.invalid]="!valid"
+                   [class.valid]="valid && form.touched"
+                   id="password_rpt" type="password" name="password_rpt" required>
+            <label #passwordRepeatLabel for="password_rpt">New Password (again):</label>
+          </div>
+          <div class="row">
+            <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
+            <button [disabled]="!form.valid || !valid" type="submit"
+                    class="center-btn btn waves-effect waves-dark right">
+              Register
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
