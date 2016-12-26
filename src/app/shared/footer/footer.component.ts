@@ -18,7 +18,9 @@ export class FooterComponent {
             '/sign-up'
         ];
 
-        if (this.router.url === '/snippets' || this.router.url === '/sign-up') {
+        if (this.router.url === '/snippets' ||
+            this.router.url === '/profile' ||
+            this.router.url === '/sign-up') {
             return true;
         } else { return false; }
     }
