@@ -12,6 +12,9 @@ declare const Materialize: any;
 export class UserProfileComponent implements OnInit, AfterViewInit {
 
     authUser = JSON.parse(localStorage.getItem('authUser'));
+    name = this.authUser.name;
+    last_name = this.authUser.last_name;
+    email = this.authUser.email;
     password: string = '';
     password_rpt: string = '';
     valid: boolean = true;
@@ -19,9 +22,16 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         $('ul.tabs').tabs();
         $('ul.tabs').tabs('select_tab', 'tab3');
+        console.log(this.authUser);
+        console.log(this.name);
+        console.log(this.last_name);
+        console.log(this.email);
     }
 
-    ngAfterViewInit() { Materialize.updateTextFields(); }
+    ngAfterViewInit() {
+        // Materialize.updateTextFields(); 
+        
+    }
 
     onResize() {
         $('ul.tabs').tabs();

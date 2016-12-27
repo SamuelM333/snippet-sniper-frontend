@@ -75,21 +75,21 @@
       </div>
 
       <!--<p class="white-text">My account</p>-->
-      <!--<p *ngIf="authUser.admin == 1" class="white-text">Admin</p>-->
+      <p *ngIf="authUser.admin == 1" class="white-text">Admin</p>
     </div>
     <div class="row">
       <form #form="ngForm" (ngSubmit)="onSubmitForm(form)" class="col s12 card">
         <div class="card-content">
           <div class="input-field col s12">
-            <input ngModel type="text" name="name" id="name"/>
+            <input [ngModel]="name" type="text" name="name" id="name"/>
             <label for="name">Name: </label>
           </div>
           <div class="input-field col s12">
-            <input ngModel type="text" name="last_name" id="last_name" required/>
+            <input [ngModel]="last_name" type="text" name="last_name" id="last_name"/>
             <label for="last_name">Last name: </label>
           </div>
           <div class="input-field col s12">
-            <input #email ngModel id="email" type="email" name="email" class="validate" required/>
+            <input [ngModel]="email" id="email" type="email" name="email" class="validate"/>
             <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
           </div>
           <div class="input-field col s12">
@@ -112,7 +112,7 @@
             <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
             <button [disabled]="!form.valid || !valid" type="submit"
                     class="center-btn btn waves-effect waves-dark right">
-              Register
+              Update information
             </button>
           </div>
         </div>
