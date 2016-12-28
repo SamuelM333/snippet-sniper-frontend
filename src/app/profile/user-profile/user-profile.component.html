@@ -2,7 +2,7 @@
   <div (window:resize)="onResize()" class="row">
     <div class="col s12">
       <!--Desktop tabs bar-->
-      <ul class="tabs grey darken-3 hide-on-small-only">
+      <ul class="tabs tabs-fixed-width grey darken-3 hide-on-small-only">
 
         <!--My Snippets -->
         <li class="tab col s3">
@@ -18,9 +18,9 @@
         <li class="tab col s3">
           <a class="waves-effect waves-light" href="#tab3">My account</a>
         </li>
-        
+
         <!--Admin panel-->
-        <li *ngIf="authUser.admin == 1" class="tab col s3">
+        <li *ngIf="admin == 1" class="tab col s3">
           <a class="waves-effect waves-light" href="#tab4">Admin panel</a>
         </li>
 
@@ -42,9 +42,9 @@
         <li class="tab col s3 hide-on-med-and-up">
           <a class="waves-effect waves-light" href="#tab3"><i class="material-icons">person</i></a>
         </li>
-        
+
         <!--Admin panel-->
-        <li *ngIf="authUser.admin == 1" class="tab col s3 hide-on-med-and-up">
+        <li *ngIf="admin == 1" class="tab col s3 hide-on-med-and-up">
           <a class="waves-effect waves-light" href="#tab4"><i class="material-icons">lock</i></a>
         </li>
 
@@ -77,7 +77,7 @@
 
     <div class="row">
       <form #profileForm="ngForm" (ngSubmit)="onSubmitForm(profileForm)">
-        
+
         <!--Profile picture-->
         <div class="row">
           <div class="col s12 center">
@@ -90,22 +90,22 @@
             </div>
           </div>
         </div>
-        
+
         <div class="col s12 card">
           <div class="card-content">
             <span class="card-title">Profile information</span>
             <div class="input-field col s12">
-              <input [(ngModel)]="name" (keyup)="profileInformationFormUpdated($event)" 
+              <input [(ngModel)]="name" (keyup)="profileInformationFormUpdated($event)"
                      type="text" name="name" id="name" placeholder=" "/>
               <label for="name">Name: </label>
             </div>
             <div class="input-field col s12">
-              <input [(ngModel)]="last_name" (keyup)="profileInformationFormUpdated($event)" 
+              <input [(ngModel)]="last_name" (keyup)="profileInformationFormUpdated($event)"
                      type="text" name="last_name" id="last_name" placeholder=" "/>
               <label for="last_name">Last name: </label>
             </div>
             <div class="input-field col s12">
-              <input [(ngModel)]="email" (keyup)="profileInformationFormUpdated($event)" id="email" 
+              <input [(ngModel)]="email" (keyup)="profileInformationFormUpdated($event)" id="email"
                      type="email" name="email" class="validate" placeholder=" "/>
               <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
             </div>
@@ -118,9 +118,9 @@
           </div>
         </div>
       </form>
-        
+
       <form #passwordForm="ngForm" (ngSubmit)="onSubmitForm(passwordForm)">
-            
+
         <div class="col s12 card">
           <div class="card-content">
             <span class="card-title">Change password</span>
@@ -153,7 +153,7 @@
 </div>
 
 <!--Admin panel-->
-<div *ngIf="authUser.admin == 1" id="tab4" class="col s12">
+<div *ngIf="admin == 1" id="tab4" class="col s12">
   <div class="container">
     <div class="row">
       <p class="white-text">Admin</p>
