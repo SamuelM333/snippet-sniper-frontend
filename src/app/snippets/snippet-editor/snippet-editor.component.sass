@@ -45,3 +45,83 @@
 
 #share-input
     width: 84%
+    
+#radios
+	text-align: center
+	margin 0 auto
+	margin-bottom: 30px
+	
+
+#radios label 
+	cursor: pointer
+	position: relative
+
+#radios label + label 
+	margin-left: 18px
+
+input[type="radio"] 
+	opacity: 0
+	position: absolute
+
+input[type="radio"]:checked + span 
+	color: #D9E7FD
+	background-color: #4285F4
+
+#radios label:hover::before
+	content: attr(for)
+	font-family: Roboto, -apple-system, sans-serif
+	text-transform: capitalize
+	font-size: 11px
+	position: absolute
+	top: 170%
+	left: 0
+	right: 0
+	opacity: 0.75
+	background-color: #323232
+	color: #fff
+	padding: 4px
+	border-radius: 3px
+	display: block
+
+#radios label
+	padding: 0px 7px
+
+
+input[type="radio"] + span 
+	font-family: 'Material Icons'
+	color: #B3CEFB
+	border-radius: 50%
+	padding: 18px 7.9px
+	transition: all 0.4s
+	-webkit-transition: all 0.4s
+	
+.radio-icons .material-icons
+	font-size: 3em
+	position: relative !important
+	top: 11px !important
+
+	
+input[type="radio"]:checked + span
+  color: #D9E7FD
+  background-color: #4285F4
+
+input[type="radio"]:focus + span
+	color: #fff
+
+#radios span
+	width: 30px
+	height: 30px
+
+input[type="radio"]:focus + span
+	color: rgba(136, 136, 136, 0.5)
+	
+#radios #pub:focus + span .material-icons
+	color: #f5f5f5 !important
+
+#radios #priv span .material-icons
+    color: #f5f5f5
+
+#radios #clo span .material-icons
+	color: #f5f5f5
+
+	

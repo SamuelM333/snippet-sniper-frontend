@@ -17,6 +17,8 @@
       <label>Select a language</label>
     </div>
 
+
+    <!-- Submit modal-->
     <div id="submit-modal" class="modal modal-fixed-footer" materialize="modal"
          [materializeParams]="[{dismissible: true}]" [materializeActions]="submitModal">
 
@@ -24,24 +26,19 @@
         <h4 class="center-align">Save and share your snippet</h4>
 
         <div id="share-actions" class="center">
-
-          <a class="btn-floating btn-large waves-effect waves-light green">
-            <i class="material-icons">person</i>
-          </a>
-          <a class="btn-floating btn-large waves-effect waves-light orange">
-            <i class="material-icons">group</i>
-          </a>
-          <a class="btn-floating btn-large waves-effect waves-light red">
-            <i class="material-icons">lock</i>
-          </a>
-
-          <div>
+          <div id="radios"class="radio-icons">
+            <label for="public" id="pub">
             <input (click)="shared = 'public'" id="public" class="with-gap" type="radio" name="a" value="public" [checked]="shared ===  'public'"/>
-            <label for="public">Public</label><br/>
+            <span><i class="material-icons">group</i></span>
+            </label>
+            <label for="closed" id="clo">
             <input (click)="shared = 'closed'" id="closed" class="with-gap" type="radio" name="a" value="closed"/>
-            <label for="closed">Closed</label>
+            <span><i class="material-icons">lock</i></span>
+            </label>
+            <label for="private" id="priv">
             <input (click)="shared = 'private'" id="private" class="with-gap" type="radio" name="a" value="private"/>
-            <label for="private">Private</label>
+            <span><i class="material-icons">person</i></span>
+            </label>
           </div>
         </div>
 
@@ -83,6 +80,7 @@
   </form>
 </div>
 
+<!--Editor-->
 <div (window:resize)="onResize()" id="editor-container" class="container">
   <div class="row">
     <div class="col s12">
@@ -91,6 +89,7 @@
   </div>
 </div>
 
+<!--Fragments Modal-->
 <div id="fragments-modal" class="modal modal-fixed-footer" materialize="modal"
      [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
   <div class="modal-content">
@@ -126,6 +125,7 @@
   </div>
 </div>
 
+<!--Floating buttons-->
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large">
     <i class="large material-icons">mode_edit</i>
