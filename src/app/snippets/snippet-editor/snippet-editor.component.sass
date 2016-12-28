@@ -91,7 +91,7 @@ input[type="radio"] + span
 	font-family: 'Material Icons'
 	color: #B3CEFB
 	border-radius: 50%
-	padding: 18px 7.9px
+	padding: 22px 11.9px
 	transition: all 0.4s
 	-webkit-transition: all 0.4s
 
@@ -100,27 +100,44 @@ input[type="radio"] + span
 	position: relative !important
 	top: 11px !important
 
-
-input[type="radio"]:checked + span
-  color: #D9E7FD
-  background-color: #4285F4
-
-input[type="radio"]:focus + span
-	color: #fff
+input[type="radio"] + span
+  color: #a0a0a0
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+  background: #eaeaea
 
 #radios span
 	width: 30px
 	height: 30px
 
-input[type="radio"]:focus + span
-	color: rgba(136, 136, 136, 0.5)
+#public:checked + span
+	color: white
+	background: #26a69a
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
-#radios #pub:focus + span .material-icons
-	color: #f5f5f5 !important
+#closed:checked + span
+	color: white
+	background: #ffeb3b
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
-#radios #priv span .material-icons
-    color: #f5f5f5
+	
+#private:checked + span
+	color: white
+	background: #f44336
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
-#radios #clo span .material-icons
-	color: #f5f5f5
-
+.info
+	margin: 0 auto
+	color: #777272
+	width: 30%
+	max-width: 300px
+	min-width: 150px
+	font-size: 14px
+	
+h4 span
+	font-style: italic
+	
+.title
+    font-weight: 300
+    font-size: 20px
+    margin: 5px 0px
+    color: #222

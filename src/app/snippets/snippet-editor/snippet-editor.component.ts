@@ -175,7 +175,10 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
         } else { Materialize.toast('Empty Email', 4000); }
     }
 
-    removeFromAllowedUsers(index: number) { this.allowed_users.splice(index, 1); }
+    removeFromAllowedUsers(index: number) { 
+        this.allowed_users.splice(index, 1); 
+        Materialize.toast('User removed', 4000);
+    }
 
     openFragmentListModal() { this.modalActions.emit({ action: 'modal', params: ['open'] }); }
 
