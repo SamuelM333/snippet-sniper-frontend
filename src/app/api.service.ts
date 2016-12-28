@@ -10,7 +10,7 @@ export class ApiService {
 
     // apiUrl = 'http://127.0.0.1:5000';
     // apiUrl = 'http://api.snippet-sniper.samuelmurillo.me';
-    apiUrl = 'http://snippetsniperphp-samuelm333.rhcloud.com';
+    apiUrl = 'https://snippetsniperphp-samuelm333.rhcloud.com';
 
     constructor(private http: Http) {
     }
