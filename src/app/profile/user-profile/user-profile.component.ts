@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
 declare const $: any;
@@ -9,43 +9,48 @@ declare const Materialize: any;
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.sass']
 })
-export class UserProfileComponent implements OnInit, AfterViewInit {
-
+export class UserProfileComponent implements AfterViewInit {
+    
     authUser = JSON.parse(localStorage.getItem('authUser'));
+    profilePicture: File = null;
     name = this.authUser.name;
     last_name = this.authUser.last_name;
     email = this.authUser.email;
     password: string = '';
     password_rpt: string = '';
-    valid: boolean = true;
-
-    ngOnInit() {
-        $('ul.tabs').tabs();
-        $('ul.tabs').tabs('select_tab', 'tab3');
-    }
-
-    ngAfterViewInit() {
-        // Materialize.updateTextFields(); 
-        
-    }
+    updateInformationEnabled: boolean = false;
+    changePasswordEnabled: boolean = false;
+    
+    ngAfterViewInit() { this.onResize(); }
 
     onResize() {
         $('ul.tabs').tabs();
-        $('ul.tabs').tabs('select_tab', 'tab3');
-    }
-
-    changeProfilePicture() {
-        console.log('click on photo');
+        $('ul.tabs').tabs('select_tab', 'tab1');
     }
 
     onSubmitForm(form: NgForm) {
         console.log(form);
     }
-
-    onKey(event: any) {
-        this.valid = false;
-        if (this.password === this.password_rpt && this.password !== '') { this.valid = true; }
-
+    
+    fileChangeEvent(fileInput: any){
+        this.profilePicture = fileInput.target.files[0];
+        console.log(this.profilePicture);
     }
 
+    passwordFormUpdated(event: any) {
+        if (this.password === this.password_rpt && this.password !== '') { 
+            this.changePasswordEnabled = true; 
+        } else {
+            this.changePasswordEnabled = false;
+        }
+    }
+    
+    profileInformationFormUpdated(event: any) {
+        if (this.name !== this.authUser.name || this.last_name !== this.authUser.last_name || this.email !== this.authUser.email) { 
+                this.updateInformationEnabled = true;
+        } else {
+            this.updateInformationEnabled = false;
+        }
+    }
+    
 }

@@ -2,7 +2,7 @@
   <div (window:resize)="onResize()" class="row">
     <div class="col s12">
       <!--Desktop tabs bar-->
-      <ul class="tabs tabs-fixed-width grey darken-3 hide-on-small-only">
+      <ul class="tabs grey darken-3 hide-on-small-only">
 
         <!--My Snippets -->
         <li class="tab col s3">
@@ -11,12 +11,17 @@
 
         <!--Snippets shared with me-->
         <li class="tab col s3">
-          <a class="waves-effect waves-light" href="#tab2">Snippets shared with me</a>
+          <a class="waves-effect waves-light" href="#tab2">Shared with me</a>
         </li>
 
         <!--My account-->
         <li class="tab col s3">
           <a class="waves-effect waves-light" href="#tab3">My account</a>
+        </li>
+        
+        <!--Admin panel-->
+        <li *ngIf="authUser.admin == 1" class="tab col s3">
+          <a class="waves-effect waves-light" href="#tab4">Admin panel</a>
         </li>
 
       </ul>
@@ -36,6 +41,11 @@
         <!--My account-->
         <li class="tab col s3 hide-on-med-and-up">
           <a class="waves-effect waves-light" href="#tab3"><i class="material-icons">person</i></a>
+        </li>
+        
+        <!--Admin panel-->
+        <li *ngIf="authUser.admin == 1" class="tab col s3 hide-on-med-and-up">
+          <a class="waves-effect waves-light" href="#tab4"><i class="material-icons">lock</i></a>
         </li>
 
       </ul>
@@ -66,7 +76,7 @@
   <div class="container">
 
     <div class="row">
-      <form #form="ngForm" (ngSubmit)="onSubmitForm(form)">
+      <form #profileForm="ngForm" (ngSubmit)="onSubmitForm(profileForm)">
         
         <!--Profile picture-->
         <div class="row">
@@ -74,50 +84,33 @@
             <div class="profile-img-container">
               <label for="file-input">
                 <img id="profile-picture" class="responsive-img" src="assets/img/generic_profile.png">
-                <a (click)="changeProfilePicture()"><i class="material-icons">camera_alt</i></a>
+                <a><i class="material-icons">camera_alt</i></a>
               </label>
-              <input id="file-input" type="file"/>
+              <input id="file-input" type="file" (change)="fileChangeEvent($event)"/>
             </div>
           </div>
-    
-          <!--<p class="white-text">My account</p>-->
-          <p *ngIf="authUser.admin == 1">Admin</p>
         </div>
         
         <div class="col s12 card">
-        
           <div class="card-content">
+            <span class="card-title">Profile information</span>
             <div class="input-field col s12">
-              <input [ngModel]="name" type="text" name="name" id="name"/>
+              <input [(ngModel)]="name" (keyup)="profileInformationFormUpdated($event)" 
+                     type="text" name="name" id="name" placeholder=" "/>
               <label for="name">Name: </label>
             </div>
             <div class="input-field col s12">
-              <input [ngModel]="last_name" type="text" name="last_name" id="last_name"/>
+              <input [(ngModel)]="last_name" (keyup)="profileInformationFormUpdated($event)" 
+                     type="text" name="last_name" id="last_name" placeholder=" "/>
               <label for="last_name">Last name: </label>
             </div>
             <div class="input-field col s12">
-              <input [ngModel]="email" id="email" type="email" name="email" class="validate"/>
+              <input [(ngModel)]="email" (keyup)="profileInformationFormUpdated($event)" id="email" 
+                     type="email" name="email" class="validate" placeholder=" "/>
               <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
             </div>
-            <div class="input-field col s12">
-              <input (keyup)="onKey($event)" id="old-password" name="password"
-                     type="password" required>
-              <label for="password">Old Password:</label>
-            </div>
-            <div class="input-field col s12">
-              <input [(ngModel)]="password" (keyup)="onKey($event)" id="password" name="password"
-                     type="password" required>
-              <label for="password">New Password:</label>
-            </div>
-            <div class="input-field col s12">
-              <input [(ngModel)]="password_rpt" (keyup)="onKey($event)" [class.invalid]="!valid"
-                     [class.valid]="valid && form.touched"
-                     id="password_rpt" type="password" name="password_rpt" required>
-              <label #passwordRepeatLabel for="password_rpt">New Password (again):</label>
-            </div>
             <div class="row">
-              <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
-              <button [disabled]="!form.valid || !valid" type="submit"
+              <button [disabled]="!updateInformationEnabled" type="submit"
                       class="center-btn btn waves-effect waves-dark right">
                 Update information
               </button>
@@ -125,6 +118,45 @@
           </div>
         </div>
       </form>
+        
+      <form #passwordForm="ngForm" (ngSubmit)="onSubmitForm(passwordForm)">
+            
+        <div class="col s12 card">
+          <div class="card-content">
+            <span class="card-title">Change password</span>
+            <div class="input-field col s12">
+              <input ngModel id="old-password" name="old_password"
+                     type="password" required>
+              <label for="old-password">Old Password:</label>
+            </div>
+            <div class="input-field col s12">
+              <input [(ngModel)]="password" (keyup)="passwordFormUpdated($event)" id="password" name="password"
+                     type="password" required>
+              <label for="password">New Password:</label>
+            </div>
+            <div class="input-field col s12">
+              <input [(ngModel)]="password_rpt" (keyup)="passwordFormUpdated($event)" [class.invalid]="!changePasswordEnabled && passwordForm.touched"
+                     [class.valid]="changePasswordEnabled && passwordForm.touched" id="password_rpt" type="password" name="password_rpt" required>
+              <label #passwordRepeatLabel for="password_rpt">New Password (again):</label>
+            </div>
+            <div class="row">
+              <span [class.hide]="changePasswordEnabled || passwordForm.untouched" class="left red-text">Error: passwords don't match</span>
+              <button [disabled]="!changePasswordEnabled || !passwordForm.valid" class="center-btn btn waves-effect waves-dark right">
+                Change password
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Admin panel-->
+<div *ngIf="authUser.admin == 1" id="tab4" class="col s12">
+  <div class="container">
+    <div class="row">
+      <p class="white-text">Admin</p>
     </div>
   </div>
 </div>
