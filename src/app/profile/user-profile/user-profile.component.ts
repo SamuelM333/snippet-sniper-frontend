@@ -22,10 +22,6 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         $('ul.tabs').tabs();
         $('ul.tabs').tabs('select_tab', 'tab3');
-        console.log(this.authUser);
-        console.log(this.name);
-        console.log(this.last_name);
-        console.log(this.email);
     }
 
     ngAfterViewInit() {

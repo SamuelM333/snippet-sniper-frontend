@@ -65,55 +65,63 @@
 <div id="tab3" class="col s12">
   <div class="container">
 
-    <!--Profile picture-->
     <div class="row">
-      <div class="col s12 center">
-        <div class="profile-img-container">
-          <img id="profile-picture" class="responsive-img" src="assets/img/generic_profile.png">
-          <a (click)="changeProfilePicture()"><i class="material-icons">camera_alt</i></a>
+      <form #form="ngForm" (ngSubmit)="onSubmitForm(form)">
+        
+        <!--Profile picture-->
+        <div class="row">
+          <div class="col s12 center">
+            <div class="profile-img-container">
+              <label for="file-input">
+                <img id="profile-picture" class="responsive-img" src="assets/img/generic_profile.png">
+                <a (click)="changeProfilePicture()"><i class="material-icons">camera_alt</i></a>
+              </label>
+              <input id="file-input" type="file"/>
+            </div>
+          </div>
+    
+          <!--<p class="white-text">My account</p>-->
+          <p *ngIf="authUser.admin == 1">Admin</p>
         </div>
-      </div>
-
-      <!--<p class="white-text">My account</p>-->
-      <p *ngIf="authUser.admin == 1" class="white-text">Admin</p>
-    </div>
-    <div class="row">
-      <form #form="ngForm" (ngSubmit)="onSubmitForm(form)" class="col s12 card">
-        <div class="card-content">
-          <div class="input-field col s12">
-            <input [ngModel]="name" type="text" name="name" id="name"/>
-            <label for="name">Name: </label>
-          </div>
-          <div class="input-field col s12">
-            <input [ngModel]="last_name" type="text" name="last_name" id="last_name"/>
-            <label for="last_name">Last name: </label>
-          </div>
-          <div class="input-field col s12">
-            <input [ngModel]="email" id="email" type="email" name="email" class="validate"/>
-            <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
-          </div>
-          <div class="input-field col s12">
-            <input (keyup)="onKey($event)" id="old-password" name="password"
-                   type="password" required>
-            <label for="password">Old Password:</label>
-          </div>
-          <div class="input-field col s12">
-            <input [(ngModel)]="password" (keyup)="onKey($event)" id="password" name="password"
-                   type="password" required>
-            <label for="password">New Password:</label>
-          </div>
-          <div class="input-field col s12">
-            <input [(ngModel)]="password_rpt" (keyup)="onKey($event)" [class.invalid]="!valid"
-                   [class.valid]="valid && form.touched"
-                   id="password_rpt" type="password" name="password_rpt" required>
-            <label #passwordRepeatLabel for="password_rpt">New Password (again):</label>
-          </div>
-          <div class="row">
-            <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
-            <button [disabled]="!form.valid || !valid" type="submit"
-                    class="center-btn btn waves-effect waves-dark right">
-              Update information
-            </button>
+        
+        <div class="col s12 card">
+        
+          <div class="card-content">
+            <div class="input-field col s12">
+              <input [ngModel]="name" type="text" name="name" id="name"/>
+              <label for="name">Name: </label>
+            </div>
+            <div class="input-field col s12">
+              <input [ngModel]="last_name" type="text" name="last_name" id="last_name"/>
+              <label for="last_name">Last name: </label>
+            </div>
+            <div class="input-field col s12">
+              <input [ngModel]="email" id="email" type="email" name="email" class="validate"/>
+              <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
+            </div>
+            <div class="input-field col s12">
+              <input (keyup)="onKey($event)" id="old-password" name="password"
+                     type="password" required>
+              <label for="password">Old Password:</label>
+            </div>
+            <div class="input-field col s12">
+              <input [(ngModel)]="password" (keyup)="onKey($event)" id="password" name="password"
+                     type="password" required>
+              <label for="password">New Password:</label>
+            </div>
+            <div class="input-field col s12">
+              <input [(ngModel)]="password_rpt" (keyup)="onKey($event)" [class.invalid]="!valid"
+                     [class.valid]="valid && form.touched"
+                     id="password_rpt" type="password" name="password_rpt" required>
+              <label #passwordRepeatLabel for="password_rpt">New Password (again):</label>
+            </div>
+            <div class="row">
+              <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
+              <button [disabled]="!form.valid || !valid" type="submit"
+                      class="center-btn btn waves-effect waves-dark right">
+                Update information
+              </button>
+            </div>
           </div>
         </div>
       </form>
