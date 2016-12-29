@@ -26,27 +26,29 @@
         <h4 class="center-align">Save and <span>share</span> your snippets.</h4>
 
         <div id="share-actions" class="center">
-          <div id="radios"class="radio-icons">
+          <div id="radios" class="radio-icons">
             <label for="public" id="pub">
-            <input (click)="shared = 'public'" id="public" class="with-gap" type="radio" name="a" value="public" [checked]="shared ===  'public'"/>
-            <span><i class="material-icons">public</i></span>
+              <input (click)="shared = 'public'" id="public" class="with-gap" type="radio" name="a" value="public"
+                     [checked]="shared ===  'public'"/>
+              <span><i class="material-icons">public</i></span>
             </label>
             <label for="closed" id="clo">
-            <input (click)="shared = 'closed'" id="closed" class="with-gap" type="radio" name="a" value="closed"/>
-            <span><i class="material-icons">group</i></span>
+              <input (click)="shared = 'closed'" id="closed" class="with-gap" type="radio" name="a" value="closed"/>
+              <span><i class="material-icons">group</i></span>
             </label>
             <label for="private" id="priv">
-            <input (click)="shared = 'private'" id="private" class="with-gap" type="radio" name="a" value="private"/>
-            <span><i class="material-icons">person</i></span>
+              <input (click)="shared = 'private'" id="private" class="with-gap" type="radio" name="a" value="private"/>
+              <span><i class="material-icons">person</i></span>
             </label>
           </div>
         </div>
 
-        <div id="share-fragment" *ngIf="shared === 'closed'">
+        <div class="share-fragment" *ngIf="shared === 'closed'">
           <div class="row">
             <div class="col s12">
               <p class="title center-align">Closed</p>
-              <p class="info center-align">With closed option you can share your snippet only with users you know. Please enter the user e-mail.</p>
+              <p class="info center-align">With closed option you can share your snippet only with users you know.
+                Please enter the user e-mail.</p>
               <div id="share-input" class="input-field inline">
                 <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
                        id="email" type="email">
@@ -62,30 +64,27 @@
               <i (click)="removeFromAllowedUsers(i)" class="close material-icons">close</i>
             </div>
           </div>
-
         </div>
-        
-        <div id="share-fragment" *ngIf="shared === 'public'">
+
+        <div class="share-fragment" *ngIf="shared === 'public'">
           <div class="row">
             <div class="col s12">
               <p class="title center-align">Public</p>
-              <p class="info center-align">This option allows you to share your snippets with everyone, also everyone can view this snippet and content.</p>
+              <p class="info center-align">This option allows you to share your snippets with everyone, also everyone
+                can view this snippet and content.</p>
             </div>
           </div>
-
         </div>
-        
 
-          
-          <div id="share-fragment" *ngIf="shared === 'private'">
+        <div class="share-fragment" *ngIf="shared === 'private'">
           <div class="row">
             <div class="col s12">
               <p class="title center-align">Private</p>
-              <p class="info center-align">When use this option, only you can view this snippet. This will be hidden from everyone.</p>
+              <p class="info center-align">When use this option, only you can view this snippet. This will be hidden
+                from everyone.</p>
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="modal-footer">
@@ -98,8 +97,6 @@
         </a>
       </div>
     </div>
-
-
   </form>
 </div>
 

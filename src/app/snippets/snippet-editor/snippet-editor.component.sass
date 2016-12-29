@@ -1,44 +1,43 @@
 @import "../../../colors"
 
 #editor-container
-	margin: 0
-	padding: 0
-	position: relative
+    margin: 0
+    padding: 0
+    position: relative
 
 #editor
-	position: relative
-	display: block
-	width: 100vw
-	font-size: 15px
-	background: #303030
-	border-top: solid #9e9e9e 1px
-	@media screen and (max-width: 500px)
-		font-size: 14px
-
+    position: relative
+    display: block
+    width: 100vw
+    font-size: 15px
+    background: #303030
+    border-top: solid #9e9e9e 1px
+    @media screen and (max-width: 500px)
+        font-size: 14px
 
 .section-title
-	padding: 5px 0
-	margin: 0
+    padding: 5px 0
+    margin: 0
 
 .fixed-action-btn
-	margin-bottom: 40px
+    margin-bottom: 40px
 
 .fragments
-	margin-bottom: 10px
+    margin-bottom: 10px
 
 .fragment-code
-	width: 75%
+    width: 75%
 
 .fragment-options
-	float: right
+    float: right
 
 .draggable
-	cursor: move
+    cursor: move
 
 #submit-btn
     margin-left: 5px
 
-#share-fragment
+.share-fragment
     padding: 15px 0
     border-top: 1px solid rgba(0, 0, 0, 0.1)
     width: 100%
@@ -47,97 +46,77 @@
     width: 84%
 
 #radios
-	text-align: center
-	margin: 0 auto
-	margin-bottom: 30px
-
+    text-align: center
+    margin: 0 auto 30px
 
 #radios label
-	cursor: pointer
-	position: relative
+    cursor: pointer
+    position: relative
 
 #radios label + label
-	margin-left: 18px
+    margin-left: 18px
 
 input[type="radio"]
-	opacity: 0
-	position: absolute
+    opacity: 0
+    position: absolute
 
 input[type="radio"]:checked + span
-	color: #D9E7FD
-	background-color: #4285F4
-
-#radios label:hover::before
-	content: attr(for)
-	font-family: Roboto, -apple-system, sans-serif
-	text-transform: capitalize
-	font-size: 11px
-	position: absolute
-	top: 170%
-	left: 0
-	right: 0
-	opacity: 0.75
-	background-color: #323232
-	color: #fff
-	padding: 4px
-	border-radius: 3px
-	display: block
+    color: #D9E7FD
+    background-color: #4285F4
 
 #radios label
-	padding: 0px 7px
-
+    padding: 0 7px
 
 input[type="radio"] + span
-	font-family: 'Material Icons'
-	color: #B3CEFB
-	border-radius: 50%
-	padding: 22px 11.9px
-	transition: all 0.4s
-	-webkit-transition: all 0.4s
+    font-family: 'Material Icons'
+    color: #B3CEFB
+    border-radius: 50%
+    padding: 22px 11.9px
+    transition: all 0.4s
+    -webkit-transition: all 0.4s
 
 .radio-icons .material-icons
-	font-size: 3em
-	position: relative !important
-	top: 11px !important
+    font-size: 3em
+    position: relative !important
+    top: 11px !important
 
 input[type="radio"] + span
-  color: #a0a0a0
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
-  background: #eaeaea
+    color: #a0a0a0
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    background: #eaeaea
 
 #radios span
-	width: 30px
-	height: 30px
+    width: 30px
+    height: 30px
 
 #public:checked + span
-	color: white
-	background: #26a69a
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+    color: white
+    background: #4CAF50
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)
 
 #closed:checked + span
-	color: white
-	background: #ffeb3b
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+    color: white
+    background: #ffa726
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)
 
-	
 #private:checked + span
-	color: white
-	background: #f44336
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+    color: white
+    background: #F44336
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)
 
 .info
-	margin: 0 auto
-	color: #777272
-	width: 100%
-	max-width: 500px
-	min-width: 150px
-	font-size: 14px
-	
+    margin: 0 auto
+    color: #777272
+    width: 100%
+    max-width: 500px
+    min-width: 150px
+    font-size: 14px
+
 h4 span
-	font-style: italic
-	
+    font-style: italic
+
 .title
     font-weight: 300
     font-size: 20px
-    margin: 5px 0px
+    margin: 5px 0
     color: #222
