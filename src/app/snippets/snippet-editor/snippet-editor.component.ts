@@ -102,40 +102,61 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
     }
 
     submitSnippet(form: NgForm) {
-        let authUser = JSON.parse(localStorage.getItem('authUser'));
-
-        authUser = new User(
-            authUser.id,
-            authUser.name,
-            authUser.last_name,
-            authUser.email,
-            authUser.admin,
-        );
-
-        let snippet = new Snippet(
-            null,
-            parseInt(authUser.id),
-            form.value.snippet_title,
-            new Date().toISOString().slice(0, 19).replace('T', ' '),
-            this.fragments
-        );
-
-        if (this.shared === 'public') {
-            this.allowed_users = [];
-        } else if (this.shared === 'private') {
-            this.allowed_users = [authUser];
-        } else {
-            this.allowed_users.push(authUser);
+        
+        let error: boolean = false;
+        let snippet_title = $.trim(form.value.snippet_title);
+        
+        if (snippet_title.length === 0) {
+            Materialize.toast('Empty title', 4000);
+            error = true;
+        } 
+        
+        if (this.fragments.length === 0) {
+            Materialize.toast('No fragments added', 4000);
+            error = true;
         }
+        
+        if (this.shared === 'closed' && this.allowed_users.length === 0) {
+            Materialize.toast('Snippet set as closed but no users added', 4000);
+            error = true;
+        }
+        
+        if (!error) {
+            let authUser = JSON.parse(localStorage.getItem('authUser'));
 
-        this.apiService.submitSnippet(snippet, this.allowed_users).subscribe(
-            data => {
-                if (data._status === 'OK') {
-                    // Redirect to snippet view
-                    this.router.navigateByUrl('/snippet/' + data.idSnippet);
-                } else { console.log('Error'); }
+            authUser = new User(
+                authUser.id,
+                authUser.name,
+                authUser.last_name,
+                authUser.email,
+                authUser.admin,
+            );
+    
+            let snippet = new Snippet(
+                null,
+                parseInt(authUser.id),
+                snippet_title,
+                new Date().toISOString().slice(0, 19).replace('T', ' '),
+                this.fragments
+            );
+    
+            if (this.shared === 'public') {
+                this.allowed_users = [];
+            } else if (this.shared === 'private') {
+                this.allowed_users = [authUser];
+            } else {
+                this.allowed_users.push(authUser);
             }
-        );
+    
+            this.apiService.submitSnippet(snippet, this.allowed_users).subscribe(
+                data => {
+                    if (data._status === 'OK') {
+                        // Redirect to snippet view
+                        this.router.navigateByUrl('/snippet/' + data.idSnippet);
+                    } else { console.log('Error'); }
+                }
+            );
+        }
     }
 
     changeEditorLanguage(language) {
