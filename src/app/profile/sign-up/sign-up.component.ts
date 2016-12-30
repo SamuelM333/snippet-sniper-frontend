@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../api.service';
 
+const bcrypt = require('bcryptjs');
+
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
@@ -23,7 +25,6 @@ export class SignUpComponent implements OnInit {
     ngOnInit() { if (localStorage.getItem('authUser')) { this.router.navigateByUrl('/profile'); } }
 
     onSubmit(form: NgForm) {
-        const bcrypt = require('bcryptjs');
         let hashed_password = bcrypt.hashSync(form.value.password, 10);
         this.apiService.insertUser(form.value.name, form.value.last_name, form.value.email,
             hashed_password).subscribe(
@@ -35,9 +36,9 @@ export class SignUpComponent implements OnInit {
                         'last_name': form.value.last_name,
                         'email': form.value.email,
                         'password': hashed_password,
+                        'picture': '',
                         'admin': 0,
                     };
-                    console.log(authUser);
                     localStorage.setItem('authUser', JSON.stringify(authUser));
                     this.router.navigateByUrl('/profile');
                 } else { console.log('Error on sign up'); }

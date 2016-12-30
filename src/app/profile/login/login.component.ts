@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../api.service';
 
+const bcrypt = require('bcryptjs');
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -16,7 +18,6 @@ export class LoginComponent implements OnInit {
     ngOnInit() { if (localStorage.getItem('authUser')) { this.router.navigateByUrl('/profile'); } }
 
     onSubmit(form: NgForm) {
-        const bcrypt = require('bcryptjs');
 
         this.apiService.getUserByEmail(form.value.email).subscribe(
             data => {
@@ -27,9 +28,10 @@ export class LoginComponent implements OnInit {
                         'last_name': data.last_name,
                         'email': data.email,
                         'password': data.password,
+                        // 'picture': data.picture,
+                        'picture': '',
                         'admin': data.admin,
                     };
-                    // console.log(authUser);
                     localStorage.setItem('authUser', JSON.stringify(authUser));
                     this.router.navigateByUrl('/profile');
                 } else { console.log('Wrong credentials :('); }

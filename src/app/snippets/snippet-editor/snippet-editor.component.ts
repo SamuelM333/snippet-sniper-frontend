@@ -102,25 +102,25 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
     }
 
     submitSnippet(form: NgForm) {
-        
+
         let error: boolean = false;
         let snippet_title = $.trim(form.value.snippet_title);
-        
+
         if (snippet_title.length === 0) {
             Materialize.toast('Empty title', 4000);
             error = true;
-        } 
-        
+        }
+
         if (this.fragments.length === 0) {
             Materialize.toast('No fragments added', 4000);
             error = true;
         }
-        
+
         if (this.shared === 'closed' && this.allowed_users.length === 0) {
             Materialize.toast('Snippet set as closed but no users added', 4000);
             error = true;
         }
-        
+
         if (!error) {
             let authUser = JSON.parse(localStorage.getItem('authUser'));
 
@@ -129,9 +129,10 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
                 authUser.name,
                 authUser.last_name,
                 authUser.email,
-                authUser.admin,
+                authUser.picture,
+                authUser.admin
             );
-    
+
             let snippet = new Snippet(
                 null,
                 parseInt(authUser.id),
@@ -139,7 +140,7 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
                 new Date().toISOString().slice(0, 19).replace('T', ' '),
                 this.fragments
             );
-    
+
             if (this.shared === 'public') {
                 this.allowed_users = [];
             } else if (this.shared === 'private') {
@@ -147,7 +148,7 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
             } else {
                 this.allowed_users.push(authUser);
             }
-    
+
             this.apiService.submitSnippet(snippet, this.allowed_users).subscribe(
                 data => {
                     if (data._status === 'OK') {
@@ -178,6 +179,7 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
                             data.name,
                             data.last_name,
                             data.email,
+                            data.picture,
                             data.admin
                         );
 
@@ -196,8 +198,8 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
         } else { Materialize.toast('Empty Email', 4000); }
     }
 
-    removeFromAllowedUsers(index: number) { 
-        this.allowed_users.splice(index, 1); 
+    removeFromAllowedUsers(index: number) {
+        this.allowed_users.splice(index, 1);
         Materialize.toast('User removed', 4000);
     }
 
