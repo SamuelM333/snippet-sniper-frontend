@@ -12,8 +12,7 @@ export class ApiService {
     // apiUrl = 'http://api.snippet-sniper.samuelmurillo.me';
     apiUrl = 'https://snippetsniperphp-samuelm333.rhcloud.com';
 
-    constructor(private http: Http) {
-    }
+    constructor(private http: Http) { }
 
     getSnippets() {
         return this.http.get(this.apiUrl + '/snippet').map(
@@ -62,6 +61,21 @@ export class ApiService {
         };
 
         return this.http.post(this.apiUrl + '/user', JSON.stringify(user), {headers: headers}).map(
+            (data: Response) => data.json()
+        );
+    }
+
+    changeProfilePicture(idUser: string, email:string, profilePicture: string) {
+        let headers = new Headers({'Content-Type': 'application/json'});
+
+        let user = {
+            'idUser': idUser,
+            'email': email,
+            'picture': profilePicture,
+            'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+        };
+
+        return this.http.patch(this.apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }
