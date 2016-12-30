@@ -57,35 +57,60 @@
   <!--My Snippets tab-->
   <div id="tab1" class="col s12">
     <div class="row">
-      <p class="white-text">My snippets</p>
+      <div class="section-title">
+        <h4 class="white-text center">My snippets</h4>
+      </div>
     </div>
   </div>
 
   <!--Snippets shared with me tab-->
   <div id="tab2" class="col s12">
     <div class="row">
-      <p class="white-text">Shared with me</p>
+      <div class="section-title">
+        <h4 class="white-text center">Shared with me</h4>
+      </div>
     </div>
   </div>
 
   <!--My account tab-->
   <div id="tab3" class="col s12">
+    <div class="section-title">
+      <h4 class="white-text center">My account</h4>
+    </div>
+    <!--Profile picture-->
     <div class="row">
-      <form #profileForm="ngForm" (ngSubmit)="onSubmitForm(profileForm)">
-
-        <!--Profile picture-->
-        <div class="row">
-          <div class="col s12 center">
-            <div class="profile-img-container">
-              <label for="file-input">
-                <img id="profile-picture" class="responsive-img" src="assets/img/generic_profile.png">
-                <a><i class="material-icons">camera_alt</i></a>
-              </label>
-              <input id="file-input" type="file" accept="image/x-png,image/gif,image/jpeg" (change)="fileChangeEvent($event)"/>
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Profile picture</span>
+            <div class="row">
+              <div class="col s12 m6 center">
+                <div class="profile-img-container">
+                  <label for="file-input">
+                    <img id="profile-picture" class="responsive-img" [src]="profilePicture">
+                    <a><i class="material-icons">camera_alt</i></a>
+                  </label>
+                  <input id="file-input" (change)="fileChangeEvent($event)" type="file" name="profile_picture"
+                         accept="image/*"/>
+                </div>
+              </div>
+              <div class="col s12 m6 profile-text">
+                <p>This will be the picture that others users will see when you upload a snippet.</p><br>
+                <p>The file size is 1Mb maximum.</p>
+              </div>
+            </div>
+            <div class="row">
+              <button [disabled]="!profilePictureChanged" (click)="submitProfilePicture()"
+                      class="center-btn btn waves-effect waves-dark right">
+                Change profile picture
+              </button>
             </div>
           </div>
         </div>
 
+      </div>
+
+      <form #profileForm="ngForm" (ngSubmit)="onSubmitForm(profileForm)" enctype="multipart/form-data">
         <div class="col s12 m6">
           <div class="card">
             <div class="card-content">
@@ -156,7 +181,9 @@
   <!--Admin panel-->
   <div *ngIf="admin == 1" id="tab4" class="col s12">
     <div class="row">
-      <p class="white-text">Admin</p>
+      <div class="section-title">
+        <h4 class="white-text center">Admin panel</h4>
+      </div>
     </div>
   </div>
 

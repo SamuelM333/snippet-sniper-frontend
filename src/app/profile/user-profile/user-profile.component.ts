@@ -15,7 +15,8 @@ declare const Materialize: any;
 export class UserProfileComponent implements OnInit, AfterViewInit {
 
     authUser = JSON.parse(localStorage.getItem('authUser'));
-    profilePicture: File = null;
+    profilePicture: string = '';
+    profilePictureChanged: boolean = false;
     name: string = '';
     last_name: string = '';
     email: string = '';
@@ -33,6 +34,11 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
             this.last_name = this.authUser.last_name;
             this.email = this.authUser.email;
             this.admin = this.authUser.admin;
+            if (this.authUser.picture === '') {
+                this.profilePicture = 'assets/img/generic_profile.png';
+            } else {
+                this.profilePicture = this.authUser.picture;
+            }
         } else {
             this.router.navigateByUrl('/login');
         }
@@ -42,7 +48,20 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
     onResize() {
         $('ul.tabs').tabs();
-        $('ul.tabs').tabs('select_tab', 'tab1');
+        $('ul.tabs').tabs('select_tab', 'tab3');
+    }
+
+    submitProfilePicture() {
+        if (this.profilePicture !== '') {
+            this.apiService.changeProfilePicture(this.authUser.id, this.authUser.email, this.profilePicture).subscribe(
+                data => {
+                    console.log(data);
+                    if (data._status === 'OK') {
+                        // window.location.reload();
+                    } else { console.log('Error'); }
+                }
+            );
+        }
     }
 
     onSubmitForm(form: NgForm) {
@@ -50,8 +69,31 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     }
 
     fileChangeEvent(fileInput: any) {
-        this.profilePicture = fileInput.target.files[0];
-        console.log(this.profilePicture);
+
+        // Check file size
+        if (fileInput.target.files[0].size > 1000000) {
+            Materialize.toast('File bigger than 1Mb', 4000);
+        } else {
+
+            let file = fileInput.dataTransfer ? fileInput.dataTransfer.files[0] : fileInput.target.files[0];
+            let pattern = /image-*/;
+            let reader = new FileReader();
+
+            if (!file.type.match(pattern)) {
+                Materialize.toast('File isn\'t a image', 4000);
+                return;
+            }
+
+            reader.onload = function (e) {
+                let reader = e.target;
+                this.profilePicture = reader.result;
+                // console.log(this.profilePicture);
+            }.bind(this);
+
+            reader.readAsDataURL(file);
+            this.profilePictureChanged = true;
+        }
+
     }
 
     passwordFormUpdated(event: any) {
