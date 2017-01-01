@@ -9,6 +9,7 @@ import { AceEditorComponent } from 'ng2-ace-editor';
 import { MaterializeDirective } from 'angular2-materialize';
 import { MarkdownToHtmlPipe } from 'markdown-to-html-pipe';
 import { DragulaModule, DragulaService } from 'ng2-dragula/ng2-dragula';
+import { NgUploaderModule } from 'ngx-uploader';
 
 // Routes
 import { ROUTING } from './app.routing';
@@ -37,6 +38,7 @@ import { PublicSnippetsComponent } from './snippets/public-snippets/public-snipp
         FormsModule,
         HttpModule,
         DragulaModule,
+        NgUploaderModule,
         ROUTING
     ],
     declarations: [

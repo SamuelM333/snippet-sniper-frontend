@@ -90,8 +90,11 @@
                     <img id="profile-picture" class="responsive-img" [src]="profilePicture">
                     <a><i class="material-icons">camera_alt</i></a>
                   </label>
-                  <input id="file-input" (change)="fileChangeEvent($event)" type="file" name="profile_picture"
-                         accept="image/*"/>
+                  <input id="file-input" type="file" accept="image/*"
+                         ngFileSelect
+                         [options]="options"
+                         (onUpload)="handleUpload($event)"
+                         (beforeUpload)="beforeUpload($event)">
                 </div>
               </div>
               <div class="col s12 m6 profile-text">
@@ -105,6 +108,7 @@
                 Change profile picture
               </button>
             </div>
+            <div class="row">Response: {{ uploadFile | json }}</div>
           </div>
         </div>
 

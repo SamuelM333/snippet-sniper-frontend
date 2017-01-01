@@ -2,7 +2,9 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { ApiService } from '../../api.service';
+import { NgUploaderOptions } from 'ngx-uploader';
+
+import { ApiService, apiUrl } from '../../api.service';
 
 declare const $: any;
 declare const Materialize: any;
@@ -26,6 +28,11 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     updateInformationEnabled: boolean = false;
     changePasswordEnabled: boolean = false;
 
+    uploadFile: any;
+    hasBaseDropZoneOver: boolean = false;
+    options: NgUploaderOptions;
+    sizeLimit = 1000000;
+
     constructor(private router: Router, private apiService: ApiService) { }
 
     ngOnInit() {
@@ -39,6 +46,11 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
             } else {
                 this.profilePicture = this.authUser.picture;
             }
+            
+            this.options = {
+              url: apiUrl + '/image/' + this.authUser.id
+            };
+            
         } else {
             this.router.navigateByUrl('/login');
         }
@@ -66,6 +78,25 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
     onSubmitForm(form: NgForm) {
         console.log(form);
+    }
+
+    handleUpload(data): void {
+        if (data && data.response) {
+            data = JSON.parse(data.response);
+            this.uploadFile = data;
+        }
+    }
+
+    fileOverBase(e:any):void {
+        this.hasBaseDropZoneOver = e;
+    }
+
+    beforeUpload(uploadingFile): void {
+        console.log(uploadingFile);
+        if (uploadingFile.size > this.sizeLimit) {
+            uploadingFile.setAbort();
+            alert('File is too large');
+        }
     }
 
     fileChangeEvent(fileInput: any) {

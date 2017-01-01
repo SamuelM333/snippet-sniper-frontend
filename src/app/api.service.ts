@@ -5,23 +5,25 @@ import 'rxjs/Rx';
 import { Snippet } from './snippets/snippet';
 import { User } from './profile/user';
 
+export const apiUrl = 'https://snippetsniperphp-samuelm333.rhcloud.com';
+
 @Injectable()
 export class ApiService {
 
     // apiUrl = 'http://127.0.0.1:5000';
     // apiUrl = 'http://api.snippet-sniper.samuelmurillo.me';
-    apiUrl = 'https://snippetsniperphp-samuelm333.rhcloud.com';
+    
 
     constructor(private http: Http) { }
 
     getSnippets() {
-        return this.http.get(this.apiUrl + '/snippet').map(
+        return this.http.get(apiUrl + '/snippet').map(
             (data: Response) => data.json()
         );
     }
 
     getSnippetByID(id: string) {
-        return this.http.get(this.apiUrl + '/snippet/' + id).map(
+        return this.http.get(apiUrl + '/snippet/' + id).map(
             (data: Response) => data.json()
         );
     }
@@ -38,13 +40,13 @@ export class ApiService {
             'allowed_users': allowed_users
         };
 
-        return this.http.post(this.apiUrl + '/snippet', JSON.stringify(post_data), {headers: headers}).map(
+        return this.http.post(apiUrl + '/snippet', JSON.stringify(post_data), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }
 
     getUserByEmail(email: string) {
-        return this.http.get(this.apiUrl + '/user/' + email).map(
+        return this.http.get(apiUrl + '/user/' + email).map(
             (response: Response) => response.json()
         );
     }
@@ -60,7 +62,7 @@ export class ApiService {
             'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
 
-        return this.http.post(this.apiUrl + '/user', JSON.stringify(user), {headers: headers}).map(
+        return this.http.post(apiUrl + '/user', JSON.stringify(user), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }
@@ -75,7 +77,7 @@ export class ApiService {
             'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
 
-        return this.http.patch(this.apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
+        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }
@@ -89,7 +91,7 @@ export class ApiService {
             'message': message
         };
 
-        return this.http.post(this.apiUrl + '/mail', JSON.stringify(mail), {headers: headers}).map(
+        return this.http.post(apiUrl + '/mail', JSON.stringify(mail), {headers: headers}).map(
             (data: Response) => data.json()
         );
     }
