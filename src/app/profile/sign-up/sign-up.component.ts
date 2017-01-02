@@ -36,7 +36,10 @@ export class SignUpComponent implements OnInit {
                         'last_name': form.value.last_name,
                         'email': form.value.email,
                         'password': hashed_password,
-                        'picture': '',
+                        'picture': {
+                            'url': null,
+                            'uploaded': null,
+                        },
                         'admin': 0,
                     };
                     localStorage.setItem('authUser', JSON.stringify(authUser));

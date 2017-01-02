@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit {
                         'last_name': data.last_name,
                         'email': data.email,
                         'password': data.password,
-                        // 'picture': data.picture,
-                        'picture': '',
+                        'picture': {
+                            'url': data.picture.url,
+                            'uploaded': data.picture.uploaded,
+                        },
                         'admin': data.admin,
                     };
                     localStorage.setItem('authUser', JSON.stringify(authUser));
