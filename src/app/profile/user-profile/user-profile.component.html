@@ -93,22 +93,29 @@
                   <input id="file-input" type="file" accept="image/*"
                          ngFileSelect
                          [options]="options"
-                         (onUpload)="handleUpload($event)"
-                         (beforeUpload)="beforeUpload($event)">
+                         [events]="events"
+                         (beforeUpload)="beforeUpload($event)"
+                         (onPreviewData)="handlePreviewData($event)"
+                         (onUpload)="handleUpload($event)">
                 </div>
               </div>
               <div class="col s12 m6 profile-text">
-                <p>This will be the picture that others users will see when you upload a snippet.</p><br>
-                <p>The file size is 1Mb maximum.</p>
+                <p>
+                  This will be the picture that others users will see when you upload a snippet. <br>
+                  <small>The file size is 1Mb maximum.</small>
+                </p>
               </div>
             </div>
-            <div class="row">
-              <button [disabled]="!profilePictureChanged" (click)="submitProfilePicture()"
-                      class="center-btn btn waves-effect waves-dark right">
-                Change profile picture
-              </button>
+            <!--<div class="row">-->
+              <!--<button [disabled]="!profilePictureChanged" (click)="submitProfilePicture()"-->
+                      <!--class="center-btn btn waves-effect waves-dark right">-->
+                <!--Change profile picture-->
+              <!--</button>-->
+            <!--</div>-->
+            <div class="row">Response: {{ response | json }}</div>
+            <div class="progress">
+              <div class="determinate" [style.width]="progress + '%'"></div>
             </div>
-            <div class="row">Response: {{ uploadFile | json }}</div>
           </div>
         </div>
 

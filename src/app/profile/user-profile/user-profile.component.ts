@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, EventEmitter, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -28,10 +28,13 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     updateInformationEnabled: boolean = false;
     changePasswordEnabled: boolean = false;
 
+    events: EventEmitter<any> = new EventEmitter();
+    zone: NgZone;
     uploadFile: any;
-    hasBaseDropZoneOver: boolean = false;
+    response: any;
     options: NgUploaderOptions;
     sizeLimit = 1000000;
+    progress: number = 0;
 
     constructor(private router: Router, private apiService: ApiService) { }
 
@@ -41,16 +44,19 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
             this.last_name = this.authUser.last_name;
             this.email = this.authUser.email;
             this.admin = this.authUser.admin;
-            if (this.authUser.picture === '') {
+
+            this.zone = new NgZone({ enableLongStackTrace: false });
+            this.options = {
+                autoUpload: false,
+                url: apiUrl + '/image/' + this.authUser.id,
+                previewUrl: '/preview'
+            };
+
+            if (this.authUser.picture.url === '' && this.authUser.picture.url === null) {
                 this.profilePicture = 'assets/img/generic_profile.png';
             } else {
-                this.profilePicture = this.authUser.picture;
+                this.profilePicture = apiUrl + this.authUser.picture.url;
             }
-            
-            this.options = {
-              url: apiUrl + '/image/' + this.authUser.id
-            };
-            
         } else {
             this.router.navigateByUrl('/login');
         }
@@ -63,68 +69,36 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
         $('ul.tabs').tabs('select_tab', 'tab3');
     }
 
-    submitProfilePicture() {
-        if (this.profilePicture !== '') {
-            this.apiService.changeProfilePicture(this.authUser.id, this.authUser.email, this.profilePicture).subscribe(
-                data => {
-                    console.log(data);
-                    if (data._status === 'OK') {
-                        // window.location.reload();
-                    } else { console.log('Error'); }
-                }
-            );
-        }
-    }
-
     onSubmitForm(form: NgForm) {
         console.log(form);
-    }
-
-    handleUpload(data): void {
-        if (data && data.response) {
-            data = JSON.parse(data.response);
-            this.uploadFile = data;
-        }
-    }
-
-    fileOverBase(e:any):void {
-        this.hasBaseDropZoneOver = e;
     }
 
     beforeUpload(uploadingFile): void {
         console.log(uploadingFile);
         if (uploadingFile.size > this.sizeLimit) {
             uploadingFile.setAbort();
-            alert('File is too large');
+            Materialize.toast('File bigger than 1Mb', 4000);
+        } else {
+            this.profilePictureChanged = true;
         }
     }
 
-    fileChangeEvent(fileInput: any) {
+    handlePreviewData(event) { this.profilePicture = event; }
 
-        // Check file size
-        if (fileInput.target.files[0].size > 1000000) {
-            Materialize.toast('File bigger than 1Mb', 4000);
-        } else {
+    submitProfilePicture() { this.events.emit('startUpload'); }
 
-            let file = fileInput.dataTransfer ? fileInput.dataTransfer.files[0] : fileInput.target.files[0];
-            let pattern = /image-*/;
-            let reader = new FileReader();
+    handleUpload(data): void {
 
-            if (!file.type.match(pattern)) {
-                Materialize.toast('File isn\'t a image', 4000);
-                return;
-            }
+        this.zone.run(() => {
+            this.response = data;
+            this.progress = data.progress.percent;
+        });
 
-            reader.onload = function (e) {
-                let reader = e.target;
-                this.profilePicture = reader.result;
-                // console.log(this.profilePicture);
-            }.bind(this);
-
-            reader.readAsDataURL(file);
-            this.profilePictureChanged = true;
+        if (data && data.response) {
+            console.log(data);
+            data = JSON.parse(data.response);
+            this.response = data;
         }
-
     }
 
     passwordFormUpdated(event: any) {
@@ -136,7 +110,8 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     }
 
     profileInformationFormUpdated(event: any) {
-        if (this.name !== this.authUser.name || this.last_name !== this.authUser.last_name || this.email !== this.authUser.email) {
+        if (this.name !== this.authUser.name || this.last_name !== this.authUser.last_name ||
+            this.email !== this.authUser.email) {
             this.updateInformationEnabled = true;
         } else {
             this.updateInformationEnabled = false;
