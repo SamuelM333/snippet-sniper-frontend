@@ -12,7 +12,7 @@ export class ApiService {
 
     // apiUrl = 'http://127.0.0.1:5000';
     // apiUrl = 'http://api.snippet-sniper.samuelmurillo.me';
-    
+
 
     constructor(private http: Http) { }
 
@@ -67,14 +67,27 @@ export class ApiService {
         );
     }
 
-    changeProfilePicture(idUser: string, email:string, profilePicture: string) {
+    updateProfileInformation(name: string, last_name: string, email:string) {
         let headers = new Headers({'Content-Type': 'application/json'});
 
         let user = {
-            'idUser': idUser,
+            'name': name,
+            'last_name': last_name,
             'email': email,
-            'picture': profilePicture,
-            'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
+        };
+
+        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
+            (data: Response) => data.json()
+        );
+    }
+
+    updatePassword(email:string, old_password: string, new_password: string) {
+        let headers = new Headers({'Content-Type': 'application/json'});
+
+        let user = {
+            'email': email,
+            'old_password': old_password,
+            'new_password': new_password
         };
 
         return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
