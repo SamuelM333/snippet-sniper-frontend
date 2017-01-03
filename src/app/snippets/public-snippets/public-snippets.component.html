@@ -4,11 +4,26 @@
     <div class="col s12">
       <div class="section-title">
         <h4 class="white-text center">Public snippets</h4>
+        <p class="description">Here are the list of public snippets created from our random users.</p>
       </div>
     </div>
   </div>
-  <div *ngFor="let snippet of snippets; let last = last" class="row snippet">
-    <h3 class="snippet-title white-text">
+  <div class="container-list">
+  <ul id="top-list">
+    <li>
+      LIST OF USERS
+    </li>
+    <li>
+      NAME OF SNIPPET
+    </li>
+    <li>
+      CREATED DATE
+    </li>
+  </ul>
+  <li *ngFor="let snippet of snippets; let last = last" class="row snippet snippet-li">
+    <div class="snippet-title snippet-name third-width snippet-user">
+    <img src="https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" class="avatar"/>
+    <h3 class="snippet-title snippet-name named">
       <a class="white-text" [routerLink]="['/snippet/' + snippet.idSnippet]">{{ snippet.title }}</a>
       <!--<small>-->
       <!--<br>-->
@@ -19,6 +34,7 @@
       <!--<div class="created">Created on: {{ snippet?.created | date }}</div>-->
       <!--</small>-->
     </h3>
+    </div>
 
     <!--<div *ngFor="let fragment of snippet?.fragments">-->
     <!--<div *ngIf="fragment.language == 'Markdown'" [innerHtml]="fragment.body|MarkdownToHtml"-->
@@ -31,10 +47,14 @@
     <!--</code>-->
     <!--</pre>-->
     <!--</div>-->
-
-    <div *ngIf="!last" class="progress">
-      <div class="determinate" style="width: 100%"></div>
-    </div>
+    
+     <h3 class="snippet-title third-width  snippet-content">
+       Snippet title
+    </h3>
+    <h3 class="snippet-title third-width snippet-date">
+      <a href="">12/11/17</a>
+    </h3>
+  </li>
   </div>
 
 </div>
