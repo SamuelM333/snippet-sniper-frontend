@@ -112,13 +112,12 @@
                 <!--Change profile picture-->
               <!--</button>-->
             <!--</div>-->
-            <div class="row">Response: {{ response | json }}</div>
+            <!--<div class="row">Response: {{ response | json }}</div>-->
             <div class="progress">
               <div class="determinate" [style.width]="progress + '%'"></div>
             </div>
           </div>
         </div>
-
       </div>
 
       <form #profileForm="ngForm" (ngSubmit)="onSubmitUpdateProfileForm(profileForm)" enctype="multipart/form-data">
@@ -164,7 +163,7 @@
                 <label for="old-password">Old Password:</label>
               </div>
               <div class="input-field col s12">
-                <input [(ngModel)]="password" (keyup)="passwordFormUpdated($event)" id="password" name="password"
+                <input [(ngModel)]="password" (keyup)="passwordFormUpdated($event)" id="password" name="new_password"
                        type="password" required>
                 <label for="password">New Password:</label>
               </div>

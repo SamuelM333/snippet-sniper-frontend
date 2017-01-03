@@ -29,9 +29,9 @@ export class ApiService {
     }
 
     submitSnippet(snippet: Snippet, allowed_users: User[]) {
-        let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
 
-        let post_data = {
+        let data = {
             'user': snippet.idUser,
             'title': snippet.title,
             'created': new Date().toISOString().slice(0, 19).replace('T', ' '),
@@ -40,7 +40,7 @@ export class ApiService {
             'allowed_users': allowed_users
         };
 
-        return this.http.post(apiUrl + '/snippet', JSON.stringify(post_data), {headers: headers}).map(
+        return this.http.post(apiUrl + '/snippet', JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
@@ -52,9 +52,9 @@ export class ApiService {
     }
 
     insertUser(name: string, last_name: string, email: string, hashed_password: string) {
-        let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
 
-        let user = {
+        let data = {
             'name': name,
             'last_name': last_name,
             'email': email,
@@ -62,49 +62,57 @@ export class ApiService {
             'date': new Date().toISOString().slice(0, 19).replace('T', ' ')
         };
 
-        return this.http.post(apiUrl + '/user', JSON.stringify(user), {headers: headers}).map(
+        return this.http.post(apiUrl + '/user', JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
 
-    updateProfileInformation(name: string, last_name: string, email:string) {
-        let headers = new Headers({'Content-Type': 'application/json'});
+    updateProfileInformation(name: string, last_name: string, email: string, new_email: string, password: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(email + ':' + password)
+        });
 
-        let user = {
+        let data = {
             'name': name,
             'last_name': last_name,
-            'email': email,
+            'email': new_email
         };
 
-        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
+        console.log(headers);
+        console.log(data);
+
+        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
 
-    updatePassword(email:string, old_password: string, new_password: string) {
-        let headers = new Headers({'Content-Type': 'application/json'});
+    updatePassword(email: string, old_password: string, new_password: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(email + ':' + old_password)
+        });
 
-        let user = {
-            'email': email,
+        let data = {
             'old_password': old_password,
-            'new_password': new_password
+            'new_password':  new_password
         };
 
-        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(user), {headers: headers}).map(
+        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
 
     sendMail(name: string, email: string, message: string) {
-        let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new Headers({ 'Content-Type': 'application/json' });
 
-        let mail = {
+        let data = {
             'name': name,
             'email': email,
             'message': message
         };
 
-        return this.http.post(apiUrl + '/mail', JSON.stringify(mail), {headers: headers}).map(
+        return this.http.post(apiUrl + '/mail', JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
     }

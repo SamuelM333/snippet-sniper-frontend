@@ -72,23 +72,34 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     }
 
     onSubmitChangePassword(form: NgForm) {
-        let old_password = bcrypt.hashSync(form.value.password, 10);
+        if (bcrypt.compareSync(form.value.old_password, this.authUser.password)) {
 
-        this.apiService.updatePassword(form.value.email, form.value.old_password,
-            form.value.new_password).subscribe(
-            data => {
-                this.authUser.name = form.value.name;
-                this.authUser.last_name = form.value.last_name;
-                this.authUser.email = form.value.email;
-                localStorage.setItem('authUser', JSON.stringify(this.authUser));
-                // loader and toast here
-                location.reload();
+            let hashed_password = bcrypt.hashSync(form.value.new_password, 10);
+
+            if (bcrypt.compareSync(form.value.password_rpt, hashed_password)) {
+
+                this.apiService.updatePassword(this.authUser.email, form.value.old_password, hashed_password).subscribe(
+                    data => {
+                        this.authUser.password = hashed_password;
+                        localStorage.setItem('authUser', JSON.stringify(this.authUser));
+                        // loader and toast here
+                        location.reload();
+                    }
+                );
+            } else {
+                Materialize.toast('New password does not match', 4000);
             }
-        );
+        } else {
+            // wrong old password
+            Materialize.toast('Old password does not match', 4000);
+
+        }
     }
 
     onSubmitUpdateProfileForm(form: NgForm) {
-        this.apiService.updateProfileInformation(form.value.name, form.value.last_name, form.value.email).subscribe(
+        console.log(form);
+        this.apiService.updateProfileInformation(form.value.name, form.value.last_name,
+            this.authUser.email, form.value.email, this.authUser.password).subscribe(
             data => {
                 this.authUser.name = form.value.name;
                 this.authUser.last_name = form.value.last_name;
