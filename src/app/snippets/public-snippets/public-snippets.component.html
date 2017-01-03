@@ -9,52 +9,54 @@
     </div>
   </div>
   <div class="container-list">
-  <ul id="top-list">
-    <li>
-      LIST OF USERS
-    </li>
-    <li>
-      NAME OF SNIPPET
-    </li>
-    <li>
-      CREATED DATE
-    </li>
-  </ul>
-  <li *ngFor="let snippet of snippets; let last = last" class="row snippet snippet-li">
-    <div class="snippet-title snippet-name third-width snippet-user">
-    <img src="https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" class="avatar"/>
-    <h3 class="snippet-title snippet-name named">
-      <a class="white-text" [routerLink]="['/snippet/' + snippet.idSnippet]">{{ snippet.title }}</a>
-      <!--<small>-->
-      <!--<br>-->
-      <!--Author:-->
-      <!--<a [routerLink]="['/user/' + snippet?.owner.idUser]" class="snippet-owner white-text">-->
-      <!--{{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}-->
-      <!--</a>-->
-      <!--<div class="created">Created on: {{ snippet?.created | date }}</div>-->
-      <!--</small>-->
-    </h3>
-    </div>
+    <ul id="top-list">
+      <li>
+        AUTHOR
+      </li>
+      <li>
+        SNIPPET
+      </li>
+      <li>
+        DATE
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let snippet of snippets; let last = last" class="row snippet snippet-li">
+        <div class="snippet-title snippet-name third-width snippet-user">
+          <img src="https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" class="avatar"/>
+          <h3 class="snippet-title snippet-name named">
+            <a class="white-text" href="">Author</a>
+            <!--<small>-->
+            <!--<br>-->
+            <!--Author:-->
+            <!--<a [routerLink]="['/user/' + snippet?.owner.idUser]" class="snippet-owner white-text">-->
+            <!--{{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}-->
+            <!--</a>-->
+            <!--<div class="created">Created on: {{ snippet?.created | date }}</div>-->
+            <!--</small>-->
+          </h3>
+        </div>
 
-    <!--<div *ngFor="let fragment of snippet?.fragments">-->
-    <!--<div *ngIf="fragment.language == 'Markdown'" [innerHtml]="fragment.body|MarkdownToHtml"-->
-    <!--class="markdown white-text e2e-inner-html-bound">-->
-    <!--</div>-->
+        <!--<div *ngFor="let fragment of snippet?.fragments">-->
+        <!--<div *ngIf="fragment.language == 'Markdown'" [innerHtml]="fragment.body|MarkdownToHtml"-->
+        <!--class="markdown white-text e2e-inner-html-bound">-->
+        <!--</div>-->
 
-    <!--<pre *ngIf="fragment.language != 'Markdown'" class="line-numbers">-->
-    <!--<code class="language-{{ fragment.language }}">-->
-    <!--{{ fragment.body }}-->
-    <!--</code>-->
-    <!--</pre>-->
-    <!--</div>-->
-    
-     <h3 class="snippet-title third-width  snippet-content">
-       Snippet title
-    </h3>
-    <h3 class="snippet-title third-width snippet-date">
-      <a href="">12/11/17</a>
-    </h3>
-  </li>
+        <!--<pre *ngIf="fragment.language != 'Markdown'" class="line-numbers">-->
+        <!--<code class="language-{{ fragment.language }}">-->
+        <!--{{ fragment.body }}-->
+        <!--</code>-->
+        <!--</pre>-->
+        <!--</div>-->
+
+        <h3 class="snippet-title third-width  snippet-content">
+          <a class="white-text" [routerLink]="['/snippet/' + snippet.idSnippet]">{{ snippet.title }}</a>
+        </h3>
+        <h3 class="snippet-title third-width snippet-date">
+          <a href="">12/11/17</a>
+        </h3>
+      </li>
+    </ul>
   </div>
 
 </div>
