@@ -121,7 +121,7 @@
 
       </div>
 
-      <form #profileForm="ngForm" (ngSubmit)="onSubmitForm(profileForm)" enctype="multipart/form-data">
+      <form #profileForm="ngForm" (ngSubmit)="onSubmitUpdateProfileForm(profileForm)" enctype="multipart/form-data">
         <div class="col s12 m6">
           <div class="card">
             <div class="card-content">
@@ -152,7 +152,7 @@
         </div>
       </form>
 
-      <form #passwordForm="ngForm" (ngSubmit)="onSubmitForm(passwordForm)">
+      <form #passwordForm="ngForm" (ngSubmit)="onSubmitChangePassword(passwordForm)">
 
         <div class="col s12 m6">
           <div class="card">

@@ -5,6 +5,9 @@ import { NgForm } from '@angular/forms';
 import { NgUploaderOptions } from 'ngx-uploader';
 
 import { ApiService, apiUrl } from '../../api.service';
+import { location } from "@angular/platform-browser/src/facade/browser";
+
+const bcrypt = require('bcryptjs');
 
 declare const $: any;
 declare const Materialize: any;
@@ -30,7 +33,6 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
     events: EventEmitter<any> = new EventEmitter();
     zone: NgZone;
-    uploadFile: any;
     response: any;
     options: NgUploaderOptions;
     sizeLimit = 1000000;
@@ -52,7 +54,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
                 previewUrl: '/preview'
             };
 
-            if (this.authUser.picture.url === '' && this.authUser.picture.url === null) {
+            if (this.authUser.picture.url === '' || this.authUser.picture.url === null) {
                 this.profilePicture = 'assets/img/generic_profile.png';
             } else {
                 this.profilePicture = apiUrl + this.authUser.picture.url;
@@ -69,8 +71,33 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
         $('ul.tabs').tabs('select_tab', 'tab3');
     }
 
-    onSubmitForm(form: NgForm) {
-        console.log(form);
+    onSubmitChangePassword(form: NgForm) {
+        let old_password = bcrypt.hashSync(form.value.password, 10);
+
+        this.apiService.updatePassword(form.value.email, form.value.old_password,
+            form.value.new_password).subscribe(
+            data => {
+                this.authUser.name = form.value.name;
+                this.authUser.last_name = form.value.last_name;
+                this.authUser.email = form.value.email;
+                localStorage.setItem('authUser', JSON.stringify(this.authUser));
+                // loader and toast here
+                location.reload();
+            }
+        );
+    }
+
+    onSubmitUpdateProfileForm(form: NgForm) {
+        this.apiService.updateProfileInformation(form.value.name, form.value.last_name, form.value.email).subscribe(
+            data => {
+                this.authUser.name = form.value.name;
+                this.authUser.last_name = form.value.last_name;
+                this.authUser.email = form.value.email;
+                localStorage.setItem('authUser', JSON.stringify(this.authUser));
+                // loader and toast here
+                location.reload();
+            }
+        );
     }
 
     beforeUpload(uploadingFile): void {
