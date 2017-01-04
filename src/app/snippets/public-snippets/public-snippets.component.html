@@ -19,19 +19,17 @@
 
         <div class="col s4 white-text center-align">
           <a [routerLink]="['/user/' + snippet.idUser]" class="snippet-owner white-text">
-            <!--{{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}-->
-            <img src="https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"/>
-            <p>Samuel Murillo</p>
+            <img *ngIf="snippet.owner.picture.url" src="{{url + snippet.owner.picture.url}}"/>
+            <img *ngIf="!snippet.owner.picture.url" src="assets/img/generic_profile.png"/>
+            <p>{{ snippet.owner.name }} {{ snippet.owner.last_name }}</p>
           </a>
         </div>
         <div class="col s4 white-text center-align valign">
-          <a class="white-text" [routerLink]="['/snippet/' + snippet.idSnippet]">
+          <a class="white-text snippet-title" [routerLink]="['/snippet/' + snippet.idSnippet]">
             <h5>{{ snippet.title }}</h5>
           </a>
         </div>
-        <div class="col s4 white-text center-align">
-          {{ snippet.created | date }}
-        </div>
+        <div class="col s4 white-text center-align">{{ snippet.created | date }}</div>
       </div>
 
     </div>
