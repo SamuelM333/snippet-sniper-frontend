@@ -68,7 +68,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
     onResize() {
         $('ul.tabs').tabs();
-        $('ul.tabs').tabs('select_tab', 'tab3');
+        $('ul.tabs').tabs('select_tab', 'tab1');
     }
 
     onSubmitChangePassword(form: NgForm) {
@@ -133,9 +133,11 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
         });
 
         if (data && data.response) {
-            console.log(data);
             data = JSON.parse(data.response);
             this.response = data;
+            // update authUser picture
+            this.authUser.picture.url = data.picture;
+            localStorage.setItem('authUser', JSON.stringify(this.authUser));
         }
     }
 
