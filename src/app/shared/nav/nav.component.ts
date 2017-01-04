@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { apiUrl } from '../../api.service';
+
 declare var $: any;
 
 @Component({
@@ -11,6 +13,7 @@ declare var $: any;
 export class NavComponent implements OnInit {
 
     authUser = localStorage.getItem('authUser');
+    url = apiUrl;
 
     constructor(private router: Router) { }
 
