@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ApiService } from "../../../api.service";
 
 @Component({
   selector: 'app-shared-with-me',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SharedWithMeComponent implements OnInit {
 
-  constructor() { }
+    snippets: any[];
+    loading: boolean = true;
 
-  ngOnInit() {
+    @Input()
+    authUser;
+
+    constructor(private apiService: ApiService) { }
+
+    ngOnInit() {
+      this.loading = true;
+      this.apiService.getSnippetsSharedWithMe(this.authUser.email, this.authUser.password).subscribe(
+          data => {
+              this.snippets = data._items;
+              this.loading = false;
+          }
+      );
   }
 
 }

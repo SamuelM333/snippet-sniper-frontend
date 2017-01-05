@@ -1,3 +1,17 @@
-<p>
-  shared-with-me works!
-</p>
+<!--<div class="container">-->
+  <div class="row">
+    <div class="col s12">
+      <div class="section-title">
+        <p class="description">Here is the list of snippets that other users have shared with you.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-list">
+    <app-snippets-list
+      [snippetList]="snippets"
+      [loading]="loading"
+      [bigLoading]="true">
+    </app-snippets-list>
+  </div>
+<!--</div>-->
+

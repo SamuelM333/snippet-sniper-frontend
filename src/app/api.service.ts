@@ -28,6 +28,18 @@ export class ApiService {
         );
     }
 
+    getSnippetsSharedWithMe(email: string, password: string) {
+
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(email + ':' + password)
+        });
+
+        return this.http.get(apiUrl + '/snippet?shared=' + email, { headers: headers }).map(
+            (data: Response) => data.json()
+        );
+    }
+
     submitSnippet(snippet: Snippet, allowed_users: User[]) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -78,7 +90,7 @@ export class ApiService {
             'last_name': last_name,
             'email': new_email
         };
-        
+
         return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
