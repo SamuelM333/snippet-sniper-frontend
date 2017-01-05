@@ -1,0 +1,27 @@
+<div id="snippets-header" class="row card-panel valign-wrapper">
+  <div class="col s4 white-text center-align">AUTHOR</div>
+  <div class="col s4 white-text center-align">TITLE</div>
+  <div class="col s4 white-text center-align">DATE</div>
+</div>
+<div class="center-align">
+  <app-busy-loader [isActive]="loading" [show]="loading" [big]="bigLoading"></app-busy-loader>
+</div>
+<div *ngFor="let snippet of snippetList" class="snippet">
+  <div class="row card-panel grey darken-4 valign-wrapper">
+
+    <div class="col s4 white-text center-align">
+      <a [routerLink]="['/user/' + snippet.idUser]" class="snippet-owner white-text">
+        <img *ngIf="snippet.owner.picture.url" src="{{url + snippet.owner.picture.url}}"/>
+        <img *ngIf="!snippet.owner.picture.url" src="assets/img/generic_profile.png"/>
+        <p>{{ snippet.owner.name }} {{ snippet.owner.last_name }}</p>
+      </a>
+    </div>
+    <div class="col s4 white-text center-align valign">
+      <a class="white-text snippet-title" [routerLink]="['/snippet/' + snippet.idSnippet]">
+        <h5>{{ snippet.title }}</h5>
+      </a>
+    </div>
+    <div class="col s4 white-text center-align">{{ snippet.created | date }}</div>
+  </div>
+
+</div>

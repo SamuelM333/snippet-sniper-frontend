@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiService, apiUrl } from "../../api.service";
-import { Snippet } from "../snippet";
 
 @Component({
     selector: 'app-public-snippets',
@@ -11,7 +10,7 @@ import { Snippet } from "../snippet";
 export class PublicSnippetsComponent implements OnInit {
 
     snippets: any[];
-    url: string = apiUrl;
+
     loading: boolean = true;
 
     constructor(private apiService: ApiService) { }

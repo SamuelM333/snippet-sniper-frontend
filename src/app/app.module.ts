@@ -31,6 +31,11 @@ import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor
 import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
 import { PublicSnippetsComponent } from './snippets/public-snippets/public-snippets.component';
 import { BusyLoaderComponent } from './shared/busy-loader/busy-loader.component';
+import { MySnippetsComponent } from './profile/user-profile/my-snippets/my-snippets.component';
+import { SharedWithMeComponent } from './profile/user-profile/shared-with-me/shared-with-me.component';
+import { MyAccountComponent } from './profile/user-profile/my-account/my-account.component';
+import { AdminPanelComponent } from './profile/user-profile/admin-panel/admin-panel.component';
+import { SnippetsListComponent } from './snippets/snippets-list/snippets-list.component';
 
 
 @NgModule({
@@ -59,6 +64,11 @@ import { BusyLoaderComponent } from './shared/busy-loader/busy-loader.component'
         SnippetViewerComponent,
         PublicSnippetsComponent,
         BusyLoaderComponent,
+        MySnippetsComponent,
+        SharedWithMeComponent,
+        MyAccountComponent,
+        AdminPanelComponent,
+        SnippetsListComponent,
 
     ],
     providers: [ApiService, DragulaService],
