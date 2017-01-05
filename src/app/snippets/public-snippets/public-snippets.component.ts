@@ -10,7 +10,6 @@ import { ApiService, apiUrl } from "../../api.service";
 export class PublicSnippetsComponent implements OnInit {
 
     snippets: any[];
-
     loading: boolean = true;
 
     constructor(private apiService: ApiService) { }
