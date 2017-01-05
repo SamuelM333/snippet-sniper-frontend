@@ -30,6 +30,7 @@ import { UserProfileComponent } from './profile/user-profile/user-profile.compon
 import { SnippetEditorComponent } from './snippets/snippet-editor/snippet-editor.component';
 import { SnippetViewerComponent } from './snippets/snippet-viewer/snippet-viewer.component';
 import { PublicSnippetsComponent } from './snippets/public-snippets/public-snippets.component';
+import { BusyLoaderComponent } from './shared/busy-loader/busy-loader.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { PublicSnippetsComponent } from './snippets/public-snippets/public-snipp
         SnippetEditorComponent,
         SnippetViewerComponent,
         PublicSnippetsComponent,
+        BusyLoaderComponent,
 
     ],
     providers: [ApiService, DragulaService],
