@@ -9,4 +9,10 @@ export class BusyLoaderComponent {
     @Input()
     public isActive: boolean = false;
 
+    @Input()
+    public show: boolean = true;
+
+    @Input()
+    public big: boolean = false;
+
 }

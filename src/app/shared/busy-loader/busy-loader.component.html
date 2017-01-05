@@ -1,4 +1,7 @@
-<div class="preloader-wrapper small" [class.active]="isActive">
+<div *ngIf="show"
+     [class.active]="isActive"
+     [class.big]="big"
+     class="preloader-wrapper small" >
   <div class="spinner-layer spinner-green-only">
     <div class="circle-clipper left">
       <div class="circle"></div>
