@@ -18,7 +18,7 @@
     </div>
     <div class="col s4 white-text center-align valign">
       <a class="white-text snippet-title" [routerLink]="['/snippet/' + snippet.idSnippet]">
-        <h5>{{ snippet.title }}</h5>
+        <h5 class="truncate">{{ snippet.title }}</h5>
       </a>
     </div>
     <div class="col s4 white-text center-align">{{ snippet.created | date }}</div>
