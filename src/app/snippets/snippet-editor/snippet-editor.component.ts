@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { MaterializeAction } from 'angular2-materialize';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
-import { ApiService } from '../../api.service';
+import { ApiService, apiUrl } from '../../api.service';
 
 import { Snippet, Fragment } from '../snippet';
 import { User } from '../../profile/user';
@@ -26,6 +26,7 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
     modalActions = new EventEmitter<string|MaterializeAction>();
     submitModal = new EventEmitter<string|MaterializeAction>();
 
+    url = apiUrl;
     shared = 'public';
     email: string = '';
     allowed_users: User[] = [];
@@ -122,6 +123,7 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
         }
 
         if (!error) {
+            this.closeModal();
             let authUser = JSON.parse(localStorage.getItem('authUser'));
 
             authUser = new User(

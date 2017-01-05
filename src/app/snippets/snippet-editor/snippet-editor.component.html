@@ -59,8 +59,9 @@
           </div>
           <div class="allowed_users">
             <div *ngFor="let user of allowed_users; let i = index;" class="chip">
-              <img src="http://materializecss.com/images/yuna.jpg" alt="Contact Person">
-              {{ user.name }} {{ user.last_name }}
+              <img *ngIf="user.picture.url" src="{{url + user.picture.url}}"/>
+              <img *ngIf="!user.picture.url" src="assets/img/generic_profile.png"/>
+              {{ user.email }}
               <i (click)="removeFromAllowedUsers(i)" class="close material-icons">close</i>
             </div>
           </div>
