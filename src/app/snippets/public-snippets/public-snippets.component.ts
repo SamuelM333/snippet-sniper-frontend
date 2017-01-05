@@ -11,12 +11,18 @@ import { Snippet } from "../snippet";
 export class PublicSnippetsComponent implements OnInit {
 
     snippets: any[];
-    url = apiUrl;
+    url: string = apiUrl;
+    loading: boolean = true;
+
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
+        this.loading = true;
         this.apiService.getSnippets().subscribe(
-            data => this.snippets = data._items
+            data => {
+                this.snippets = data._items;
+                this.loading = false;
+            }
         );
     }
 
