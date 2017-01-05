@@ -78,10 +78,7 @@ export class ApiService {
             'last_name': last_name,
             'email': new_email
         };
-
-        console.log(headers);
-        console.log(data);
-
+        
         return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
             (data: Response) => data.json()
         );
