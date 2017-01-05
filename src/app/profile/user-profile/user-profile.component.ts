@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { NgUploaderOptions } from 'ngx-uploader';
 
 import { ApiService, apiUrl } from '../../api.service';
-import { location } from "@angular/platform-browser/src/facade/browser";
+import { location } from '@angular/platform-browser/src/facade/browser';
 
 const bcrypt = require('bcryptjs');
 
@@ -38,6 +38,9 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     sizeLimit = 1000000;
     progress: number = 0;
 
+    passwordLoading: boolean = false;
+    profileLoading: boolean = false;
+
     constructor(private router: Router, private apiService: ApiService) { }
 
     ngOnInit() {
@@ -64,12 +67,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
         }
     }
 
-    ngAfterViewInit() { this.onResize(); }
-
-    onResize() {
-        $('ul.tabs').tabs();
-        $('ul.tabs').tabs('select_tab', 'tab1');
-    }
+    ngAfterViewInit() { $('ul.tabs').tabs(); }
 
     onSubmitChangePassword(form: NgForm) {
         if (bcrypt.compareSync(form.value.old_password, this.authUser.password)) {
@@ -77,13 +75,15 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
             let hashed_password = bcrypt.hashSync(form.value.new_password, 10);
 
             if (bcrypt.compareSync(form.value.password_rpt, hashed_password)) {
-
+                this.passwordLoading = true;
                 this.apiService.updatePassword(this.authUser.email, form.value.old_password, hashed_password).subscribe(
                     data => {
                         this.authUser.password = hashed_password;
                         localStorage.setItem('authUser', JSON.stringify(this.authUser));
-                        // loader and toast here
-                        location.reload();
+
+                        this.passwordLoading = false;
+                        Materialize.toast('Password changed', 4000);
+                        form.reset();
                     }
                 );
             } else {
@@ -92,12 +92,11 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
         } else {
             // wrong old password
             Materialize.toast('Old password does not match', 4000);
-
         }
     }
 
     onSubmitUpdateProfileForm(form: NgForm) {
-        console.log(form);
+        this.profileLoading = true;
         this.apiService.updateProfileInformation(form.value.name, form.value.last_name,
             this.authUser.email, form.value.email, this.authUser.password).subscribe(
             data => {
@@ -105,14 +104,14 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
                 this.authUser.last_name = form.value.last_name;
                 this.authUser.email = form.value.email;
                 localStorage.setItem('authUser', JSON.stringify(this.authUser));
-                // loader and toast here
-                location.reload();
+                this.profileLoading = false;
+                Materialize.toast('Profile information changed', 4000);
             }
         );
     }
 
     beforeUpload(uploadingFile): void {
-        console.log(uploadingFile);
+        // console.log(uploadingFile);
         if (uploadingFile.size > this.sizeLimit) {
             uploadingFile.setAbort();
             Materialize.toast('File bigger than 1Mb', 4000);
@@ -138,6 +137,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
             // update authUser picture
             this.authUser.picture.url = data.picture;
             localStorage.setItem('authUser', JSON.stringify(this.authUser));
+            location.reload();
         }
     }
 
