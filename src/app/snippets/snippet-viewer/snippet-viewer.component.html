@@ -7,18 +7,38 @@
       </div>
     </div>
   </div>
-  <div class="row snippet">
-    <h3 class="snippet-title white-text"> {{ snippet?.title }}
+  <div class="row card-panel grey darken-4">
+    <h3 *ngIf="!loading" class="snippet-title white-text">
+      <span>{{ snippet?.title }}</span>
+      <span class="right options">
+        <a (click)="openShareModal()" class="tooltipped" data-position="bottom" data-delay="25"
+           data-tooltip="Edit share options">
+          <i class="material-icons green-text">share</i>
+        </a>
+        <a (click)="openEditModal()" class="tooltipped" data-position="bottom" data-delay="25"
+           data-tooltip="Edit snippet">
+          <i class="material-icons orange-text text-lighten-1">mode_edit</i>
+        </a>
+        <a (click)="openDeleteModal()" class="tooltipped" data-position="bottom" data-delay="25"
+           data-tooltip="Delete snippet">
+         <i class="material-icons red-text">delete</i>
+        </a>
+      </span>
       <small>
         <br>
-        Author:
-        <a [routerLink]="['/user/' + snippet?.owner.idUser]" class="snippet-owner white-text">
-          {{ snippet?.owner.first_name }} {{ snippet?.owner.last_name }}
+        <span>Author:</span>
+        <a [routerLink]="['/user/' + snippet?.owner.id]" class="snippet-owner white-text">
+          <img *ngIf="snippet?.owner?.picture?.url" src="{{url + snippet?.owner.picture.url}}"/>
+          <img *ngIf="!snippet?.owner?.picture?.url" src="assets/img/generic_profile.png"/>
+          <span>{{ snippet?.owner.name }} {{ snippet?.owner.last_name }}</span>
         </a>
         <div class="created">Created on: {{ snippet?.created | date }}</div>
       </small>
-    </h3>
 
+    </h3>
+    <div class="center-align">
+      <app-busy-loader [isActive]="loading" [show]="loading" [big]="true"></app-busy-loader>
+    </div>
     <div *ngFor="let fragment of snippet?.fragments">
       <div *ngIf="fragment.language == 'Markdown'" [innerHtml]="fragment.body|MarkdownToHtml"
            class="markdown white-text e2e-inner-html-bound">
@@ -33,4 +53,39 @@
 
   </div>
 </div>
+
+<div class="modal modal-fixed-footer" materialize="modal"
+     [materializeParams]="[{dismissible: true}]" [materializeActions]="shareModal">
+  <div class="modal-content">
+    share
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()"
+       class="modal-action modal-close waves-effect waves-green btn">Close</a>
+  </div>
+</div>
+
+<div class="modal modal-fixed-footer" materialize="modal"
+     [materializeParams]="[{dismissible: true}]" [materializeActions]="editModal">
+  <div class="modal-content">
+    edit
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()"
+       class="modal-action modal-close waves-effect waves-green btn">Close</a>
+  </div>
+</div>
+
+<div class="modal" materialize="modal"
+     [materializeParams]="[{dismissible: true}]" [materializeActions]="deleteModal">
+  <div class="modal-content">
+    <h4>Caution!</h4>
+    <p>Are you sure you want to delete this snippet? This action can't be undone.</p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()" class="modal-action modal-close waves-effect waves-light btn">Close</a>
+    <a (click)="closeModal()" class="modal-action modal-close waves-effect red waves-light btn">Delete</a>
+  </div>
+</div>
+
 <app-footer></app-footer>
