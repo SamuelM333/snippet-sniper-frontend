@@ -2,10 +2,19 @@
 <div class="row">
   <div class="col s12">
     <div class="card">
-      <div class="card-content">
+      <div id="profile-card" class="card-content">
         <span class="card-title">Profile picture</span>
         <div class="row">
-          <div class="col s12 m6 center">
+          <div class="col s12 m8 profile-text">
+            <p>
+              This will be the picture that others users will see when you upload a snippet. <br>
+              <small class="hide-on-small-only">The file size is 1Mb maximum.</small>
+            </p>
+            <div class="progress hide-on-small-only">
+              <div class="determinate" [style.width]="progress + '%'"></div>
+            </div>
+          </div>
+          <div class="col s12 m4 center">
             <div class="profile-img-container">
               <label for="file-input">
                 <img id="profile-picture" class="responsive-img" [src]="profilePicture">
@@ -20,11 +29,13 @@
                      (onUpload)="handleUpload($event)">
             </div>
           </div>
-          <div class="col s12 m6 profile-text">
+          <div class="col s12 profile-text hide-on-med-and-up">
             <p>
-              This will be the picture that others users will see when you upload a snippet. <br>
               <small>The file size is 1Mb maximum.</small>
             </p>
+            <div class="progress">
+              <div class="determinate" [style.width]="progress + '%'"></div>
+            </div>
           </div>
         </div>
         <!--<div class="row">-->
@@ -34,9 +45,7 @@
         <!--</button>-->
         <!--</div>-->
         <!--<div class="row">Response: {{ response | json }}</div>-->
-        <div class="progress">
-          <div class="determinate" [style.width]="progress + '%'"></div>
-        </div>
+
       </div>
     </div>
   </div>
