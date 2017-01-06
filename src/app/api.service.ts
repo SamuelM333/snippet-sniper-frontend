@@ -40,6 +40,17 @@ export class ApiService {
         );
     }
 
+    getSnippetsByUser(email: string, authEmail: string, password: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(authEmail + ':' + password)
+        });
+
+        return this.http.get(apiUrl + '/snippet?owner=' + email, { headers: headers }).map(
+            (data: Response) => data.json()
+        );
+    }
+
     submitSnippet(snippet: Snippet, allowed_users: User[]) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
 
