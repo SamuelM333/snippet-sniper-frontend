@@ -22,8 +22,17 @@ export class ApiService {
         );
     }
 
-    getSnippetByID(id: string) {
-        return this.http.get(apiUrl + '/snippet/' + id).map(
+    getSnippetByID(id: string, authEmail: string, password: string) {
+
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        if (authEmail && authEmail != '') {
+            headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
+        }
+
+        return this.http.get(apiUrl + '/snippet/' + id, { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
