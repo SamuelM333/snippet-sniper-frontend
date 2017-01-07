@@ -1,14 +1,16 @@
 # Snippet Sniper frontend
 
+## [https://samuelm333.github.io/snippet-sniper-frontend/](https://samuelm333.github.io/snippet-sniper-frontend/)
+
 ## Technologies
 
 ### Frontend
 
 - Angular 2
-- Materialize
 - Sass
+- Materialize
 
-### Backend
+### [Backend](https://github.com/SamuelM333/snippet-sniper-api)
 
-- Eve
+- Python Eve
 - MongoDB
