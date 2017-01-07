@@ -22,7 +22,7 @@ export class ApiService {
         );
     }
 
-    getSnippetByID(id: string, authEmail: string, password: string) {
+    getSnippetByID(idSnippet: string, authEmail: string, password: string) {
 
         let headers = new Headers({
             'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export class ApiService {
             headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
         }
 
-        return this.http.get(apiUrl + '/snippet/' + id, { headers: headers }).map(
+        return this.http.get(apiUrl + '/snippet/' + idSnippet, { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
@@ -73,6 +73,21 @@ export class ApiService {
         };
 
         return this.http.post(apiUrl + '/snippet', JSON.stringify(data), { headers: headers }).map(
+            (data: Response) => data.json()
+        );
+    }
+
+    deleteSnippet(idSnippet: string, authEmail: string, password: string) {
+
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+        });
+
+        if (authEmail && authEmail != '') {
+            headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
+        }
+
+        return this.http.delete(apiUrl + '/snippet/' + idSnippet, { headers: headers }).map(
             (data: Response) => data.json()
         );
     }
