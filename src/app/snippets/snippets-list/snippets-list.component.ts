@@ -20,5 +20,8 @@ export class SnippetsListComponent {
     @Input()
     bigLoading: boolean = false;
 
+    @Input()
+    emptyMessage: string = "";
+
 
 }
