@@ -1,7 +1,10 @@
-<div *ngIf="!loading" id="snippets-header" class="row card-panel valign-wrapper">
+<div *ngIf="!loading && snippetList?.length > 0" id="snippets-header" class="row card-panel valign-wrapper">
   <div class="col s3 white-text center-align">AUTHOR</div>
   <div class="col s6 white-text center-align">TITLE</div>
   <div class="col s3 white-text center-align">DATE</div>
+</div>
+<div *ngIf="snippetList?.length === 0">
+  <h5 class="white-text center-align">{{emptyMessage}}</h5>
 </div>
 <div class="center-align">
   <app-busy-loader [isActive]="loading" [show]="loading" [big]="bigLoading"></app-busy-loader>
