@@ -12,9 +12,6 @@ declare const Materialize: any;
     styleUrls: ['./sign-up.component.sass']
 })
 export class SignUpComponent implements OnInit {
-    @ViewChild('passwordRepeatLabel') passwordRepeatLabel;
-    @ViewChild('email') email;
-    @ViewChild('emailLabel') emailLabel;
     // gender: string = '';
     password: string = '';
     password_rpt: string = '';
