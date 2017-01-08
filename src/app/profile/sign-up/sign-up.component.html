@@ -1,61 +1,68 @@
 <app-nav></app-nav>
-<div class="container">
-	<div class="row">
-		<div class="col s12">
-			<div class="section-title">
-				<h4 class="white-text center">Register now!</h4>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col offset-s2 s8 full-form-on-small">
-			<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="col s12 card">
-				<div class="card-content">
-					<div class="input-field col s12">
-						<input ngModel type="text" name="name" id="name" required/>
-						<label for="name">Name: </label>
-					</div>
-					<div class="input-field col s12">
-						<input ngModel type="text" name="last_name" id="last_name" required/>
-						<label for="last_name">Last name: </label>
-					</div>
-					<div class="input-field col s12">
-						<input #email ngModel id="email" type="email" name="email" class="validate" required/>
-						<label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
-					</div>
-					<div class="input-field col s12">
-						<input [(ngModel)]="password" (keyup)="onKey($event)" id="password" name="password"
-									 type="password" required>
-						<label for="password">Password:</label>
-					</div>
-					<div class="input-field col s12">
-						<input [(ngModel)]="password_rpt" (keyup)="onKey($event)" [class.invalid]="!valid"
-									 [class.valid]="valid && form.touched"
-									 id="password-rpt" type="password" name="password-rpt" required>
-						<label #passwordRepeatLabel for="password-rpt">Password (again):</label>
-					</div>
-					<!--<div class="row">-->
-						<!--<span>-->
-							<!--<input [(ngModel)]="gender" [value]="'male'" class="with-gap" name="gender" type="radio" id="test2"-->
-										 <!--required/>-->
-							<!--<label for="test2">Male</label>-->
-						<!--</span>-->
-						<!--<span>-->
-							<!--<input [(ngModel)]="gender" [value]="'female'" class="with-gap" name="gender" type="radio" id="test3"-->
-										 <!--required/>-->
-							<!--<label for="test3">Female</label>-->
-						<!--</span>-->
-					<!--</div>-->
-					<div class="row">
-						<span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
-						<button [disabled]="!form.valid || !valid" type="submit"
-										class="center-btn btn waves-effect waves-dark right">
-							Register
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+<div id="main-container" class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="section-title">
+        <h4 class="white-text center">Register now!</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col offset-s2 s8 full-form-on-small">
+      <form #form="ngForm" class="col s12 card" (ngSubmit)="onSubmit(form)">
+        <div class="card-content">
+          <div class="input-field col s12">
+            <input ngModel id="name" name="name" type="text" required/>
+            <label for="name">Name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input ngModel id="last_name" name="last_name" type="text" required/>
+            <label for="last_name">Last name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input #email ngModel id="email" type="email" name="email" class="validate" required/>
+            <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password" name="password" type="password" required
+                   [(ngModel)]="password" (keyup)="onKey($event)">
+            <label for="password">Password:</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password-rpt" type="password" name="password-rpt" required
+                   [(ngModel)]="password_rpt" (keyup)="onKey($event)"
+                   [class.invalid]="!valid" [class.valid]="valid && form.touched">
+            <label #passwordRepeatLabel for="password-rpt">Password (again):</label>
+          </div>
+          <!--<div class="row">-->
+          <!--<span>-->
+          <!--<input [(ngModel)]="gender" [value]="'male'" class="with-gap" name="gender" type="radio" id="test2"-->
+          <!--required/>-->
+          <!--<label for="test2">Male</label>-->
+          <!--</span>-->
+          <!--<span>-->
+          <!--<input [(ngModel)]="gender" [value]="'female'" class="with-gap" name="gender" type="radio" id="test3"-->
+          <!--required/>-->
+          <!--<label for="test3">Female</label>-->
+          <!--</span>-->
+          <!--</div>-->
+          <div class="row">
+            <div *ngIf="!valid" class="col s6">
+              <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
+            </div>
+            <div class="col s1 offset-s5">
+              <app-busy-loader *ngIf="loading" [isActive]="loading"></app-busy-loader>
+            </div>
+            <div class="col s6">
+              <button class="center-btn btn waves-effect waves-dark right" type="submit"
+                      [disabled]="!form.valid || !valid || loading">
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>
