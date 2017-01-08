@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
 
     onSubmit(form: NgForm) {
         this.loading = true;
-        this.apiService.getUserByEmail(form.value.email).subscribe(
+        this.apiService.getUserByEmail(form.value.email.trim()).subscribe(
             data => {
-                if (bcrypt.compareSync(form.value.password, data.password)) {
+                if (bcrypt.compareSync(form.value.password.trim(), data.password)) {
                     let authUser = {
                         'id': data.id,
                         'name': data.name,
@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('authUser', JSON.stringify(authUser));
                     this.router.navigateByUrl('/profile');
                 } else { Materialize.toast('Wrong credentials', 4000); }
+                this.loading = false;
+            },
+            error => {
+                Materialize.toast('Wrong credentials', 4000);
                 this.loading = false;
             }
         );
