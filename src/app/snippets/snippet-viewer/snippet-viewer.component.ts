@@ -41,12 +41,20 @@ export class SnippetViewerComponent implements OnInit, AfterViewChecked {
                     if (this.authUser.id === data.owner.id) {
                         this.isOwner = true;
                     }
+                },
+                error => {
+                    this.snippet = null;
+                    this.loading = false;
                 }
             );
         } else {
             this.apiService.getSnippetByID(this.idSnippet, null, null).subscribe(
                 data => {
                     this.snippet = data;
+                    this.loading = false;
+                },
+                error => {
+                    this.snippet = null;
                     this.loading = false;
                 }
             );
