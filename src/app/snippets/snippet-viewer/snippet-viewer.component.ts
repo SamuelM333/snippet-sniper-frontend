@@ -71,9 +71,10 @@ export class SnippetViewerComponent implements OnInit, AfterViewChecked {
                 data => {
                     if (data._status === 'OK') {
                         this.router.navigateByUrl('/profile');
-                    } else {
-                        Materialize.toast("Error", 4000);
                     }
+                },
+                error => {
+                    Materialize.toast('Error', 4000);
                 }
             );
         } else {
