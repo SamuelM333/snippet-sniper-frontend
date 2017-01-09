@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { apiUrl } from "../../api.service";
+import { apiUrl } from '../../api.service';
 
 
 @Component({
@@ -12,15 +12,15 @@ export class SnippetsListComponent {
     url: string = apiUrl;
 
     @Input()
-    snippetList: any[];
+    public snippetList: any[];
 
     @Input()
-    loading: boolean = true;
+    public loading: boolean = true;
 
     @Input()
-    bigLoading: boolean = false;
+    public bigLoading: boolean = false;
 
     @Input()
-    emptyMessage: string = "";
+    public emptyMessage: string = '';
 
 }

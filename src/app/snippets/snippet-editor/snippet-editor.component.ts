@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MaterializeAction } from 'angular2-materialize';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';

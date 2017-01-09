@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApiService, apiUrl } from "../../api.service";
+import { ApiService, apiUrl } from '../../api.service';
 
 @Component({
     selector: 'app-public-snippets',

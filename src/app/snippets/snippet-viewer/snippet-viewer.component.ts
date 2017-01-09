@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService, apiUrl } from '../../api.service';
 import { Snippet } from '../snippet';
-import { MaterializeAction } from "angular2-materialize";
+import { MaterializeAction } from 'angular2-materialize';
 
 declare const Prism: any;
 declare const Materialize: any;
