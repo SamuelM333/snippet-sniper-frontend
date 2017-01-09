@@ -1,3 +1,197 @@
-<p>
-  admin-panel works!
-</p>
+<div class="white-text center-align">
+  <h5>Users</h5>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">New user</span>
+        <form #form="ngForm" (ngSubmit)="onSubmitNewUser(form)">
+          <div class="input-field col s12">
+            <input ngModel id="name" name="name" type="text" required/>
+            <label for="name">Name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input ngModel id="last_name" name="last_name" type="text" required/>
+            <label for="last_name">Last name: </label>
+          </div>
+          <div class="input-field col s12">
+            <input #email ngModel id="email" type="email" name="email" class="validate" required/>
+            <label #emailLabel for="email" data-error="Invalid email" data-success="">Email: </label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password" name="password" type="password" required
+                   [(ngModel)]="password" (keyup)="onKey($event)">
+            <label for="password">Password:</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password-rpt" type="password" name="password-rpt" required
+                   [(ngModel)]="password_rpt" (keyup)="onKey($event)"
+                   [class.invalid]="!valid" [class.valid]="valid && form.touched">
+            <label #passwordRepeatLabel for="password-rpt">Password (again):</label>
+          </div>
+          <div class="row">
+            <div *ngIf="!valid" class="col s6">
+              <span [class.hide]="valid" class="left red-text">Error: passwords don't match</span>
+            </div>
+            <div class="col s1 offset-s5">
+              <app-busy-loader *ngIf="loading" [isActive]="loading"></app-busy-loader>
+            </div>
+            <div class="col s6">
+              <button class="center-btn btn waves-effect waves-dark right" type="submit"
+                      [disabled]="!form.valid || !valid || loading">
+                Register
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Change user state</span>
+        <form #userStateForm="ngForm" (ngSubmit)="onSubmitDeleteUser(userStateForm)">
+          <div class="input-field col s12">
+            <input ngModel id="email-user-delete" class="validate" name="email" type="email" required
+                   pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"/>
+            <label data-error="Invalid email" data-success="" for="email-user-delete">Email: </label>
+          </div>
+          <div class="input-field col s12 radio-row">
+            <span>
+              <input id="active-state" class="with-gap" name="state" type="radio" required
+                     [(ngModel)]="activeState" [value]="true"/>
+              <label class="radio-label" for="active-state">Active</label>
+            </span>
+            <span>
+              <input id="inactive-state" class="with-gap" name="state" type="radio" required
+                     [(ngModel)]="activeState" [value]="false"/>
+              <label class="radio-label" for="inactive-state">Inactive</label>
+            </span>
+          </div>
+          <div class="row">
+            <div class="col s1 offset-s5">
+              <app-busy-loader *ngIf="loading" [isActive]="loading"></app-busy-loader>
+            </div>
+            <div class="col s6">
+              <button class="center-btn btn waves-effect waves-dark right" type="submit"
+                      [disabled]="!userStateForm.valid || loading">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Change admin state</span>
+        <form #makeAdminForm="ngForm" (ngSubmit)="onSubmitMakeAdmin(makeAdminForm)">
+          <div class="input-field col s12">
+            <input ngModel id="email-make-admin" name="email" type="email" required/>
+            <label for="email-make-admin">Email: </label>
+          </div>
+          <div class="input-field col s12 radio-row">
+            <span>
+              <input id="admin-active" class="with-gap" name="state" type="radio"
+                     [(ngModel)]="adminState" [value]="true" checked required/>
+              <label class="radio-label" for="admin-active">Admin</label>
+            </span>
+            <span>
+              <input id="admin-inactive" class="with-gap" name="state" type="radio"
+                     [(ngModel)]="adminState" [value]="false" required/>
+              <label class="radio-label" for="admin-inactive">User</label>
+            </span>
+          </div>
+
+          <div class="row">
+            <div class="col s1 offset-s5">
+              <app-busy-loader *ngIf="loading" [isActive]="loading"></app-busy-loader>
+            </div>
+            <div class="col s6">
+              <button class="center-btn btn waves-effect waves-dark right" type="submit"
+                      [disabled]="!makeAdminForm.valid || !valid || loading">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="white-text center-align">
+  <h5>Snippets</h5>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Delete snippet</span>
+        <form #deleteSnippetForm="ngForm" (ngSubmit)="onSubmitDeleteSnippet(deleteSnippetForm)">
+          <div class="input-field col s12">
+            <input ngModel id="snippet-id" name="snippet_id" type="text" required/>
+            <label for="snippet-id">Snippet ID: </label>
+          </div>
+          <div class="row">
+            <div class="col s1 offset-s5">
+              <app-busy-loader *ngIf="loading" [isActive]="loading"></app-busy-loader>
+            </div>
+            <div class="col s6">
+              <button class="center-btn btn waves-effect waves-dark right" type="submit"
+                      [disabled]="!deleteSnippetForm.valid || loading">
+                Delete snippet
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="white-text center-align">
+  <h5>Statistics</h5>
+</div>
+
+<div class="row">
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Total amount of snippets:</span>
+        <p>{{0}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Amount of public snippets:</span>
+        <p>{{publicSnippetCount}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Amount of closed snippets:</span>
+        <p>0</p>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Amount of private snippets:</span>
+        <p>0</p>
+      </div>
+    </div>
+  </div>
+</div>
+
