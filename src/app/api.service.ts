@@ -18,7 +18,7 @@ export class ApiService {
 
     getSnippets() {
         return this.http.get(apiUrl + '/snippet').map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -28,12 +28,12 @@ export class ApiService {
             'Content-Type': 'application/json'
         });
 
-        if (authEmail && authEmail != '') {
+        if (authEmail && authEmail !== '') {
             headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
         }
 
         return this.http.get(apiUrl + '/snippet/' + idSnippet, { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -45,7 +45,7 @@ export class ApiService {
         });
 
         return this.http.get(apiUrl + '/snippet?shared=' + email, { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -56,7 +56,7 @@ export class ApiService {
         });
 
         return this.http.get(apiUrl + '/snippet?owner=' + email, { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -73,22 +73,22 @@ export class ApiService {
         };
 
         return this.http.post(apiUrl + '/snippet', JSON.stringify(data), { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
     deleteSnippet(idSnippet: string, authEmail: string, password: string) {
 
         let headers = new Headers({
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         });
 
-        if (authEmail && authEmail != '') {
+        if (authEmail && authEmail !== '') {
             headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
         }
 
         return this.http.delete(apiUrl + '/snippet/' + idSnippet, { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -110,7 +110,7 @@ export class ApiService {
         };
 
         return this.http.post(apiUrl + '/user', JSON.stringify(data), { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -127,7 +127,7 @@ export class ApiService {
         };
 
         return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
@@ -139,11 +139,41 @@ export class ApiService {
 
         let data = {
             'old_password': old_password,
-            'new_password':  new_password
+            'new_password': new_password
         };
 
         return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
+        );
+    }
+
+    changeUserState(email: string, state: boolean, authEmail: string, password: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(authEmail + ':' + password)
+        });
+
+        let data = {
+            'state': state ? 1 : 0
+        };
+
+        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
+            (response: Response) => response.json()
+        );
+    }
+
+    changeUserAdmin(email: string, admin: boolean, authEmail: string, password: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(authEmail + ':' + password)
+        });
+
+        let data = {
+            'admin': admin ? 1 : 0
+        };
+
+        return this.http.patch(apiUrl + '/user/' + email, JSON.stringify(data), { headers: headers }).map(
+            (response: Response) => response.json()
         );
     }
 
@@ -157,7 +187,7 @@ export class ApiService {
         };
 
         return this.http.post(apiUrl + '/mail', JSON.stringify(data), { headers: headers }).map(
-            (data: Response) => data.json()
+            (response: Response) => response.json()
         );
     }
 
