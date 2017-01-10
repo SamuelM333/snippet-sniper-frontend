@@ -93,6 +93,22 @@ export class ApiService {
         );
     }
 
+    getSnippetsStatistic(statistic: string, authEmail: string, password: string){
+        // statistic can be public, closed or private
+
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        if (authEmail && authEmail !== '') {
+            headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
+        }
+
+        return this.http.get(apiUrl + '/snippet?statistics=' + statistic, { headers: headers }).map(
+            (response: Response) => response.json()
+        );
+    }
+
     getUserByEmail(email: string) {
         return this.http.get(apiUrl + '/user/' + email).map(
             (response: Response) => response.json()
@@ -177,6 +193,23 @@ export class ApiService {
             (response: Response) => response.json()
         );
     }
+
+    getUsersStatistic(statistic: string, authEmail: string, password: string){
+        // statistic can be public, closed or private
+
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        if (authEmail && authEmail !== '') {
+            headers.append('Authorization', 'Basic ' + btoa(authEmail + ':' + password));
+        }
+
+        return this.http.get(apiUrl + '/user?statistics=' + statistic, { headers: headers }).map(
+            (response: Response) => response.json()
+        );
+    }
+
 
     sendMail(name: string, email: string, message: string) {
         let headers = new Headers({ 'Content-Type': 'application/json' });

@@ -12,7 +12,18 @@ declare const Materialize: any;
 })
 export class AdminPanelComponent implements OnInit {
 
+    totalSnippetCount: number = 0;
+    totalFragmentsCount: number = 0;
     publicSnippetCount: number = 0;
+    privateSnippetCount: number = 0;
+    closedSnippetCount: number = 0;
+
+    totalUserCount: number = 0;
+    totalRegularUserCount: number = 0;
+    totalAdminCount: number = 0;
+    totalActiveUserCount: number = 0;
+    totalInactiveUserCount: number = 0;
+
     activeState: boolean;
     adminState: boolean;
     password: string = '';
@@ -25,13 +36,93 @@ export class AdminPanelComponent implements OnInit {
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
-        this.apiService.getSnippets().subscribe(
+        // Snippets Statistics
+        this.apiService.getSnippetsStatistic('total', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalSnippetCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getSnippetsStatistic('fragments', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalFragmentsCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+        this.apiService.getSnippetsStatistic('public', this.authUser.email, this.authUser.password).subscribe(
             data => {
                 this.publicSnippetCount = data._meta.total
             },
             error => {
-                Materialize.toast('Email already in use', 4000);
-                this.loading = false;
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getSnippetsStatistic('closed', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.closedSnippetCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getSnippetsStatistic('private', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.privateSnippetCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getUsersStatistic('total', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalUserCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getUsersStatistic('admins', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalAdminCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getUsersStatistic('users', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalRegularUserCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getUsersStatistic('active', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalActiveUserCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
+            }
+        );
+
+        this.apiService.getUsersStatistic('inactive', this.authUser.email, this.authUser.password).subscribe(
+            data => {
+                this.totalInactiveUserCount = data._meta.total
+            },
+            error => {
+                Materialize.toast('Error', 4000);
             }
         );
     }
