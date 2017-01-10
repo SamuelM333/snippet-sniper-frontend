@@ -1,0 +1,64 @@
+<app-nav>
+  <div class="row">
+    <div class="col s12">
+
+      <!--Profile tabs bar-->
+      <ul class="tabs tabs-fixed-width grey darken-3">
+
+        <!--Profile-->
+        <li class="tab col s6">
+          <a class="waves-effect waves-light active" href="#tab1"><i class="material-icons">person</i></a>
+        </li>
+
+        <!--Snippets-->
+        <li class="tab col s6">
+          <a class="waves-effect waves-light" href="#tab2"><i class="material-icons">list</i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</app-nav>
+
+<div id="profile-container" class="container">
+
+  <!--Profile tab-->
+  <div id="tab1" class="col s12">
+    <div class="row">
+      <div class="section-title">
+        <h4 class="white-text center">Profile</h4>
+      </div>
+      <div class="col s12">
+        <div class="card">
+          <div id="profile-card" class="card-content valign-wrapper">
+            <div class="col s12 m4 center">
+              <div class="profile-img-container">
+                <img id="profile-picture" class="responsive-img" [src]="userImage">
+              </div>
+            </div>
+            <div class="col s12 m8">
+              <h5>Name: {{userName}} {{userLastName}}</h5>
+              <h5>Email: {{userEmail}}</h5>
+              <h5>User since: {{userDate | date}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Public Snippets tab-->
+  <div id="tab2" class="col s12">
+    <div class="row">
+      <div class="section-title">
+        <h4 class="white-text center">Public snippets</h4>
+      </div>
+      <app-snippets-list
+        [snippetList]="snippets"
+        [loading]="false"
+        [emptyMessage]="'No public snippets'">
+      </app-snippets-list>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -36,6 +36,7 @@ import { SharedWithMeComponent } from './profile/user-profile/shared-with-me/sha
 import { MyAccountComponent } from './profile/user-profile/my-account/my-account.component';
 import { AdminPanelComponent } from './profile/user-profile/admin-panel/admin-panel.component';
 import { SnippetsListComponent } from './snippets/snippets-list/snippets-list.component';
+import { PublicProfileComponent } from './profile/public-profile/public-profile.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { SnippetsListComponent } from './snippets/snippets-list/snippets-list.co
         MyAccountComponent,
         AdminPanelComponent,
         SnippetsListComponent,
+        PublicProfileComponent,
 
     ],
     providers: [ApiService, DragulaService],

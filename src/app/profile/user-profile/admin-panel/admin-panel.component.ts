@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../api.service';
 import { NgForm } from '@angular/forms';
+import { Router } from "@angular/router";
 const bcrypt = require('bcryptjs');
 declare const Materialize: any;
 
@@ -33,7 +34,7 @@ export class AdminPanelComponent implements OnInit {
 
     authUser = JSON.parse(localStorage.getItem('authUser'));
 
-    constructor(private apiService: ApiService) { }
+    constructor(private apiService: ApiService, private router: Router) { }
 
     ngOnInit() {
         // Snippets Statistics
@@ -134,8 +135,7 @@ export class AdminPanelComponent implements OnInit {
             hashed_password).subscribe(
             data => {
                 // Redirect to user profile?
-                // this.router.navigateByUrl('/profile/data.idUser');
-                // form.reset();
+                this.router.navigateByUrl('/user/' + data.email);
             },
             error => {
                 Materialize.toast('Email already in use', 4000);

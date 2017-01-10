@@ -23,9 +23,10 @@ export class NavComponent implements OnInit {
         if (this.authUser) { this.authUser = JSON.parse(this.authUser); }
     }
 
-    atProfile() {
+    addTabs() {
+        let regexp = new RegExp('^\/user\/(.*)$');
 
-        if (this.router.url === '/profile') {
+        if (this.router.url === '/profile' || regexp.test(this.router.url)) {
             return true;
         } else { return false; }
     }
