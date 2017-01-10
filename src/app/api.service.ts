@@ -60,12 +60,13 @@ export class ApiService {
         );
     }
 
-    submitSnippet(snippet: Snippet, allowed_users: User[]) {
+    submitSnippet(snippet: Snippet, type: string, allowed_users: User[]) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
 
         let data = {
             'user': snippet.idUser,
             'title': snippet.title,
+            'type': type,
             'created': new Date().toISOString().slice(0, 19).replace('T', ' '),
             'edited': new Date().toISOString().slice(0, 19).replace('T', ' '),
             'fragments': snippet.body,

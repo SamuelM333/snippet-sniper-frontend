@@ -151,7 +151,7 @@ export class SnippetEditorComponent implements AfterViewInit, OnDestroy {
                 this.allowed_users.push(authUser);
             }
 
-            this.apiService.submitSnippet(snippet, this.allowed_users).subscribe(
+            this.apiService.submitSnippet(snippet, this.shared, this.allowed_users).subscribe(
                 data => {
                     if (data._status === 'OK') {
                         // Redirect to snippet view
