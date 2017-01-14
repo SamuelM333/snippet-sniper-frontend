@@ -37,6 +37,7 @@ import { MyAccountComponent } from './profile/user-profile/my-account/my-account
 import { AdminPanelComponent } from './profile/user-profile/admin-panel/admin-panel.component';
 import { SnippetsListComponent } from './snippets/snippets-list/snippets-list.component';
 import { PublicProfileComponent } from './profile/public-profile/public-profile.component';
+import { SupportedLanguagesComponent } from './homepage/supported-languages/supported-languages.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { PublicProfileComponent } from './profile/public-profile/public-profile.
         AdminPanelComponent,
         SnippetsListComponent,
         PublicProfileComponent,
+        SupportedLanguagesComponent,
 
     ],
     providers: [ApiService, DragulaService],

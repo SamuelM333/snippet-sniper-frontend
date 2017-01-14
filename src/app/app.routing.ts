@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
+import { SupportedLanguagesComponent } from './homepage/supported-languages/supported-languages.component';
 import { LoginComponent } from './profile/login/login.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
@@ -13,6 +14,7 @@ const APP_ROUTES: Routes = [
     { path: '', component: HomepageComponent },
     { path: 'login', component: LoginComponent },
     { path: 'sign-up', component: SignUpComponent },
+    { path: 'languages', component: SupportedLanguagesComponent },
     { path: 'profile', component: UserProfileComponent },
     { path: 'user/:email', component: PublicProfileComponent },
     { path: 'snippet/editor', component: SnippetEditorComponent },
