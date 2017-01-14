@@ -13,7 +13,7 @@
       <li routerLinkActive="active">
         <a [routerLink]="['/snippets']"><i class="tiny material-icons left">public</i>Public snippets</a>
       </li>
-      <li routerLinkActive="active">
+      <li *ngIf="authUser" routerLinkActive="active">
         <a [routerLink]="['/snippet/editor']">
           <i class="tiny material-icons left">playlist_add</i>Create snippet</a>
       </li>
