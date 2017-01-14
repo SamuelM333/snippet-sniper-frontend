@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ApiService } from '../../api.service';
+import { setInterval } from "timers";
 
 declare const $: any;
 declare const Materialize: any;
@@ -21,6 +22,7 @@ export class SlidesComponent implements OnInit, OnDestroy {
             navigation: true,
             navigationPosition: 'left',
             showActiveTooltip: true,
+            responsiveWidth: 768,
             slidesNavigation: true,
             slidesNavPosition: 'bottom',
             controlArrows: false,
@@ -34,19 +36,43 @@ export class SlidesComponent implements OnInit, OnDestroy {
         });
 
         $('.typed-text').typed({
-            strings: ['text', 'snippets', 'code', 'images'],
+            strings: ['text', 'snippets', 'code'],
             typeSpeed: 100,
             loop: true
         });
 
         $('.carousel.carousel-slider').carousel({ full_width: true });
-        let interval = window.setInterval(function () {
-            $('.carousel').carousel('next');
-        }, 3000);
 
-        $('#carousel-section').click(function () {
-            clearInterval(interval);
-        });
+        // let interval = setInterval(function () {
+        //     console.log('scroll');
+        //     $('.carousel').carousel('next');
+        // }, 3000);
+
+        // $('#carousel-section').click(function () {
+        //     console.log('click');
+        //     clearInterval(interval);
+        // });
+
+        // let isDragging = false;
+        // $('.carousel')
+        //     .click(function () {
+        //         console.log('click');
+        //         clearInterval(interval);
+        //     })
+        //     .mousedown(function () {
+        //         isDragging = false;
+        //     })
+        //     .mousemove(function () {
+        //         isDragging = true;
+        //     })
+        //     .mouseup(function () {
+        //         var wasDragging = isDragging;
+        //         isDragging = false;
+        //         if (wasDragging) {
+        //             console.log('drag');
+        //             clearInterval(interval);
+        //         }
+        //     });
 
         $('.slider').slider({ full_width: true });
         $('.button-collapse').sideNav();

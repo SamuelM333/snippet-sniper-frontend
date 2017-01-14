@@ -38,43 +38,47 @@
 @import "../node_modules/materialize-css/sass/components/date_picker/default.date"
 @import "../node_modules/materialize-css/sass/components/date_picker/default.time"
 
-
+body, html
+    height: 100%
 
 body
-	font-family: Roboto
-	background-color: $grey
-	display: flex
-	min-height: 100vh
-	flex-direction: column
+    font-family: Roboto
+    background-color: $grey
+    display: flex
+    min-height: 100vh
+        flex-direction: column
 
 button, a.btn-floating
-	background-color: $teal
+    background-color: $teal
 
 .center-btn
-	text-align: center
+    text-align: center
+
+.fixed-size-btn
+    width: 10em
 
 .full-form-on-small
-	@media screen and (max-width: 600px)
-		margin-left: 0 !important
-		width: 100% !important
+    @media screen and (max-width: 600px)
+        margin-left: 0 !important
+        width: 100% !important
 
 .markdown h1
-	font-size: 2em
+    font-size: 2em
 
 .markdown h2
-	font-size: 1.8em
+    font-size: 1.8em
 
 .markdown h3
-	font-size: 1.6em
+    font-size: 1.6em
 
 .markdown h4
-	font-size: 1.4em
+    font-size: 1.4em
 
 .markdown h5
-	font-size: 1.2em
+    font-size: 1.2em
 
 .markdown h6
-	font-size: 1em
+    font-size: 1em
 
 .toast
-	background-color: #454545
+    background-color: #454545
