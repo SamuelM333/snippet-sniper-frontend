@@ -57,7 +57,7 @@
       <li *ngIf="authUser">
         <div class="divider"></div>
       </li>
-      <li *ngIf="authUser">
+      <li *ngIf="authUser" routerLinkActive="active">
         <a [routerLink]="['/profile']"><i class="material-icons">person</i>Profile</a>
       </li>
       <li *ngIf="authUser">
