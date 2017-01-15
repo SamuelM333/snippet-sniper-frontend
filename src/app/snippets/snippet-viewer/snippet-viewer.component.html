@@ -1,6 +1,6 @@
 <app-nav></app-nav>
 <div class="container">
-  <div id="loader" class="center-align">
+  <div *ngIf="loading" id="loader" class="center-align">
     <app-busy-loader [isActive]="loading" [show]="loading" [big]="true"></app-busy-loader>
   </div>
   <div *ngIf="!snippet && !loading">
@@ -82,4 +82,6 @@
   </div>
 </div>
 
-<app-footer></app-footer>
+<div class="footer">
+  <app-footer></app-footer>
+</div>
