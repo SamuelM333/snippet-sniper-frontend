@@ -10,14 +10,14 @@
     <h3 *ngIf="!loading" class="snippet-title white-text">
       <span>{{ snippet?.title }}</span>
       <span *ngIf="isOwner" class="right options">
-        <a (click)="openShareModal()" class="tooltipped" data-position="bottom" data-delay="25"
-           data-tooltip="Edit share options">
-          <i class="material-icons green-text">share</i>
-        </a>
-        <a (click)="openEditModal()" class="tooltipped" data-position="bottom" data-delay="25"
-           data-tooltip="Edit snippet">
-          <i class="material-icons orange-text text-lighten-1">mode_edit</i>
-        </a>
+        <!--<a (click)="openShareModal()" class="tooltipped" data-position="bottom" data-delay="25"-->
+           <!--data-tooltip="Edit share options">-->
+          <!--<i class="material-icons green-text">share</i>-->
+        <!--</a>-->
+        <!--<a (click)="openEditModal()" class="tooltipped" data-position="bottom" data-delay="25"-->
+           <!--data-tooltip="Edit snippet">-->
+          <!--<i class="material-icons orange-text text-lighten-1">mode_edit</i>-->
+        <!--</a>-->
         <a (click)="openDeleteModal()" class="tooltipped" data-position="bottom" data-delay="25"
            data-tooltip="Delete snippet">
          <i class="material-icons red-text">delete</i>
@@ -26,7 +26,7 @@
       <small>
         <br>
         <span>Author:</span>
-        <a [routerLink]="['/user/' + snippet?.owner.id]" class="snippet-owner white-text">
+        <a [routerLink]="['/user/' + snippet?.owner.email]" class="snippet-owner white-text">
           <img *ngIf="snippet?.owner?.picture?.url" src="{{url + snippet?.owner.picture.url}}"/>
           <img *ngIf="!snippet?.owner?.picture?.url" src="assets/img/generic_profile.png"/>
           <span>{{ snippet?.owner.name }} {{ snippet?.owner.last_name }}</span>
